@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* --- Organism breathing --- */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.8; }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* --- Subtle background glow --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 30%, rgba(52, 211, 153, 0.07) 0%, rgba(22, 163, 74, 0.02) 40%, transparent 65%);
+  animation: bgBreathe 6s ease-in-out infinite;
+}
+
+@keyframes bgBreathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* --- Feature cards hover glow --- */
+.feature-card {
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.feature-card:hover {
+  border-color: #34d399;
+  box-shadow: 0 0 24px rgba(52, 211, 153, 0.1);
+  transform: translateY(-2px);
+}
+
+.lang-btn { cursor: pointer; border: none; transition: all 0.15s; }
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe { animation: none; }
+  body::before { animation: none; }
+  .feature-card { transition: none; }
+  .feature-card:hover { transform: none; }
+}
