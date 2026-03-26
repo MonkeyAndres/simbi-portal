@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,8 @@
   <meta property="og:title" content="Simbi: Software that grows with you">
   <meta property="og:description" content="Software que crece contigo. Software that grows with you.">
   <meta property="og:type" content="article">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,10 +20,24 @@
       --text: #e8e8e8;
       --text-dim: #a0a0a0;
       --text-faint: #666;
-      --accent: #4ade80;
-      --accent-dim: rgba(74, 222, 128, 0.12);
+      --accent: #059669;
+      --accent-dim: rgba(5, 150, 105, 0.12);
       --border: #1a1a1a;
       --separator: #141414;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f5f5f4;
+        --bg-subtle: #ececea;
+        --text: #1c1917;
+        --text-dim: #57534e;
+        --text-faint: #a8a29e;
+        --accent: #059669;
+        --accent-dim: rgba(5, 150, 105, 0.1);
+        --border: #d6d3d1;
+        --separator: #e7e5e4;
+      }
     }
 
     html {
@@ -383,7 +398,7 @@
     .essay-footer a:hover { color: var(--accent); }
 
     /* -- Language switching -- */
-    .en { display: none; }
+    .es { display: none; }
 
     /* -- Selection -- */
     ::selection {
@@ -429,7 +444,7 @@
   <nav class="topbar">
     <a href="index.html" class="back-link">&larr; Simbi</a>
     <div class="lang-toggle" aria-label="Language selector">
-      <button class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       <span class="lang-sep">/</span>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
     </div>
@@ -771,6 +786,7 @@
       var enEls = document.querySelectorAll('.en');
 
       function setLang(lang) {
+        localStorage.setItem('simbi-lang', lang);
         document.documentElement.lang = lang;
         langBtns.forEach(function(btn) {
           var isActive = btn.getAttribute('data-lang') === lang;
@@ -787,8 +803,11 @@
         });
       });
 
-      // Initialize
-      setLang('es');
+      // Initialize — detect browser language, default to English
+      var saved = localStorage.getItem('simbi-lang');
+      var browser = navigator.language.slice(0, 2).toLowerCase();
+      var initLang = saved || (browser === 'es' ? 'es' : 'en');
+      setLang(initLang);
 
       // Mobile TOC toggle
       var tocMobile = document.getElementById('toc-mobile');
