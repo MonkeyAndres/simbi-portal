@@ -24,6 +24,7 @@
       --accent-dim: rgba(5, 150, 105, 0.12);
       --border: #1a1a1a;
       --separator: #141414;
+      --topbar-bg: rgba(10, 10, 10, 0.85);
     }
 
     @media (prefers-color-scheme: light) {
@@ -37,6 +38,7 @@
         --accent-dim: rgba(5, 150, 105, 0.1);
         --border: #d6d3d1;
         --separator: #e7e5e4;
+        --topbar-bg: rgba(245, 245, 244, 0.85);
       }
     }
 
@@ -66,7 +68,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.75rem 1.5rem;
-      background: rgba(10, 10, 10, 0.85);
+      background: var(--topbar-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -86,7 +88,7 @@
       display: flex;
       align-items: center;
       gap: 0.25rem;
-      background: rgba(255,255,255,0.05);
+      background: var(--accent-dim);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 0.25rem 0.5rem;
@@ -485,18 +487,12 @@
       <div class="es">
         <div class="essay-pill">Ensayo &middot; 10 min de lectura</div>
         <h1 class="essay-title">Simbi: Software que crece contigo</h1>
-        <div class="essay-author">Andres Martin Angulo &mdash; Marzo 2026</div>
-        <div class="author-note">
-          <strong>Nota del autor:</strong> Este ensayo paso por un proceso de reescritura brutal. Invoque dos mentes que admiro &mdash; Richard Feynman (el fisico que explicaba mecanica cuantica a cualquiera) y Steve Krug (el que escribio "Don't Make Me Think") &mdash; y los puse a debatir cada parrafo. Lo que sigue es el borrador final que ambos aprobaron.
-        </div>
+        <div class="essay-author">Andrés Martín Angulo &mdash; Marzo 2026</div>
       </div>
       <div class="en">
         <div class="essay-pill">Essay &middot; 10 min read</div>
         <h1 class="essay-title">Simbi: Software that grows with you</h1>
-        <div class="essay-author">Andres Martin Angulo &mdash; March 2026</div>
-        <div class="author-note">
-          <strong>Author's note:</strong> This essay went through a brutal rewriting process. I summoned two minds I admire &mdash; Richard Feynman (the physicist who could explain quantum mechanics to anyone) and Steve Krug (the guy who wrote "Don't Make Me Think") &mdash; and had them debate every paragraph. What follows is the final draft they both approved.
-        </div>
+        <div class="essay-author">Andrés Martín Angulo &mdash; March 2026</div>
       </div>
     </header>
 
