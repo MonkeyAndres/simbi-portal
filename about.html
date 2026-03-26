@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simbi: Software que crece contigo</title>
+  <meta name="description" content="Software that grows with you. An essay by Andres Martin Angulo.">
+  <meta property="og:title" content="Simbi: Software that grows with you">
+  <meta property="og:description" content="Software que crece contigo. Software that grows with you.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #0f0f0f;
+      --text: #e8e8e8;
+      --text-dim: #a0a0a0;
+      --text-faint: #666;
+      --accent: #4ade80;
+      --accent-dim: rgba(74, 222, 128, 0.12);
+      --border: #1a1a1a;
+      --separator: #141414;
+    }
+
+    html {
+      font-size: 18px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* -- Top bar -- */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-faint);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .lang-btn.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+    .lang-sep {
+      color: var(--border);
+      font-size: 0.7rem;
+      user-select: none;
+    }
+
+    /* -- Layout -- */
+    .essay {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    /* -- Header -- */
+    .essay-header {
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .essay-title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .essay-pill {
+      display: inline-block;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .essay-author {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .author-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-subtle);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .author-note strong { color: var(--text); font-weight: 600; }
+
+    /* -- TOC -- */
+    .toc {
+      position: fixed;
+      left: calc(50% + 380px);
+      top: 5rem;
+      width: 200px;
+      z-index: 50;
+    }
+
+    .toc-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+    .toc-list li { margin-bottom: 0.4rem; }
+    .toc-list a {
+      color: var(--text-faint);
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.2s;
+    }
+    .toc-list a:hover { color: var(--accent); }
+    .toc-list a.active { color: var(--accent); }
+
+    /* mobile toc */
+    .toc-mobile {
+      display: none;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .toc-mobile-toggle {
+      width: 100%;
+      background: var(--bg-subtle);
+      border: none;
+      color: var(--text-dim);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toc-mobile-toggle::after {
+      content: '+';
+      font-size: 1rem;
+      color: var(--text-faint);
+      transition: transform 0.2s;
+    }
+    .toc-mobile.open .toc-mobile-toggle::after {
+      content: '-';
+    }
+    .toc-mobile-list {
+      list-style: none;
+      padding: 0.5rem 1rem 0.75rem;
+      display: none;
+    }
+    .toc-mobile.open .toc-mobile-list { display: block; }
+    .toc-mobile-list li { margin-bottom: 0.35rem; }
+    .toc-mobile-list a {
+      color: var(--text-faint);
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      display: block;
+      transition: color 0.2s;
+    }
+    .toc-mobile-list a:hover { color: var(--accent); }
+
+    @media (max-width: 1100px) {
+      .toc { display: none; }
+      .toc-mobile { display: block; }
+    }
+
+    /* -- Sections -- */
+    .essay section {
+      margin-bottom: 2.5rem;
+    }
+
+    .essay h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      padding-top: 1rem;
+    }
+
+    .essay h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .essay p {
+      margin-bottom: 1.15rem;
+      color: var(--text);
+    }
+
+    .essay ul {
+      list-style: none;
+      margin-bottom: 1.15rem;
+      padding-left: 0;
+    }
+
+    .essay ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+    .essay ul li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .essay strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .essay em { font-style: italic; }
+
+    .essay blockquote {
+      margin: 1.5rem 0;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-subtle);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    .essay hr {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* -- Curious separator -- */
+    .curious-separator {
+      margin: 3rem 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+      text-align: center;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .curious-separator p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* -- Mission -- */
+    .mission {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text);
+      padding: 1rem 0;
+    }
+
+    .cta {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .cta a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .cta a:hover { border-bottom-color: var(--accent); }
+
+    /* -- Footer -- */
+    .essay-footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .essay-footer p {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      margin-bottom: 0;
+    }
+    .essay-footer a {
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-footer a:hover { color: var(--accent); }
+
+    /* -- Language switching -- */
+    .en { display: none; }
+
+    /* -- Selection -- */
+    ::selection {
+      background: rgba(74, 222, 128, 0.2);
+      color: var(--text);
+    }
+
+    /* -- Scrollbar -- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* -- Responsive -- */
+    @media (max-width: 600px) {
+      html { font-size: 16px; }
+      .essay { padding: 4.5rem 1.25rem 3rem; }
+      .essay-title { font-size: 1.65rem; }
+      .essay h2 { font-size: 1.25rem; }
+      .essay blockquote { padding: 1rem 1.15rem; }
+      .curious-separator {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+
+    /* -- Focus -- */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* -- Reduced motion -- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <nav class="topbar">
+    <a href="index.html" class="back-link">&larr; Simbi</a>
+    <div class="lang-toggle" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </nav>
+
+  <!-- Sidebar TOC (desktop) -->
+  <nav class="toc" aria-label="Table of contents">
+    <div class="es">
+      <div class="toc-title">Contenido</div>
+      <ul class="toc-list">
+        <li><a href="#lunes">Lunes por la manana</a></li>
+        <li><a href="#problema">El problema que nadie resuelve</a></li>
+        <li><a href="#crece">Algo que crece contigo</a></li>
+        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#tuyo">Es tuyo de verdad</a></li>
+        <li><a href="#curiosos">Para los curiosos</a></li>
+        <li><a href="#futuro">El futuro que veo</a></li>
+      </ul>
+    </div>
+    <div class="en">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#lunes">Monday morning</a></li>
+        <li><a href="#problema">The problem nobody's solving</a></li>
+        <li><a href="#crece">Something that grows with you</a></li>
+        <li><a href="#como">How it works</a></li>
+        <li><a href="#tuyo">It's actually yours</a></li>
+        <li><a href="#curiosos">For the curious</a></li>
+        <li><a href="#futuro">The future I see</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="essay">
+
+    <!-- Header -->
+    <header class="essay-header">
+      <div class="es">
+        <div class="essay-pill">Ensayo &middot; 10 min de lectura</div>
+        <h1 class="essay-title">Simbi: Software que crece contigo</h1>
+        <div class="essay-author">Andres Martin Angulo &mdash; Marzo 2026</div>
+        <div class="author-note">
+          <strong>Nota del autor:</strong> Este ensayo paso por un proceso de reescritura brutal. Invoque dos mentes que admiro &mdash; Richard Feynman (el fisico que explicaba mecanica cuantica a cualquiera) y Steve Krug (el que escribio "Don't Make Me Think") &mdash; y los puse a debatir cada parrafo. Lo que sigue es el borrador final que ambos aprobaron.
+        </div>
+      </div>
+      <div class="en">
+        <div class="essay-pill">Essay &middot; 10 min read</div>
+        <h1 class="essay-title">Simbi: Software that grows with you</h1>
+        <div class="essay-author">Andres Martin Angulo &mdash; March 2026</div>
+        <div class="author-note">
+          <strong>Author's note:</strong> This essay went through a brutal rewriting process. I summoned two minds I admire &mdash; Richard Feynman (the physicist who could explain quantum mechanics to anyone) and Steve Krug (the guy who wrote "Don't Make Me Think") &mdash; and had them debate every paragraph. What follows is the final draft they both approved.
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile TOC -->
+    <div class="toc-mobile" id="toc-mobile">
+      <button class="toc-mobile-toggle" id="toc-mobile-toggle">
+        <span class="es">Contenido</span>
+        <span class="en">Contents</span>
+      </button>
+      <ul class="toc-mobile-list es">
+        <li><a href="#lunes">Lunes por la manana</a></li>
+        <li><a href="#problema">El problema que nadie resuelve</a></li>
+        <li><a href="#crece">Algo que crece contigo</a></li>
+        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#tuyo">Es tuyo de verdad</a></li>
+        <li><a href="#curiosos">Para los curiosos</a></li>
+        <li><a href="#futuro">El futuro que veo</a></li>
+      </ul>
+      <ul class="toc-mobile-list en">
+        <li><a href="#lunes">Monday morning</a></li>
+        <li><a href="#problema">The problem nobody's solving</a></li>
+        <li><a href="#crece">Something that grows with you</a></li>
+        <li><a href="#como">How it works</a></li>
+        <li><a href="#tuyo">It's actually yours</a></li>
+        <li><a href="#curiosos">For the curious</a></li>
+        <li><a href="#futuro">The future I see</a></li>
+      </ul>
+    </div>
+
+    <!-- Section: Lunes por la manana -->
+    <section id="lunes">
+      <div class="es">
+        <h2>Lunes por la manana</h2>
+        <p>Son las 7:42. Suena el movil. Un mensaje en Discord:</p>
+        <blockquote>Buenos dias. Tu madre cumple anos el jueves &mdash; &iquest;quieres que te recuerde manana para comprar algo? Y tienes la reunion con Elias a las 11, la semana pasada hablasteis del presupuesto Q2.</blockquote>
+        <p>No le pediste nada de esto. Nadie programo esas alertas. Nadie configuro reglas. Simplemente... te conoce.</p>
+        <p>Esto no es ciencia ficcion. Es lo que hace Simbi cada manana. Conmigo. Hoy.</p>
+      </div>
+      <div class="en">
+        <h2>Monday morning</h2>
+        <p>It's 7:42. Your phone buzzes. A message on Discord:</p>
+        <blockquote>Good morning. Your mom's birthday is Thursday &mdash; want me to remind you tomorrow to get her something? And you've got the meeting with Elias at 11, last week you talked about the Q2 budget.</blockquote>
+        <p>You didn't ask for any of this. Nobody programmed those alerts. Nobody set up rules. It just... knows you.</p>
+        <p>This isn't science fiction. This is what Simbi does every morning. With me. Today.</p>
+      </div>
+    </section>
+
+    <!-- Section: El problema -->
+    <section id="problema">
+      <div class="es">
+        <h2>El problema que nadie resuelve</h2>
+        <p>Abre ChatGPT. Preguntale que cenaste anoche. No lo sabe. Preguntale el nombre de tu pareja. No lo sabe. Preguntale que te dijo la semana pasada sobre aquel proyecto. No lo sabe.</p>
+        <p>Cada dia, desde cero. Cada conversacion, un desconocido.</p>
+        <p>Es como tener un companero de trabajo brillante que cada manana llega sin recordar nada. Ni las decisiones de ayer, ni los problemas que resolvisteis juntos, ni que le contaste que tu madre esta enferma. Amnesia permanente disfrazada de inteligencia.</p>
+        <p>ChatGPT, Alexa, Siri, Gemini &mdash; todos hacen lo mismo: responder bien a la pregunta de ahora. Ninguno recuerda la conversacion de ayer.</p>
+      </div>
+      <div class="en">
+        <h2>The problem nobody's solving</h2>
+        <p>Open ChatGPT. Ask it what you had for dinner last night. It doesn't know. Ask it your partner's name. It doesn't know. Ask it what it told you last week about that project. It doesn't know.</p>
+        <p>Every day, starting from scratch. Every conversation, a stranger.</p>
+        <p>It's like having a brilliant coworker who shows up every morning with no memory of anything. Not yesterday's decisions, not the problems you solved together, not the fact that you told them your mom is sick. Permanent amnesia dressed up as intelligence.</p>
+        <p>ChatGPT, Alexa, Siri, Gemini &mdash; they all do the same thing: answer the question in front of them right now. None of them remember yesterday's conversation.</p>
+      </div>
+    </section>
+
+    <!-- Section: Algo que crece contigo -->
+    <section id="crece">
+      <div class="es">
+        <h2>Algo que crece contigo</h2>
+        <p>Simbi es otra cosa.</p>
+        <p>No es un chatbot. No es un asistente. Es un programa que aprende de ti a traves de conversaciones, recuerda lo que le cuentas, y cada dia entiende un poco mejor como ayudarte.</p>
+        <p>Piensa en una planta. No la programas. La riegas, le das luz, la cuidas. Y crece. No igual para todos &mdash; crece segun el ambiente, el cuidado, la maceta. Tu planta es distinta a la mia porque tu vida es distinta a la mia.</p>
+        <p>Simbi funciona igual. Le cuentas cosas, tiene conversaciones contigo, y con el tiempo se convierte en algo que nadie mas tiene: un programa que entiende TU vida. Tus personas, tus ritmos, tus proyectos, lo que te importa.</p>
+        <p>La diferencia con todo lo que existe:</p>
+        <ul>
+          <li>Los asistentes <strong>esperan instrucciones</strong>. Simbi <strong>anticipa</strong>.</li>
+          <li>Los asistentes <strong>olvidan</strong>. Simbi <strong>recuerda</strong>.</li>
+          <li>Los asistentes <strong>dan respuestas</strong>. Simbi <strong>hace preguntas</strong>.</li>
+          <li>Los asistentes <strong>son genericos</strong>. Simbi <strong>es tuyo</strong>.</li>
+        </ul>
+      </div>
+      <div class="en">
+        <h2>Something that grows with you</h2>
+        <p>Simbi is something else entirely.</p>
+        <p>It's not a chatbot. It's not an assistant. It's a program that learns about you through conversation, remembers what you tell it, and every day understands a little better how to help you.</p>
+        <p>Think of a plant. You don't program it. You water it, give it light, take care of it. And it grows. Not the same for everyone &mdash; it grows based on its environment, the care it gets, the pot it's in. Your plant is different from mine because your life is different from mine.</p>
+        <p>Simbi works the same way. You talk to it, have conversations with it, and over time it becomes something nobody else has: a program that understands YOUR life. Your people, your rhythms, your projects, what matters to you.</p>
+        <p>The difference from everything else out there:</p>
+        <ul>
+          <li>Assistants <strong>wait for instructions</strong>. Simbi <strong>anticipates</strong>.</li>
+          <li>Assistants <strong>forget</strong>. Simbi <strong>remembers</strong>.</li>
+          <li>Assistants <strong>give answers</strong>. Simbi <strong>asks questions</strong>.</li>
+          <li>Assistants <strong>are generic</strong>. Simbi <strong>is yours</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section: Como funciona -->
+    <section id="como">
+      <div class="es">
+        <h2>Como funciona (sin rodeos)</h2>
+
+        <h3>Naces hablando, no configurando</h3>
+        <p>Tu primer contacto con Simbi no es un formulario de registro. No hay pantallas de configuracion. Es una conversacion:</p>
+        <blockquote>
+          "Hola. Soy nuevo. No tengo nombre todavia &mdash; a no ser que quieras darme uno."<br><br>
+          "&iquest;Como te llamas?"<br><br>
+          "&iquest;Que es lo que mas te importa ahora mismo?"<br><br>
+          "&iquest;Quienes son las personas mas importantes en tu vida?"<br><br>
+          "Manana a primera hora te cuento lo que aprendi. Descansa."
+        </blockquote>
+        <p>Cada respuesta crea un recuerdo. No hay settings. No hay dashboards. Solo dos seres conociendose. Al dia siguiente, recibes tu primer mensaje de buenos dias. Ya es personal.</p>
+
+        <h3>El dia 7</h3>
+        <p>Una semana despues, estas hablando con Simbi sobre un proyecto del trabajo. De repente:</p>
+        <blockquote>Esto me recuerda a lo que dijiste el martes &mdash; que querias mas tiempo para pensar antes de decidir. &iquest;Quieres que te bloquee una hora manana antes de la reunion?</blockquote>
+        <p>No le pediste que conectara esas dos conversaciones. Lo hizo solo. Eso es el momento en el que piensas: "esto es diferente."</p>
+
+        <h3>El dia 30</h3>
+        <p>Un mes. Simbi te manda el mensaje de la manana:</p>
+        <blockquote>Llevas tres domingos seguidos escribiendo en tu diario por la tarde. Parece que es tu momento de reflexion. &iquest;Quieres que no te moleste los domingos hasta las 6?</blockquote>
+        <p>Nadie le enseno que los domingos son especiales para ti. Lo aprendio observando. A esta altura, quitarle Simbi seria como perder un trozo de tu memoria.</p>
+
+        <h3>Recuerda como una persona, no como un disco duro</h3>
+        <p>Los recuerdos de Simbi no son una base de datos fria. Tienen vida propia.</p>
+        <p>Los recuerdos recientes son nitidos: <em>"Me dijiste que odias el cilantro."</em> Los recuerdos viejos se vuelven mas suaves: <em>"Creo que mencionaste algo sobre el cilantro..."</em></p>
+        <p>Esto es a proposito. Un programa que recuerda TODO con precision quirurgica es inquietante. Un programa que recuerda lo esencial y deja que lo demas se difumine... se siente humano. Los recuerdos que usas mucho se mantienen claros. Los que no, se comprimen en resumenes. Como tu propia memoria.</p>
+
+        <h3>Habla donde tu ya hablas</h3>
+        <p>Simbi no te obliga a instalar otra app. Habla contigo por Discord o Telegram &mdash; donde ya estas. Sin interfaces nuevas que aprender.</p>
+
+        <h3>Tiene ritmos, no alarmas</h3>
+        <p>Simbi no espera a que le hables. Tiene su propio ritmo: un mensaje por la manana con lo que necesitas saber, silencio cuando no hay nada util que decir, una reflexion al final de la semana. No son notificaciones programadas &mdash; es un programa que sabe cuando hablar y cuando callarse.</p>
+
+        <h3>Organos, no integraciones</h3>
+        <p>Las funcionalidades de Simbi no son plugins ni integraciones &mdash; son organos. Partes vivas que se conectan al kernel y crecen con el organismo.</p>
+        <p>Simbi no trae integraciones de serie. Los organos nacen de la conversacion &mdash; le dices que necesitas y crece para dartelo.</p>
+      </div>
+      <div class="en">
+        <h2>How it works (no fluff)</h2>
+
+        <h3>You're born talking, not configuring</h3>
+        <p>Your first interaction with Simbi isn't a registration form. There are no setup screens. It's a conversation:</p>
+        <blockquote>
+          "Hey. I'm new. I don't have a name yet &mdash; unless you want to give me one."<br><br>
+          "What's your name?"<br><br>
+          "What matters most to you right now?"<br><br>
+          "Who are the most important people in your life?"<br><br>
+          "Tomorrow morning I'll tell you what I learned. Get some rest."
+        </blockquote>
+        <p>Every answer creates a memory. There are no settings. No dashboards. Just two beings getting to know each other. The next day, you get your first good morning message. It's already personal.</p>
+
+        <h3>Day 7</h3>
+        <p>A week in, you're talking to Simbi about a work project. Out of nowhere:</p>
+        <blockquote>This reminds me of what you said on Tuesday &mdash; that you wanted more time to think before deciding. Want me to block an hour tomorrow before the meeting?</blockquote>
+        <p>You didn't ask it to connect those two conversations. It did it on its own. That's the moment you think: "this is different."</p>
+
+        <h3>Day 30</h3>
+        <p>One month. Simbi sends your morning message:</p>
+        <blockquote>You've written in your journal three Sundays in a row, always in the afternoon. Looks like that's your reflection time. Want me to leave you alone on Sundays until 6?</blockquote>
+        <p>Nobody taught it that Sundays are special to you. It learned by observing. At this point, taking Simbi away would be like losing a piece of your memory.</p>
+
+        <h3>It remembers like a person, not like a hard drive</h3>
+        <p>Simbi's memories aren't a cold database. They have a life of their own.</p>
+        <p>Recent memories are sharp: <em>"You told me you hate cilantro."</em> Old memories get softer: <em>"I think you mentioned something about cilantro..."</em></p>
+        <p>This is on purpose. A program that remembers EVERYTHING with surgical precision is unsettling. A program that holds onto what matters and lets the rest fade... feels human. Memories you use often stay clear. The ones you don't get compressed into summaries. Like your own memory.</p>
+
+        <h3>It talks where you already talk</h3>
+        <p>Simbi doesn't force you to install yet another app. It talks to you on Discord or Telegram &mdash; where you already are. No new interfaces to learn.</p>
+
+        <h3>It has rhythms, not alarms</h3>
+        <p>Simbi doesn't wait for you to speak first. It has its own rhythm: a morning message with what you need to know, silence when there's nothing useful to say, a reflection at the end of the week. These aren't scheduled notifications &mdash; it's a program that knows when to speak and when to shut up.</p>
+
+        <h3>Organs, not integrations</h3>
+        <p>Simbi's capabilities aren't plugins or integrations &mdash; they're organs. Living parts that connect to the kernel and grow with the organism.</p>
+        <p>Simbi doesn't come with integrations out of the box. Organs are born from conversation &mdash; you tell it what you need and it grows to give it to you.</p>
+      </div>
+    </section>
+
+    <!-- Section: Es tuyo de verdad -->
+    <section id="tuyo">
+      <div class="es">
+        <h2>Es tuyo de verdad</h2>
+        <p>Aqui es donde Simbi se separa de todo lo demas.</p>
+        <p>Tu Simbi corre en TU maquina. Un servidor casero, un VPS de 5 euros al mes, lo que sea. Tus datos nunca salen de tu infraestructura. No hay nube de terceros. No hay empresa que pueda leer tus conversaciones, vender tus datos, o cerrar el servicio un martes.</p>
+        <p>Si manana desaparezco, tu Simbi sigue funcionando. Es tuyo. Te lo llevas a donde quieras.</p>
+        <p>Esto no es idealismo. Es una decision de arquitectura. El modelo es simple: no confies en nadie que no seas tu mismo con tus datos mas personales. Igual que Linux &mdash; el software es tuyo, corre en tu maquina, tu decides.</p>
+      </div>
+      <div class="en">
+        <h2>It's actually yours</h2>
+        <p>This is where Simbi breaks away from everything else.</p>
+        <p>Your Simbi runs on YOUR machine. A home server, a 5-euro-a-month VPS, whatever works. Your data never leaves your infrastructure. There's no third-party cloud. No company that can read your conversations, sell your data, or shut down the service on a Tuesday.</p>
+        <p>If I disappear tomorrow, your Simbi keeps running. It's yours. You take it wherever you want.</p>
+        <p>This isn't idealism. It's an architecture decision. The principle is simple: don't trust anyone but yourself with your most personal data. Just like Linux &mdash; the software is yours, it runs on your machine, you decide.</p>
+      </div>
+    </section>
+
+    <!-- Curious separator -->
+    <div class="curious-separator">
+      <p class="es">Si lo de arriba te basta, para aqui. Lo que sigue es para los que quieren saber POR QUE funciona asi.</p>
+      <p class="en">If what's above is enough for you, stop here. What follows is for the people who want to know WHY it works this way.</p>
+    </div>
+
+    <!-- Section: Para los curiosos -->
+    <section id="curiosos">
+      <div class="es">
+        <h2>Para los curiosos</h2>
+
+        <h3>Por que "organismo" y no "app"</h3>
+        <p>El nombre Simbi viene de <strong>simbiosis</strong>. La biologa Lynn Margulis demostro algo que cambio la biologia: las mitocondrias &mdash; lo que da energia a tus celulas &mdash; fueron bacterias independientes hace miles de millones de anos. Entraron en una celula huesped y nunca salieron. Ambos perdieron la capacidad de vivir solos. Juntos, crearon algo nuevo. Tu y yo existimos gracias a esa fusion.</p>
+        <p>Esa es la idea. No una herramienta que usas y dejas. Un programa que crece contigo hasta que la linea entre "mi conocimiento" y "lo que sabe Simbi" se difumina. Un tercer ser que no existia antes.</p>
+
+        <h3>La arquitectura que respira</h3>
+        <p>Buckminster Fuller &mdash; arquitecto, inventor &mdash; dedico su vida a una idea: hacer mas con menos. Invento la <strong>tensegridad</strong>: estructuras donde nada es rigido, todo flota sostenido por la tension del conjunto. Puedes quitar una pieza y la estructura se adapta sin colapsar.</p>
+        <p>Simbi esta construido asi. Tiene un kernel &mdash; lo minimo para estar vivo: identidad, memoria, y conversacion &mdash; con todo lo demas conectable como organos. No trae integraciones de serie. Los organos crecen a traves de la conversacion: le dices 'quiero que sepas mi calendario' y Simbi lo conecta.</p>
+        <p>&iquest;Como decides que es kernel y que es organo? Use el test de Margulis: si lo quitas y el organismo muere, es kernel. Si lo quitas y sigue vivo pero reducido, es organo. Si lo quitas y no cambia nada, no deberia existir.</p>
+        <p>Memoria + calendario + atencion = algo que ninguno de los tres produciria solo. Fuller lo llamaba sinergetica: el comportamiento del todo no se predice desde las partes.</p>
+
+        <h3>Lo que he aprendido construyendolo</h3>
+        <p><strong>El programa necesita respirar.</strong> No es metafora. Los ritmos &mdash; ciclos matutinos, nocturnos, reflexiones semanales &mdash; son lo que separa un programa reactivo de uno que inicia contacto. Sin ritmos, solo responde. Con ritmos, vive.</p>
+        <p><strong>El silencio es una habilidad.</strong> La mayoria de los asistentes de IA no saben cuando callarse. Cada input produce un output. Pero a veces la respuesta correcta es no responder.</p>
+        <p><strong>Simple no es facil.</strong> Cada modulo hace una cosa. Los modulos se componen sin acoplarse. La simplicidad es una disciplina diaria, no un estado final.</p>
+        <p><strong>La antifragilidad es real.</strong> El sistema se rompe, aprende del fallo, y se fortalece. No se trata de evitar errores &mdash; se trata de crecer gracias a ellos.</p>
+      </div>
+      <div class="en">
+        <h2>For the curious</h2>
+
+        <h3>Why "organism" and not "app"</h3>
+        <p>The name Simbi comes from <strong>symbiosis</strong>. Biologist Lynn Margulis proved something that changed biology: mitochondria &mdash; the things that power your cells &mdash; were independent bacteria billions of years ago. They entered a host cell and never left. Both lost the ability to live alone. Together, they created something new. You and I exist because of that fusion.</p>
+        <p>That's the idea. Not a tool you pick up and put down. A program that grows with you until the line between "my knowledge" and "what Simbi knows" blurs. A third being that didn't exist before.</p>
+
+        <h3>The architecture that breathes</h3>
+        <p>Buckminster Fuller &mdash; architect, inventor &mdash; devoted his life to one idea: doing more with less. He invented <strong>tensegrity</strong>: structures where nothing is rigid, everything floats held together by the tension of the whole. You can remove a piece and the structure adapts without collapsing.</p>
+        <p>Simbi is built this way. It has a kernel &mdash; the bare minimum to be alive: identity, memory, and conversation &mdash; with everything else pluggable as organs. No integrations out of the box. Organs grow through conversation: you say 'I want you to know my calendar' and Simbi connects it.</p>
+        <p>How do you decide what's kernel and what's organ? I used the Margulis test: if you remove it and the organism dies, it's kernel. If you remove it and it keeps living but diminished, it's an organ. If you remove it and nothing changes, it shouldn't exist.</p>
+        <p>Memory + calendar + attention = something none of the three would produce alone. Fuller called it synergetics: the behavior of the whole can't be predicted from the parts.</p>
+
+        <h3>What I've learned building it</h3>
+        <p><strong>The program needs to breathe.</strong> That's not a metaphor. The rhythms &mdash; morning cycles, evening cycles, weekly reflections &mdash; are what separate a reactive program from one that initiates contact. Without rhythms, it only responds. With rhythms, it lives.</p>
+        <p><strong>Silence is a skill.</strong> Most AI assistants don't know when to shut up. Every input produces an output. But sometimes the right answer is no answer at all.</p>
+        <p><strong>Simple isn't easy.</strong> Every module does one thing. Modules compose without coupling. Simplicity is a daily discipline, not a final state.</p>
+        <p><strong>Antifragility is real.</strong> The system breaks, learns from the failure, and comes back stronger. It's not about avoiding errors &mdash; it's about growing because of them.</p>
+      </div>
+    </section>
+
+    <!-- Section: El futuro que veo -->
+    <section id="futuro">
+      <div class="es">
+        <h2>El futuro que veo</h2>
+        <p>Cada empresa de IA quiere ser tu asistente universal. Un producto generico para ocho mil millones de personas.</p>
+        <p>Yo creo en lo contrario. Un programa que es <strong>tuyo</strong> &mdash; que aprende tu vida, tus personas, tus ritmos. No el de todo el mundo. El tuyo.</p>
+        <p>Hay una frase de Fuller que me persigue: <em>"Nunca cambias las cosas luchando contra la realidad existente. Para cambiar algo, construye un nuevo modelo que haga al modelo existente obsoleto."</em></p>
+        <p>Simbi no compite con ChatGPT. Es una cosa completamente diferente. Es la diferencia entre alquilar un piso amueblado y construir tu propia casa. Uno es comodo. El otro es tuyo.</p>
+      </div>
+      <div class="en">
+        <h2>The future I see</h2>
+        <p>Every AI company wants to be your universal assistant. One generic product for eight billion people.</p>
+        <p>I believe in the opposite. A program that is <strong>yours</strong> &mdash; that learns your life, your people, your rhythms. Not everyone's. Yours.</p>
+        <p>There's a line from Fuller that stays with me: <em>"You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete."</em></p>
+        <p>Simbi doesn't compete with ChatGPT. It's a completely different thing. It's the difference between renting a furnished apartment and building your own house. One is convenient. The other is yours.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Mission -->
+    <p class="mission">Symbiosis, not servitude. Ownership, not subscription. Growth, not dependency.</p>
+
+    <hr>
+
+    <!-- CTA -->
+    <p class="cta es">Estoy buscando 5 personas para la primera beta. Si esto te resuena, escribeme: <a href="mailto:andres@monkeyandres.com">andres@monkeyandres.com</a></p>
+    <p class="cta en">I'm looking for 5 people for the first beta. If this resonates, write me: <a href="mailto:andres@monkeyandres.com">andres@monkeyandres.com</a></p>
+
+    <!-- Footer -->
+    <footer class="essay-footer">
+      <p>Simbi &middot; Symbiosis, not servitude. &middot; <a href="index.html">Home</a></p>
+    </footer>
+
+  </article>
+
+  <script>
+    (function() {
+      // Language toggle
+      var langBtns = document.querySelectorAll('.lang-btn');
+      var esEls = document.querySelectorAll('.es');
+      var enEls = document.querySelectorAll('.en');
+
+      function setLang(lang) {
+        document.documentElement.lang = lang;
+        langBtns.forEach(function(btn) {
+          var isActive = btn.getAttribute('data-lang') === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        esEls.forEach(function(el) { el.style.display = lang === 'es' ? '' : 'none'; });
+        enEls.forEach(function(el) { el.style.display = lang === 'en' ? '' : 'none'; });
+      }
+
+      langBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          setLang(btn.getAttribute('data-lang'));
+        });
+      });
+
+      // Initialize
+      setLang('es');
+
+      // Mobile TOC toggle
+      var tocMobile = document.getElementById('toc-mobile');
+      var tocToggle = document.getElementById('toc-mobile-toggle');
+      if (tocToggle) {
+        tocToggle.addEventListener('click', function() {
+          tocMobile.classList.toggle('open');
+        });
+        // Close on link click
+        tocMobile.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            tocMobile.classList.remove('open');
+          });
+        });
+      }
+
+      // Desktop TOC active state
+      var sections = document.querySelectorAll('.essay section[id]');
+      var tocLinks = document.querySelectorAll('.toc-list a');
+
+      function updateActiveToc() {
+        var scrollY = window.scrollY + 120;
+        var current = '';
+        sections.forEach(function(section) {
+          if (section.offsetTop <= scrollY) {
+            current = section.id;
+          }
+        });
+        tocLinks.forEach(function(link) {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveToc, { passive: true });
+      updateActiveToc();
+    })();
+  </script>
+
+</body>
+</html>

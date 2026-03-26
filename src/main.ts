@@ -32,6 +32,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'cta': 'Get in touch',
     'cta.note': 'Private beta. Limited spots.',
     'footer.motto': 'Good software is all you need.',
+    'story.pill': 'The story →',
   },
   es: {
     'title': 'Crecer juntos.',
@@ -64,6 +65,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'cta': 'Escríbeme',
     'cta.note': 'Beta privada. Plazas limitadas.',
     'footer.motto': 'Buen software es todo lo que necesitas.',
+    'story.pill': 'La historia →',
   }
 }
 
