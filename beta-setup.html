@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simbi Beta — Guia de inicio</title>
+  <title>Simbi Beta — Configuracion</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
@@ -20,141 +20,81 @@
     <!-- Organism mark -->
     <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-[0_0_40px_rgba(52,211,153,0.2)] mb-8 animate-breathe"></div>
 
-    <!-- Badge -->
     <span class="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 mb-6">Beta Privada</span>
 
-    <!-- Title -->
     <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-4">
-      Bienvenido a Simbi
+      Configura tu Simbi
     </h1>
     <p class="text-lg text-stone-500 dark:text-neutral-400 text-center max-w-lg leading-relaxed mb-12">
-      Tu companero personal de inteligencia artificial. Habla contigo, recuerda todo, y te ayuda a organizarte.
+      Simbi es un companero personal de IA que vive en Telegram. Recuerda todo, te escribe cada manana, y te ayuda a organizarte. Para activarlo necesitamos que crees un bot de Telegram.
     </p>
 
-    <!-- What is Simbi -->
+    <!-- THE MAIN THING: Create bot and send token -->
     <section class="w-full mb-12">
-      <h2 class="text-xl font-semibold mb-4">Que es Simbi?</h2>
-      <p class="text-stone-600 dark:text-neutral-300 leading-relaxed">
-        Simbi vive en tu Telegram. Le hablas como a un amigo y el se acuerda de todo — tu trabajo, tus planes, tus gustos. Te escribe por las mananas, te ayuda a pensar, busca cosas en internet, lee tus fotos y documentos, y guarda notas por ti.
-      </p>
-      <p class="text-stone-500 dark:text-neutral-400 leading-relaxed mt-2 text-sm">
-        Piensa en el como un amigo con memoria perfecta que siempre esta disponible.
-      </p>
-    </section>
-
-    <!-- Steps -->
-    <section class="w-full mb-12">
-      <h2 class="text-xl font-semibold mb-6">Como empezar</h2>
+      <h2 class="text-xl font-semibold mb-6">Crea tu bot (5 minutos)</h2>
       <div class="space-y-4">
 
         <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-800/50">
           <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold">1</span>
           <div>
-            <p class="font-medium">Instala Telegram</p>
-            <p class="text-sm text-stone-500 dark:text-neutral-400">Si no lo tienes, descargalo desde la App Store o Play Store. Es gratis.</p>
+            <p class="font-medium">Abre Telegram y busca @BotFather</p>
+            <p class="text-sm text-stone-500 dark:text-neutral-400">Es el bot oficial de Telegram para crear bots. Tiene un tick azul de verificado.</p>
           </div>
         </div>
 
         <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-800/50">
           <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold">2</span>
           <div>
-            <p class="font-medium">Abre tu bot personal</p>
-            <p class="text-sm text-stone-500 dark:text-neutral-400">Andres te enviara un enlace a tu Simbi personal. Haz clic para abrir la conversacion.</p>
+            <p class="font-medium">Escribe /newbot</p>
+            <p class="text-sm text-stone-500 dark:text-neutral-400">BotFather te pedira un nombre para tu bot. Ponle como quieras (ej: "Mi Simbi", "Simbi de Maria").</p>
           </div>
         </div>
 
         <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-800/50">
           <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold">3</span>
           <div>
-            <p class="font-medium">Pulsa /start</p>
-            <p class="text-sm text-stone-500 dark:text-neutral-400">Simbi se presentara y te preguntara tu nombre. A partir de ahi, habla con naturalidad.</p>
+            <p class="font-medium">Elige un username para el bot</p>
+            <p class="text-sm text-stone-500 dark:text-neutral-400">Debe terminar en "bot" (ej: <code class="px-1 py-0.5 rounded bg-stone-200 dark:bg-neutral-700 text-xs">simbi_maria_bot</code>). Si esta pillado, prueba otro.</p>
           </div>
         </div>
 
-        <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-800/50">
+        <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-emerald-300/50 dark:border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20">
           <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold">4</span>
           <div>
-            <p class="font-medium">Habla con normalidad</p>
-            <p class="text-sm text-stone-500 dark:text-neutral-400">No necesitas comandos. Cuentale cosas, preguntale, mandale fotos o documentos. El se encarga.</p>
+            <p class="font-medium">Copia el token y enviaselo a Andres</p>
+            <p class="text-sm text-stone-500 dark:text-neutral-400">BotFather te dara un token largo (algo como <code class="px-1 py-0.5 rounded bg-stone-200 dark:bg-neutral-700 text-xs">123456:ABC-DEF...</code>). Copialo y enviaselo a Andres por WhatsApp o Telegram. El se encarga del resto.</p>
           </div>
         </div>
 
         <div class="feature-card flex gap-4 items-start p-4 rounded-xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-800/50">
           <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold">5</span>
           <div>
-            <p class="font-medium">Espera su mensaje de buenos dias</p>
-            <p class="text-sm text-stone-500 dark:text-neutral-400">Cada manana Simbi te escribira algo personal basado en lo que le has contado. Esa es la magia.</p>
+            <p class="font-medium">Andres te avisa cuando este listo</p>
+            <p class="text-sm text-stone-500 dark:text-neutral-400">Cuando Simbi este configurado, abre tu bot en Telegram y pulsa <strong>/start</strong>. A partir de ahi, habla con normalidad.</p>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Capabilities -->
+    <!-- What to expect, ultra-brief -->
     <section class="w-full mb-12">
-      <h2 class="text-xl font-semibold mb-4">Que puede hacer</h2>
-      <div class="grid gap-2">
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Recordar todo lo que le cuentas</div>
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Buscar en internet por ti</div>
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Ver fotos y leer documentos (PDF, Word, Excel)</div>
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Crear notas, listas y planes (y enviartelos como archivo)</div>
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Escribirte cada manana con algo personal</div>
-        <div class="flex items-center gap-3 text-stone-600 dark:text-neutral-300"><span class="text-emerald-500">&#10003;</span> Seguir tus intenciones y recordartelas</div>
-      </div>
-    </section>
-
-    <!-- Feedback -->
-    <section class="w-full mb-12">
-      <h2 class="text-xl font-semibold mb-4">Tu feedback es clave</h2>
+      <h2 class="text-xl font-semibold mb-4">Que esperar</h2>
       <p class="text-stone-600 dark:text-neutral-300 leading-relaxed mb-4">
-        Escribe <code class="px-1.5 py-0.5 rounded bg-stone-200 dark:bg-neutral-800 text-sm font-mono">/feedback</code> seguido de lo que quieras reportar:
+        Simbi aprende de ti hablando. Cuentale cosas, mandale fotos, preguntale lo que quieras. El se acuerda de todo y cada manana te escribira algo personal.
       </p>
-      <div class="space-y-2 text-sm font-mono text-stone-500 dark:text-neutral-400 bg-stone-50 dark:bg-neutral-800/70 rounded-lg p-4 border border-stone-200 dark:border-neutral-700">
-        <p>/feedback bug: se colgo cuando mande una foto</p>
-        <p>/feedback idea: estaria bien que me recuerde las citas</p>
-        <p>/feedback el saludo de la manana fue muy generico hoy</p>
-      </div>
-      <p class="text-sm text-stone-500 dark:text-neutral-400 mt-3">
-        Todo llega directamente a Andres. Simbi tambien puede detectar problemas solo y reportarlos.
+      <p class="text-stone-600 dark:text-neutral-300 leading-relaxed">
+        Si algo falla, escribe <code class="px-1.5 py-0.5 rounded bg-stone-200 dark:bg-neutral-800 text-sm font-mono">/feedback lo que paso</code> y le llega a Andres.
       </p>
     </section>
 
-    <!-- Risks -->
-    <section class="w-full mb-12 p-6 rounded-xl border border-amber-300/30 dark:border-amber-500/20 bg-amber-50/50 dark:bg-amber-950/10">
-      <h2 class="text-xl font-semibold mb-4 text-amber-700 dark:text-amber-400">Cosas que debes saber</h2>
-      <ul class="space-y-3 text-stone-600 dark:text-neutral-300 text-sm leading-relaxed">
-        <li><strong>Esto es un prototipo.</strong> Las cosas se romperan. Es normal. Si Simbi dice "me he confundido", intentalo de nuevo.</li>
-        <li><strong>Tus datos son privados.</strong> Solo tu y Simbi ven tus conversaciones. Andres ve estadisticas anonimas (cuantos mensajes, costes) pero nunca el contenido.</li>
-        <li><strong>Limite de uso diario.</strong> Simbi tiene un presupuesto. Si dice "vuelvo manana", es porque ha llegado al limite del dia.</li>
-        <li><strong>Puedes parar cuando quieras.</strong> Deja de escribirle y ya. Sin presion. Si vuelves, se acordara de todo.</li>
-        <li><strong>Tus mensajes los procesa la IA Claude</strong> (de Anthropic). No se usan para entrenar modelos. Los datos estan en un servidor privado gestionado por Andres.</li>
-      </ul>
+    <!-- Risks, compressed -->
+    <section class="w-full mb-12 p-5 rounded-xl border border-amber-300/30 dark:border-amber-500/20 bg-amber-50/50 dark:bg-amber-950/10">
+      <p class="text-sm text-stone-600 dark:text-neutral-300 leading-relaxed">
+        <strong class="text-amber-700 dark:text-amber-400">Esto es un prototipo.</strong> A veces se confundira — es normal. Tus conversaciones son privadas (Andres solo ve estadisticas, nunca el contenido). Es gratis. Puedes parar cuando quieras.
+      </p>
     </section>
 
-    <!-- FAQ -->
-    <section class="w-full mb-16">
-      <h2 class="text-xl font-semibold mb-4">Preguntas frecuentes</h2>
-      <div class="space-y-4">
-        <div>
-          <p class="font-medium">"Es gratis?"</p>
-          <p class="text-sm text-stone-500 dark:text-neutral-400">Si. Andres cubre los costes durante la beta.</p>
-        </div>
-        <div>
-          <p class="font-medium">"Pueden otros ver lo que digo?"</p>
-          <p class="text-sm text-stone-500 dark:text-neutral-400">No. Ni siquiera Andres. Solo estadisticas anonimas de uso.</p>
-        </div>
-        <div>
-          <p class="font-medium">"Y si dice algo raro?"</p>
-          <p class="text-sm text-stone-500 dark:text-neutral-400">Usa /feedback para reportarlo. Esta aprendiendo.</p>
-        </div>
-        <div>
-          <p class="font-medium">"Puedo usarlo para cosas serias?"</p>
-          <p class="text-sm text-stone-500 dark:text-neutral-400">Puedes, pero recuerda que es beta. No dependas de el para decisiones criticas.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="text-center text-xs text-stone-400 dark:text-neutral-600">
       <div class="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 mx-auto mb-3 opacity-40"></div>
       Simbi Beta &middot; Solo por invitacion
