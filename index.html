@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simbi — Grow together.</title>
-  <meta name="description" content="A machine organism that learns from chatting with you and grows to help you in your life.">
+  <title>Simbi — Your information, finally alive.</title>
+  <meta name="description" content="A living memory for your digital life. Talk to your world, not your apps. Local, open, yours.">
   <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='35%25' cy='35%25'><stop offset='0%25' stop-color='%23fcd34d'/><stop offset='55%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23047857'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,85 +24,94 @@
 
   <main class="min-h-dvh flex flex-col items-center justify-center px-6 py-16 max-w-2xl mx-auto">
 
-    <!-- Organism mark -->
-    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-[0_0_60px_rgba(52,211,153,0.25)] mb-12 animate-breathe"></div>
+    <!-- Memory mark — layered radial, breathing -->
+    <div class="memory-mark mb-12" aria-hidden="true">
+      <div class="memory-mark-inner"></div>
+    </div>
 
     <!-- Title -->
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-center mb-6" data-i18n="title">
-      Grow together.
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-center mb-6 leading-tight" data-i18n="title">
+      Your information,<br>finally alive.
     </h1>
 
     <!-- Subtitle -->
-    <p class="text-lg sm:text-xl text-stone-500 dark:text-neutral-400 text-center max-w-lg leading-relaxed mb-12" data-i18n="subtitle">
-      A machine organism that learns from chatting with you and grows to help you in your life.
+    <p class="text-lg sm:text-xl text-stone-500 dark:text-neutral-400 text-center max-w-lg leading-relaxed mb-10" data-i18n="subtitle">
+      Talk to your world, not your apps. Simbi is a living memory that runs on your machine, learns what matters, and helps you find, understand, and act on your information.
     </p>
 
-    <!-- Manifesto -->
-    <div class="border-l-2 border-emerald-500 pl-6 py-2 mb-16 max-w-lg">
-      <p class="text-xl sm:text-2xl font-medium italic text-stone-700 dark:text-neutral-200 leading-relaxed" data-i18n="manifesto">
-        Symbiosis, not servitude.<br>
-        Ownership, not subscription.<br>
-        Growth, not dependency.
-      </p>
-    </div>
+    <!-- Lead claim -->
+    <p class="text-base sm:text-lg text-stone-700 dark:text-neutral-200 text-center max-w-lg leading-relaxed mb-12" data-i18n="lead">
+      Your files don't need folders. They need memory.
+    </p>
 
-    <!-- Story pill — alive, breathing, visible on load -->
-    <a href="./about.html" class="inline-block mb-12 px-5 py-2 text-sm font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full no-underline animate-breathe hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-colors">
+    <!-- Story pill — alive, breathing -->
+    <a href="./about.html" class="inline-block mb-16 px-5 py-2 text-sm font-medium text-emerald-500 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-full no-underline animate-breathe hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-colors">
       <span data-i18n="story.pill">The story →</span>
     </a>
 
     <!-- What is Simbi -->
     <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-emerald-500 dark:text-emerald-400 mb-6" data-i18n="what.label">What is Simbi?</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="what.label">A living memory</h2>
       <div class="space-y-4 text-stone-500 dark:text-neutral-400 text-base leading-relaxed">
-        <p data-i18n="what.p1">A digital organism that lives on your machine. It learns who you are through conversation — your preferences, your people, your patterns.</p>
-        <p data-i18n="what.p2">It remembers. It grows. It gets better every day. And it belongs entirely to you.</p>
-        <p data-i18n="what.p3">No cloud. No accounts. No tracking. Everything lives on your device.</p>
+        <p data-i18n="what.p1">Drop a folder, a download, a screenshot. Simbi knows it exists. Ask anything about your stuff and get an answer with sources you can open.</p>
+        <p data-i18n="what.p2">Simbi lives with your information so you can stop managing it. No more being archivist, librarian, and secretary of your own machine.</p>
+        <p data-i18n="what.p3">Local-first. No cloud. No accounts. No tracking. Everything stays on your device, where it belongs.</p>
       </div>
     </section>
 
     <!-- What it does -->
     <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-emerald-500 dark:text-emerald-400 mb-6" data-i18n="does.label">What it does</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="does.label">What it does</h2>
       <div class="grid gap-4">
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.memory.title">🧠 Persistent memory</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.memory.desc">Remembers your preferences, your people, your patterns. Never starts from zero.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.drop.title">📂 Drop anything</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.drop.desc">Folders, downloads, screenshots, notes. Simbi sees it and remembers it exists. No tagging, no foldering, no upkeep.</p>
         </div>
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.briefing.title">☀️ Morning briefing</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.briefing.desc">Calendar, mail, news — a daily message from something that knows your life.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.ask.title">🔎 Ask your world</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.ask.desc">"Where's that contract from December?" "What did Marta send me about the trip?" Simbi answers, and shows you the sources.</p>
         </div>
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.journal.title">📓 Living journal</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.journal.desc">Talk about your day. It asks the right questions and grows the relationship.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.learns.title">🧠 Learns what matters</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.learns.desc">Over time it gets sharper. The things you reach for surface faster. The noise fades.</p>
         </div>
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.attention.title">👁️ Attention filter</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.attention.desc">Surfaces signal, kills noise. Only what needs YOUR attention.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.controls.title">🪪 You stay in charge</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.controls.desc">Forget this. Ignore that. Show me where you got that from. The controls are visible. Simbi works for you, not the other way round.</p>
         </div>
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.owned.title">🔒 Self-hosted & yours</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.owned.desc">Your machine, your data. No cloud. No vendor lock-in. Take it anywhere.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.local.title">🔒 Lives on your machine</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.local.desc">No cloud. No accounts. No tracking. Your information never leaves your device. Take it anywhere.</p>
         </div>
         <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.evolves.title">🌱 It evolves</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.evolves.desc">Living code that adapts to you. It grows with you because it grows from you.</p>
+          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.open.title">🌱 Open source</h3>
+          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.open.desc">Read the code. Run it yourself. Fork it. It's actually yours, not just rented under nice words.</p>
         </div>
       </div>
     </section>
 
     <!-- Coming soon -->
     <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-emerald-500 dark:text-emerald-400 mb-6" data-i18n="soon.label">Coming soon</h2>
-      <p class="text-stone-500 dark:text-neutral-400 text-base leading-relaxed mb-4" data-i18n="soon.intro">Simbi is being born. A full digital companion that manages your life alongside you.</p>
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="soon.label">On the horizon</h2>
+      <p class="text-stone-500 dark:text-neutral-400 text-base leading-relaxed mb-4" data-i18n="soon.intro">Simbi is small today and growing. The shape of what's coming:</p>
       <ul class="space-y-2 text-stone-500 dark:text-neutral-400 text-sm">
-        <li data-i18n="soon.mobile">📱 Mobile app — your organism in your pocket</li>
-        <li data-i18n="soon.voice">🗣️ Voice — talk to Simbi out loud</li>
-        <li data-i18n="soon.anticipate">🔮 Anticipatory intelligence — predicts what you need</li>
-        <li data-i18n="soon.insights">📊 Insights — patterns in your thinking over time</li>
-        <li data-i18n="soon.full">🤝 Full symbiosis — a digital companion for your whole life</li>
+        <li data-i18n="soon.mobile">📱 Mobile — your memory in your pocket</li>
+        <li data-i18n="soon.voice">🗣️ Voice — ask out loud, hands free</li>
+        <li data-i18n="soon.anticipate">🔮 Anticipation — Simbi brings things up before you ask</li>
+        <li data-i18n="soon.spaces">🏠 Shared spaces — a household memory, then a family one</li>
       </ul>
+    </section>
+
+    <!-- Values footnote — symbiosis as values, not lead -->
+    <section class="w-full max-w-lg mb-16">
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="values.label">What it stands for</h2>
+      <div class="border-l-2 border-emerald-500/60 pl-5 py-1">
+        <p class="text-base sm:text-lg italic text-stone-700 dark:text-neutral-200 leading-relaxed" data-i18n="values.body">
+          Symbiosis, not servitude.<br>
+          Ownership, not subscription.<br>
+          Growth, not dependency.
+        </p>
+      </div>
     </section>
 
     <!-- CTA -->
@@ -110,13 +119,14 @@
       <a href="mailto:monkeyandres@protonmail.com?subject=Simbi" class="inline-block px-8 py-3 bg-emerald-500 text-white dark:text-zinc-950 font-semibold rounded-xl hover:bg-emerald-400 transition-colors" data-i18n="cta">
         Get in touch
       </a>
-      <p class="text-xs text-stone-400 dark:text-neutral-500 mt-3" data-i18n="cta.note">Private beta. Limited spots.</p>
+      <p class="text-xs text-stone-400 dark:text-neutral-500 mt-3" data-i18n="cta.note">Early days. Small private circle.</p>
+      <p class="text-xs text-stone-400 dark:text-neutral-500 mt-2" data-i18n="cta.support">Want to support how this gets built? Get in touch.</p>
     </section>
 
     <!-- Footer -->
     <footer class="text-center text-xs text-stone-400 dark:text-neutral-500">
       <p>Simbi · <a href="https://monkeyandres.com" class="hover:text-stone-600 dark:hover:text-neutral-300 transition-colors" target="_blank" rel="noopener">MonkeyAndres</a></p>
-      <p class="italic mt-1" data-i18n="footer.motto">Good software is all you need.</p>
+      <p class="italic mt-1" data-i18n="footer.motto">Your world stays yours.</p>
       <a href="https://github.com/MonkeyAndres/simbi-portal" class="inline-block mt-3 text-stone-400 dark:text-neutral-500 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors" target="_blank" rel="noopener" title="View source">
         ✦ open source
       </a>

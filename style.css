@@ -4,24 +4,68 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* --- Organism breathing --- */
+/* --- Memory mark: layered radial, breathing ---
+   A soft glow that reads as interior / depth, not a clean creature orb.
+   Warm amber core fading into emerald — memory + life. */
+.memory-mark {
+  position: relative;
+  width: 6.5rem;
+  height: 6.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.memory-mark::before,
+.memory-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.memory-mark::before {
+  background: radial-gradient(circle at 35% 35%, rgba(252, 211, 77, 0.55) 0%, rgba(52, 211, 153, 0.35) 45%, rgba(4, 120, 87, 0) 75%);
+  filter: blur(6px);
+  animation: breathe 4s ease-in-out infinite;
+}
+.memory-mark::after {
+  background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.18) 0%, transparent 70%);
+  filter: blur(20px);
+  transform: scale(1.6);
+  animation: breathe 6s ease-in-out infinite;
+  animation-delay: -1s;
+}
+.memory-mark-inner {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, #fcd34d 0%, #34d399 55%, #047857 100%);
+  box-shadow: 0 0 60px rgba(52, 211, 153, 0.25), 0 0 30px rgba(252, 211, 77, 0.15);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* --- Generic breathing (used by story pill) --- */
 @keyframes breathe {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.08); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 0.85; }
 }
 
 .animate-breathe {
   animation: breathe 4s ease-in-out infinite;
 }
 
-/* --- Subtle background glow --- */
+/* --- Subtle background glow ---
+   Two layered gradients: emerald top, amber low — depth without weight. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 30%, rgba(52, 211, 153, 0.07) 0%, rgba(22, 163, 74, 0.02) 40%, transparent 65%);
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(52, 211, 153, 0.07) 0%, rgba(22, 163, 74, 0.02) 40%, transparent 65%),
+    radial-gradient(ellipse at 50% 95%, rgba(252, 211, 77, 0.05) 0%, transparent 55%);
   animation: bgBreathe 6s ease-in-out infinite;
 }
 
@@ -44,7 +88,10 @@ body::before {
 
 /* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
-  .animate-breathe { animation: none; }
+  .animate-breathe,
+  .memory-mark-inner,
+  .memory-mark::before,
+  .memory-mark::after { animation: none; }
   body::before { animation: none; }
   .feature-card { transition: none; }
   .feature-card:hover { transform: none; }
