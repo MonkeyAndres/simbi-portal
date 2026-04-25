@@ -2,84 +2,68 @@ type Lang = 'en' | 'es'
 
 const translations: Record<Lang, Record<string, string>> = {
   en: {
-    'title': 'Your information,<br>finally alive.',
-    'subtitle': 'Talk to your world, not your apps. Simbi is a living memory that runs on your machine, learns what matters, and helps you find, understand, and act on your information.',
-    'lead': "Your files don't need folders. They need memory.",
-    'story.pill': 'The story →',
+    'headline': 'You have 12,000 files on your laptop.<br>You can name 200.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,800.</span>',
+    'subhead': 'Drop a file. Ask anything. Open the source it came from.',
 
-    'what.label': 'A living memory',
-    'what.p1': 'Drop a folder, a download, a screenshot. Simbi knows it exists. Ask anything about your stuff and get an answer with sources you can open.',
-    'what.p2': 'Simbi lives with your information so you can stop managing it. No more being archivist, librarian, and secretary of your own machine.',
-    'what.p3': 'Local-first. No cloud. No accounts. No tracking. Everything stays on your device, where it belongs.',
+    'demo.path': '~/Simbi/World/',
+    'demo.file': 'contract-marta-mar.pdf',
+    'demo.q': 'What did Marta send me in March?',
+    'demo.a': 'Net 30. Scope locked at €4,200. Signed both sides.',
+    'demo.src': '↪ contract-marta-mar.pdf',
+    'demo.caption': "That's the whole product.",
 
-    'does.label': 'What it does',
-    'does.drop.title': '📂 Drop anything',
-    'does.drop.desc': 'Folders, downloads, screenshots, notes. Simbi sees it and remembers it exists. No tagging, no foldering, no upkeep.',
-    'does.ask.title': '🔎 Ask your world',
-    'does.ask.desc': '"Where\'s that contract from December?" "What did Marta send me about the trip?" Simbi answers, and shows you the sources.',
-    'does.learns.title': '🧠 Learns what matters',
-    'does.learns.desc': 'Over time it gets sharper. The things you reach for surface faster. The noise fades.',
-    'does.controls.title': '🪪 You stay in charge',
-    'does.controls.desc': 'Forget this. Ignore that. Show me where you got that from. The controls are visible. Simbi works for you, not the other way round.',
-    'does.local.title': '🔒 Lives on your machine',
-    'does.local.desc': 'No cloud. No accounts. No tracking. Your information never leaves your device. Take it anywhere.',
-    'does.open.title': '🌱 Open source',
-    'does.open.desc': "Read the code. Run it yourself. Fork it. It's actually yours, not just rented under nice words.",
+    's2.head': 'Three things, in this order.',
+    's2.p1': "You have a folder on your machine called <code>~/Simbi/World/</code>. You drop things into it — a PDF, a screenshot, a meeting note, a download, a whole zip your sister sent. You don't name them. You don't tag them. You don't sort them. You forget about them.",
+    's2.p2': 'When you need something, you ask in plain language. <em>"What did Marta send me in March?"</em> <em>"Where did Elias and I land on the budget?"</em> <em>"That note about the Galicia trip — find it."</em> Simbi answers. In a sentence.',
+    's2.p3': "Every answer comes with the file it came from. Click it. Open it. Read the source yourself. Without sources, an AI is an oracle, and oracles get things wrong silently. Simbi shows its work.",
+    's2.p4': "It doesn't read your email yet. It doesn't watch your calendar. It doesn't speak. Today it does one thing: it remembers what you put in front of it, and finds it when you ask.",
 
-    'soon.label': 'On the horizon',
-    'soon.intro': "Simbi is small today and growing. The shape of what's coming:",
-    'soon.mobile': '📱 Mobile — your memory in your pocket',
-    'soon.voice': '🗣️ Voice — ask out loud, hands free',
-    'soon.anticipate': '🔮 Anticipation — Simbi brings things up before you ask',
-    'soon.spaces': '🏠 Shared spaces — a household memory, then a family one',
+    's3.head': 'On your machine. Nowhere else.',
+    's3.p1': "Simbi runs on your laptop, your home server, or a five-euro VPS — whatever hardware you've got. Your files never leave that machine. There is no cloud account to sign into, no telemetry, no analytics, no third party that gets a copy of anything.",
+    's3.p2': "The whole code is open source. Read it. Run it. Fork it. If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you take your copy and go. The license is permissive on purpose.",
+    's3.p3': "There is nothing to buy. No subscription, no premium tier, no waitlist. The only cost is the language model — bring your own key (Anthropic, OpenAI, or a model running on your own hardware). Storage is whatever disk you already have.",
+    's3.p4': "This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.",
 
-    'values.label': 'What it stands for',
-    'values.body': 'Symbiosis, not servitude.<br>Ownership, not subscription.<br>Growth, not dependency.',
+    's4.head': 'Built by one person, on purpose.',
+    's4.p1': "Simbi is made by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building Simbi because he wants it to exist — for himself, for his father, for the people who feel the same daily friction with their digital lives. If that's you, this also belongs to you.",
 
-    'cta': 'Get in touch',
-    'cta.note': 'Early days. Small private circle.',
-    'cta.support': 'Want to support how this gets built? Get in touch.',
+    's5.head': 'Start.',
+    's5.p1': "Read the longer story to know how it works, where it came from, and why it matters.",
+    's5.cta': 'Read the story →',
+    's5.email': 'or write me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
     'footer.motto': 'Your world stays yours.',
   },
   es: {
-    'title': 'Tu información,<br>finalmente viva.',
-    'subtitle': 'Habla con tu mundo, no con tus apps. Simbi es una memoria viva que corre en tu máquina, aprende lo que importa y te ayuda a encontrar, entender y actuar sobre tu información.',
-    'lead': 'Tus archivos no necesitan carpetas. Necesitan memoria.',
-    'story.pill': 'La historia →',
+    'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 200.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.800.</span>',
+    'subhead': 'Suelta un archivo. Pregunta. Abre la fuente de la que sale la respuesta.',
 
-    'what.label': 'Una memoria viva',
-    'what.p1': 'Suelta una carpeta, una descarga, una captura. Simbi sabe que existe. Pregunta cualquier cosa sobre lo tuyo y recibe una respuesta con fuentes que puedes abrir.',
-    'what.p2': 'Simbi vive con tu información para que dejes de gestionarla. Se acabó hacer de archivero, bibliotecario y secretario de tu propia máquina.',
-    'what.p3': 'Local primero. Sin nube. Sin cuentas. Sin rastreo. Todo se queda en tu dispositivo, que es donde debe estar.',
+    'demo.path': '~/Simbi/World/',
+    'demo.file': 'contrato-marta-mar.pdf',
+    'demo.q': '¿Qué me mandó Marta en marzo?',
+    'demo.a': 'Pago a 30 días. Alcance cerrado en €4.200. Firmado por ambos.',
+    'demo.src': '↪ contrato-marta-mar.pdf',
+    'demo.caption': 'Ese es el producto entero.',
 
-    'does.label': 'Qué hace',
-    'does.drop.title': '📂 Suelta lo que sea',
-    'does.drop.desc': 'Carpetas, descargas, capturas, notas. Simbi lo ve y recuerda que existe. Sin etiquetar, sin ordenar, sin mantenimiento.',
-    'does.ask.title': '🔎 Pregúntale a tu mundo',
-    'does.ask.desc': '«¿Dónde está aquel contrato de diciembre?» «¿Qué me mandó Marta sobre el viaje?» Simbi responde, y te enseña las fuentes.',
-    'does.learns.title': '🧠 Aprende lo que importa',
-    'does.learns.desc': 'Con el tiempo afina. Lo que usas a menudo aparece antes. El ruido se aparta.',
-    'does.controls.title': '🪪 Mando tú',
-    'does.controls.desc': 'Olvida esto. Ignora aquello. Enséñame de dónde sacaste eso. Los controles están a la vista. Simbi trabaja para ti, no al revés.',
-    'does.local.title': '🔒 Vive en tu máquina',
-    'does.local.desc': 'Sin nube. Sin cuentas. Sin rastreo. Tu información nunca sale de tu dispositivo. Llévatela donde quieras.',
-    'does.open.title': '🌱 Código abierto',
-    'does.open.desc': 'Lee el código. Ejecútalo tú mismo. Bifúrcalo. Es tuyo de verdad, no alquilado bajo palabras bonitas.',
+    's2.head': 'Tres cosas, en este orden.',
+    's2.p1': 'Tienes una carpeta en tu máquina, <code>~/Simbi/World/</code>. Sueltas cosas dentro — un PDF, una captura, las notas de una reunión, una descarga, el zip entero que te mandó tu hermana. No las nombras. No las etiquetas. No las ordenas. Te olvidas de ellas.',
+    's2.p2': 'Cuando necesitas algo, preguntas en lenguaje normal. <em>«¿Qué me mandó Marta en marzo?»</em> <em>«¿Qué quedamos con Elias sobre el presupuesto?»</em> <em>«Aquella nota sobre el viaje a Galicia — encuéntrala.»</em> Simbi responde. En una frase.',
+    's2.p3': 'Cada respuesta viene con el archivo del que sale. Haz clic. Ábrelo. Lee tú la fuente. Sin fuentes, una IA es un oráculo, y los oráculos se equivocan en silencio. Simbi enseña sus recibos.',
+    's2.p4': 'Todavía no lee tu correo. No mira tu calendario. No habla. Hoy hace una sola cosa: recuerda lo que pones delante, y lo encuentra cuando preguntas.',
 
-    'soon.label': 'En el horizonte',
-    'soon.intro': 'Simbi hoy es pequeño y va creciendo. La forma de lo que viene:',
-    'soon.mobile': '📱 Móvil — tu memoria en el bolsillo',
-    'soon.voice': '🗣️ Voz — pregunta en alto, sin manos',
-    'soon.anticipate': '🔮 Anticipación — Simbi trae cosas antes de que las pidas',
-    'soon.spaces': '🏠 Espacios compartidos — memoria de casa, después de familia',
+    's3.head': 'En tu máquina. En ningún otro sitio.',
+    's3.p1': 'Simbi corre en tu portátil, en un servidor casero, o en un VPS de cinco euros — cualquier hardware que tengas. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni tercero que reciba copia de nada.',
+    's3.p2': 'El código entero es de código abierto. Léelo. Ejecútalo. Bifúrcalo. Si yo desaparezco mañana, tu Simbi sigue corriendo. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. La licencia es permisiva a propósito.',
+    's3.p3': 'No hay nada que comprar. Sin suscripción, sin nivel premium, sin lista de espera. El único coste es el modelo de lenguaje — pones tu propia clave (Anthropic, OpenAI, o un modelo que corre en tu propio hardware). El almacenamiento es el disco que ya tienes.',
+    's3.p4': 'Esto no es ideología. Es una decisión de arquitectura. Una memoria contiene todo lo tuyo. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.',
 
-    'values.label': 'Qué defiende',
-    'values.body': 'Simbiosis, no servidumbre.<br>Propiedad, no suscripción.<br>Crecimiento, no dependencia.',
+    's4.head': 'Hecho por una persona, a propósito.',
+    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para la gente que siente la misma fricción diaria con su vida digital. Si esa eres tú, esto también te pertenece.',
 
-    'cta': 'Escríbeme',
-    'cta.note': 'Días tempranos. Círculo privado y pequeño.',
-    'cta.support': '¿Quieres apoyar cómo se construye esto? Escríbeme.',
+    's5.head': 'Empieza.',
+    's5.p1': 'Lee la historia larga para saber cómo funciona, de dónde viene, y por qué importa.',
+    's5.cta': 'Lee la historia →',
+    's5.email': 'o escríbeme directamente: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
     'footer.motto': 'Tu mundo sigue siendo tuyo.',
   }
@@ -98,14 +82,12 @@ function setLang(lang: Lang) {
     if (text) el.innerHTML = text
   })
 
-  // Update toggle buttons
   const enBtn = document.getElementById('lang-en')!
   const esBtn = document.getElementById('lang-es')!
   enBtn.className = `lang-btn text-xs font-medium px-2 py-0.5 rounded ${lang === 'en' ? 'text-stone-900 dark:text-neutral-50 bg-stone-300 dark:bg-neutral-700' : 'text-stone-400 dark:text-neutral-500'}`
   esBtn.className = `lang-btn text-xs font-medium px-2 py-0.5 rounded ${lang === 'es' ? 'text-stone-900 dark:text-neutral-50 bg-stone-300 dark:bg-neutral-700' : 'text-stone-400 dark:text-neutral-500'}`
 }
 
-// Detect language
 const saved = localStorage.getItem('simbi-lang') as Lang | null
 const browser = navigator.language.slice(0, 2).toLowerCase()
 currentLang = saved ?? (browser === 'es' ? 'es' : 'en')
@@ -114,5 +96,4 @@ setLang(currentLang)
 document.getElementById('lang-en')!.addEventListener('click', () => setLang('en'))
 document.getElementById('lang-es')!.addEventListener('click', () => setLang('es'))
 
-// `currentLang` is intentionally exported on window for easy debugging in dev.
 ;(window as unknown as { simbiLang: Lang }).simbiLang = currentLang

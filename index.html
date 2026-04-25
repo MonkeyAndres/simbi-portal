@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simbi — Your information, finally alive.</title>
-  <meta name="description" content="A living memory for your digital life. Talk to your world, not your apps. Local, open, yours.">
+  <title>Simbi — A memory for your digital life.</title>
+  <meta name="description" content="You have 12,000 files on your laptop. You can name 200. Simbi remembers the other 11,800. Free, open source, runs on your machine.">
   <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='35%25' cy='35%25'><stop offset='0%25' stop-color='%23fcd34d'/><stop offset='55%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23047857'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body class="bg-stone-100 dark:bg-neutral-900 text-stone-900 dark:text-neutral-50 font-sans antialiased">
@@ -22,112 +22,125 @@
     <button id="lang-es" class="lang-btn text-xs font-medium px-2 py-0.5 rounded text-stone-400 dark:text-neutral-500" aria-pressed="false">ES</button>
   </nav>
 
-  <main class="min-h-dvh flex flex-col items-center justify-center px-6 py-16 max-w-2xl mx-auto">
+  <main class="min-h-dvh px-6 py-12 max-w-xl mx-auto">
 
-    <!-- Memory mark — layered radial, breathing -->
-    <div class="memory-mark mb-12" aria-hidden="true">
-      <div class="memory-mark-inner"></div>
-    </div>
+    <!-- ===== SECTION 1: THE STOPPER ===== -->
+    <section class="pt-10 pb-14">
+      <div class="brand-dot" aria-hidden="true"></div>
 
-    <!-- Title -->
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-center mb-6 leading-tight" data-i18n="title">
-      Your information,<br>finally alive.
-    </h1>
+      <h1 class="ogilvy-headline" data-i18n="headline">
+        You have 12,000 files on your laptop.<br>
+        You can name 200.<br>
+        <span class="ogilvy-headline-accent">Simbi remembers the other 11,800.</span>
+      </h1>
 
-    <!-- Subtitle -->
-    <p class="text-lg sm:text-xl text-stone-500 dark:text-neutral-400 text-center max-w-lg leading-relaxed mb-10" data-i18n="subtitle">
-      Talk to your world, not your apps. Simbi is a living memory that runs on your machine, learns what matters, and helps you find, understand, and act on your information.
-    </p>
+      <p class="ogilvy-subhead" data-i18n="subhead">
+        Drop a file. Ask anything. Open the source it came from.
+      </p>
 
-    <!-- Lead claim -->
-    <p class="text-base sm:text-lg text-stone-700 dark:text-neutral-200 text-center max-w-lg leading-relaxed mb-12" data-i18n="lead">
-      Your files don't need folders. They need memory.
-    </p>
-
-    <!-- Story pill — alive, breathing -->
-    <a href="./about.html" class="inline-block mb-16 px-5 py-2 text-sm font-medium text-emerald-500 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-full no-underline animate-breathe hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-colors">
-      <span data-i18n="story.pill">The story →</span>
-    </a>
-
-    <!-- What is Simbi -->
-    <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="what.label">A living memory</h2>
-      <div class="space-y-4 text-stone-500 dark:text-neutral-400 text-base leading-relaxed">
-        <p data-i18n="what.p1">Drop a folder, a download, a screenshot. Simbi knows it exists. Ask anything about your stuff and get an answer with sources you can open.</p>
-        <p data-i18n="what.p2">Simbi lives with your information so you can stop managing it. No more being archivist, librarian, and secretary of your own machine.</p>
-        <p data-i18n="what.p3">Local-first. No cloud. No accounts. No tracking. Everything stays on your device, where it belongs.</p>
-      </div>
-    </section>
-
-    <!-- What it does -->
-    <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="does.label">What it does</h2>
-      <div class="grid gap-4">
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.drop.title">📂 Drop anything</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.drop.desc">Folders, downloads, screenshots, notes. Simbi sees it and remembers it exists. No tagging, no foldering, no upkeep.</p>
+      <!-- The demo: the proof -->
+      <div class="demo" role="img" aria-label="Example: drop a file, ask a question, get an answer with the source">
+        <div class="demo-header">
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-path" data-i18n="demo.path">~/Simbi/World/</span>
         </div>
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.ask.title">🔎 Ask your world</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.ask.desc">"Where's that contract from December?" "What did Marta send me about the trip?" Simbi answers, and shows you the sources.</p>
+        <div class="demo-line demo-drop">
+          <span class="demo-icon">+</span>
+          <span class="demo-filename" data-i18n="demo.file">contract-marta-mar.pdf</span>
         </div>
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.learns.title">🧠 Learns what matters</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.learns.desc">Over time it gets sharper. The things you reach for surface faster. The noise fades.</p>
+        <div class="demo-line demo-you">
+          <span class="demo-who">you</span>
+          <span class="demo-msg" data-i18n="demo.q">What did Marta send me in March?</span>
         </div>
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.controls.title">🪪 You stay in charge</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.controls.desc">Forget this. Ignore that. Show me where you got that from. The controls are visible. Simbi works for you, not the other way round.</p>
-        </div>
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.local.title">🔒 Lives on your machine</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.local.desc">No cloud. No accounts. No tracking. Your information never leaves your device. Take it anywhere.</p>
-        </div>
-        <div class="feature-card bg-stone-50 dark:bg-neutral-800 border border-stone-200 dark:border-neutral-700 rounded-xl p-5">
-          <h3 class="font-semibold text-stone-800 dark:text-neutral-100 mb-1" data-i18n="does.open.title">🌱 Open source</h3>
-          <p class="text-sm text-stone-500 dark:text-neutral-400" data-i18n="does.open.desc">Read the code. Run it yourself. Fork it. It's actually yours, not just rented under nice words.</p>
+        <div class="demo-line demo-simbi">
+          <span class="demo-who simbi">simbi</span>
+          <span class="demo-bubble">
+            <span class="demo-msg" data-i18n="demo.a">Net 30. Scope locked at €4,200. Signed both sides.</span>
+            <span class="demo-source" data-i18n="demo.src">↪ contract-marta-mar.pdf</span>
+          </span>
         </div>
       </div>
+
+      <p class="demo-caption" data-i18n="demo.caption">
+        That's the whole product.
+      </p>
     </section>
 
-    <!-- Coming soon -->
-    <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="soon.label">On the horizon</h2>
-      <p class="text-stone-500 dark:text-neutral-400 text-base leading-relaxed mb-4" data-i18n="soon.intro">Simbi is small today and growing. The shape of what's coming:</p>
-      <ul class="space-y-2 text-stone-500 dark:text-neutral-400 text-sm">
-        <li data-i18n="soon.mobile">📱 Mobile — your memory in your pocket</li>
-        <li data-i18n="soon.voice">🗣️ Voice — ask out loud, hands free</li>
-        <li data-i18n="soon.anticipate">🔮 Anticipation — Simbi brings things up before you ask</li>
-        <li data-i18n="soon.spaces">🏠 Shared spaces — a household memory, then a family one</li>
-      </ul>
+    <!-- ===== SECTION 2: WHAT IT ACTUALLY DOES ===== -->
+    <section class="ogilvy-section">
+      <h2 class="ogilvy-subheader" data-i18n="s2.head">Three things, in this order.</h2>
+
+      <p data-i18n="s2.p1">
+        You have a folder on your machine called <code>~/Simbi/World/</code>. You drop things into it — a PDF, a screenshot, a meeting note, a download, a whole zip your sister sent. You don't name them. You don't tag them. You don't sort them. You forget about them.
+      </p>
+
+      <p data-i18n="s2.p2">
+        When you need something, you ask in plain language. <em>"What did Marta send me in March?"</em> <em>"Where did Elias and I land on the budget?"</em> <em>"That note about the Galicia trip — find it."</em> Simbi answers. In a sentence.
+      </p>
+
+      <p data-i18n="s2.p3">
+        Every answer comes with the file it came from. Click it. Open it. Read the source yourself. Without sources, an AI is an oracle, and oracles get things wrong silently. Simbi shows its work.
+      </p>
+
+      <p class="ogilvy-honesty" data-i18n="s2.p4">
+        It doesn't read your email yet. It doesn't watch your calendar. It doesn't speak. Today it does one thing: it remembers what you put in front of it, and finds it when you ask.
+      </p>
     </section>
 
-    <!-- Values footnote — symbiosis as values, not lead -->
-    <section class="w-full max-w-lg mb-16">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-6" data-i18n="values.label">What it stands for</h2>
-      <div class="border-l-2 border-emerald-500/60 pl-5 py-1">
-        <p class="text-base sm:text-lg italic text-stone-700 dark:text-neutral-200 leading-relaxed" data-i18n="values.body">
-          Symbiosis, not servitude.<br>
-          Ownership, not subscription.<br>
-          Growth, not dependency.
-        </p>
-      </div>
+    <!-- ===== SECTION 3: WHERE IT LIVES ===== -->
+    <section class="ogilvy-section">
+      <h2 class="ogilvy-subheader" data-i18n="s3.head">On your machine. Nowhere else.</h2>
+
+      <p data-i18n="s3.p1">
+        Simbi runs on your laptop, your home server, or a five-euro VPS — whatever hardware you've got. Your files never leave that machine. There is no cloud account to sign into, no telemetry, no analytics, no third party that gets a copy of anything.
+      </p>
+
+      <p data-i18n="s3.p2">
+        The whole code is open source. Read it. Run it. Fork it. If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you take your copy and go. The license is permissive on purpose.
+      </p>
+
+      <p data-i18n="s3.p3">
+        There is nothing to buy. No subscription, no premium tier, no waitlist. The only cost is the language model — bring your own key (Anthropic, OpenAI, or a model running on your own hardware). Storage is whatever disk you already have.
+      </p>
+
+      <p data-i18n="s3.p4">
+        This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.
+      </p>
     </section>
 
-    <!-- CTA -->
-    <section class="text-center mb-16">
-      <a href="mailto:monkeyandres@protonmail.com?subject=Simbi" class="inline-block px-8 py-3 bg-emerald-500 text-white dark:text-zinc-950 font-semibold rounded-xl hover:bg-emerald-400 transition-colors" data-i18n="cta">
-        Get in touch
-      </a>
-      <p class="text-xs text-stone-400 dark:text-neutral-500 mt-3" data-i18n="cta.note">Early days. Small private circle.</p>
-      <p class="text-xs text-stone-400 dark:text-neutral-500 mt-2" data-i18n="cta.support">Want to support how this gets built? Get in touch.</p>
+    <!-- ===== SECTION 4: WHO MADE THIS ===== -->
+    <section class="ogilvy-section">
+      <h2 class="ogilvy-subheader" data-i18n="s4.head">Built by one person, on purpose.</h2>
+
+      <p data-i18n="s4.p1">
+        Simbi is made by <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building Simbi because he wants it to exist — for himself, for his father, for the people who feel the same daily friction with their digital lives. If that's you, this also belongs to you.
+      </p>
+    </section>
+
+    <!-- ===== SECTION 5: START ===== -->
+    <section class="ogilvy-section text-center">
+      <h2 class="ogilvy-subheader" data-i18n="s5.head">Start.</h2>
+
+      <p data-i18n="s5.p1">
+        Read the longer story to know how it works, where it came from, and why it matters.
+      </p>
+
+      <a href="./about.html" class="ogilvy-cta" data-i18n="s5.cta">Read the story →</a>
+
+      <p class="ogilvy-microcta" data-i18n="s5.email">
+        or write me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>
+      </p>
     </section>
 
     <!-- Footer -->
-    <footer class="text-center text-xs text-stone-400 dark:text-neutral-500">
-      <p>Simbi · <a href="https://monkeyandres.com" class="hover:text-stone-600 dark:hover:text-neutral-300 transition-colors" target="_blank" rel="noopener">MonkeyAndres</a></p>
-      <p class="italic mt-1" data-i18n="footer.motto">Your world stays yours.</p>
-      <a href="https://github.com/MonkeyAndres/simbi-portal" class="inline-block mt-3 text-stone-400 dark:text-neutral-500 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors" target="_blank" rel="noopener" title="View source">
+    <footer class="ogilvy-footer">
+      <p class="italic" data-i18n="footer.motto">Your world stays yours.</p>
+      <p class="mt-2">
+        Simbi · <a href="https://monkeyandres.com" class="ogilvy-link" target="_blank" rel="noopener">MonkeyAndres</a>
+      </p>
+      <a href="https://github.com/MonkeyAndres/simbi-portal" class="inline-block mt-3 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors" target="_blank" rel="noopener" title="View source">
         ✦ open source
       </a>
     </footer>

@@ -4,59 +4,26 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* --- Memory mark: layered radial, breathing ---
-   A soft glow that reads as interior / depth, not a clean creature orb.
-   Warm amber core fading into emerald — memory + life. */
-.memory-mark {
-  position: relative;
-  width: 6.5rem;
-  height: 6.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.memory-mark::before,
-.memory-mark::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  pointer-events: none;
-}
-.memory-mark::before {
-  background: radial-gradient(circle at 35% 35%, rgba(252, 211, 77, 0.55) 0%, rgba(52, 211, 153, 0.35) 45%, rgba(4, 120, 87, 0) 75%);
-  filter: blur(6px);
-  animation: breathe 4s ease-in-out infinite;
-}
-.memory-mark::after {
-  background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.18) 0%, transparent 70%);
-  filter: blur(20px);
-  transform: scale(1.6);
-  animation: breathe 6s ease-in-out infinite;
-  animation-delay: -1s;
-}
-.memory-mark-inner {
-  position: relative;
-  width: 4.5rem;
-  height: 4.5rem;
+/* ==========================================================================
+   Brand mark — small breathing dot. Identity, not hero. */
+
+.brand-dot {
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 9999px;
   background: radial-gradient(circle at 35% 35%, #fcd34d 0%, #34d399 55%, #047857 100%);
-  box-shadow: 0 0 60px rgba(52, 211, 153, 0.25), 0 0 30px rgba(252, 211, 77, 0.15);
+  margin-bottom: 1.75rem;
   animation: breathe 4s ease-in-out infinite;
+  box-shadow: 0 0 24px rgba(52, 211, 153, 0.25), 0 0 12px rgba(252, 211, 77, 0.15);
 }
 
-/* --- Generic breathing (used by story pill) --- */
 @keyframes breathe {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.06); opacity: 0.85; }
+  50%      { transform: scale(1.06); opacity: 0.85; }
 }
+.animate-breathe { animation: breathe 4s ease-in-out infinite; }
 
-.animate-breathe {
-  animation: breathe 4s ease-in-out infinite;
-}
-
-/* --- Subtle background glow ---
-   Two layered gradients: emerald top, amber low — depth without weight. */
+/* Subtle background — emerald top, amber low. */
 body::before {
   content: '';
   position: fixed;
@@ -68,13 +35,338 @@ body::before {
     radial-gradient(ellipse at 50% 95%, rgba(252, 211, 77, 0.05) 0%, transparent 55%);
   animation: bgBreathe 6s ease-in-out infinite;
 }
-
 @keyframes bgBreathe {
   0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
+  50%      { opacity: 1; }
 }
 
-/* --- Feature cards hover glow --- */
+.lang-btn { cursor: pointer; border: none; transition: all 0.15s; }
+
+/* ==========================================================================
+   Ogilvy typography — headline does 80%; body sells with information. */
+
+.ogilvy-headline {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: rgb(23 23 23);
+  margin-bottom: 1.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-headline { color: rgb(245 245 244); }
+}
+@media (min-width: 640px) {
+  .ogilvy-headline {
+    font-size: 2.65rem;
+    line-height: 1.12;
+  }
+}
+
+.ogilvy-headline-accent {
+  color: #047857;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-headline-accent { color: #34d399; }
+}
+
+.ogilvy-subhead {
+  font-size: 1.05rem;
+  color: rgb(87 83 78);
+  line-height: 1.6;
+  margin-bottom: 2.25rem;
+  font-weight: 400;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-subhead { color: rgb(168 162 158); }
+}
+
+.ogilvy-section {
+  padding: 2.75rem 0;
+  border-top: 1px solid rgba(168, 162, 158, 0.22);
+}
+
+.ogilvy-subheader {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 1.4rem;
+  color: rgb(28 25 23);
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-subheader { color: rgb(245 245 244); }
+}
+
+.ogilvy-section p {
+  font-size: 1rem;
+  line-height: 1.72;
+  margin-bottom: 1.1rem;
+  color: rgb(57 53 47);
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-section p { color: rgb(212 212 212); }
+}
+.ogilvy-section p:last-child { margin-bottom: 0; }
+
+.ogilvy-section code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  background: rgba(168, 162, 158, 0.18);
+  padding: 0.05em 0.4em;
+  border-radius: 0.3em;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-section code { background: rgba(168, 162, 158, 0.14); }
+}
+
+.ogilvy-section em { font-style: italic; }
+
+.ogilvy-honesty {
+  margin-top: 1.6rem !important;
+  padding: 1rem 1.15rem;
+  background: rgba(168, 162, 158, 0.09);
+  border-left: 2px solid rgba(168, 162, 158, 0.45);
+  border-radius: 0 0.45rem 0.45rem 0;
+  font-style: italic;
+  color: rgb(87 83 78) !important;
+  font-size: 0.95rem !important;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-honesty {
+    background: rgba(168, 162, 158, 0.07);
+    color: rgb(168 162 158) !important;
+  }
+}
+
+.ogilvy-link {
+  color: #047857;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(16, 185, 129, 0.4);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.ogilvy-link:hover {
+  color: #065f46;
+  text-decoration-color: #10b981;
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-link { color: #34d399; }
+  .ogilvy-link:hover { color: #6ee7b7; }
+}
+
+.ogilvy-cta {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.85rem 2rem;
+  background: #10b981;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.65rem;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+}
+.ogilvy-cta:hover {
+  background: #34d399;
+  transform: translateY(-1px);
+}
+@media (prefers-color-scheme: dark) {
+  .ogilvy-cta { color: rgb(9 9 9); }
+}
+
+.ogilvy-microcta {
+  margin-top: 1.1rem !important;
+  font-size: 0.82rem !important;
+  color: rgb(168 162 158) !important;
+}
+.ogilvy-microcta a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(168, 162, 158, 0.4);
+  transition: color 0.15s;
+}
+.ogilvy-microcta a:hover { color: #10b981; }
+
+.ogilvy-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(168, 162, 158, 0.18);
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgb(168 162 158);
+}
+.ogilvy-footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.ogilvy-footer a:hover { color: rgb(87 83 78); }
+@media (prefers-color-scheme: dark) {
+  .ogilvy-footer { color: rgb(115 115 115); }
+  .ogilvy-footer a:hover { color: rgb(212 212 212); }
+}
+
+/* ==========================================================================
+   Demo — animated chat-style interaction. The proof. */
+
+.demo {
+  padding: 1rem 1.1rem 1.15rem;
+  background: rgb(255 255 255 / 0.55);
+  border: 1px solid rgb(231 229 228);
+  border-radius: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  box-shadow: 0 1px 24px rgba(52, 211, 153, 0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+@media (prefers-color-scheme: dark) {
+  .demo {
+    background: rgb(23 23 23 / 0.55);
+    border-color: rgb(38 38 38);
+    box-shadow: 0 1px 32px rgba(52, 211, 153, 0.08);
+  }
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px dashed rgba(168, 162, 158, 0.35);
+}
+.demo-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgb(214 211 209);
+}
+@media (prefers-color-scheme: dark) {
+  .demo-dot { background: rgb(64 64 64); }
+}
+.demo-path {
+  margin-left: 0.4rem;
+  font-size: 0.72rem;
+  color: rgb(168 162 158);
+  letter-spacing: 0.03em;
+}
+@media (prefers-color-scheme: dark) {
+  .demo-path { color: rgb(115 115 115); }
+}
+
+.demo-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+  opacity: 0;
+  transform: translateY(4px);
+}
+.demo-line:last-child { margin-bottom: 0; }
+
+.demo-icon {
+  color: #10b981;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.demo-filename {
+  color: rgb(87 83 78);
+  font-style: italic;
+}
+@media (prefers-color-scheme: dark) {
+  .demo-filename { color: rgb(168 162 158); }
+}
+
+.demo-who {
+  color: rgb(168 162 158);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  flex-shrink: 0;
+  padding-top: 0.25em;
+  min-width: 3.4rem;
+}
+.demo-who.simbi {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.demo-bubble { display: block; }
+
+.demo-msg { color: rgb(28 25 23); }
+@media (prefers-color-scheme: dark) {
+  .demo-msg { color: rgb(229 229 229); }
+}
+
+.demo-source {
+  display: inline-block;
+  margin-top: 0.45rem;
+  padding: 0.18em 0.65em;
+  background: rgba(16, 185, 129, 0.13);
+  color: #047857;
+  font-size: 0.78rem;
+  border-radius: 0.45rem;
+  font-style: italic;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+@media (prefers-color-scheme: dark) {
+  .demo-source {
+    background: rgba(16, 185, 129, 0.16);
+    color: #34d399;
+    border-color: rgba(52, 211, 153, 0.3);
+  }
+}
+
+.demo-line:nth-of-type(1) { animation: demoLine1 14s ease-in-out infinite; }
+.demo-line:nth-of-type(2) { animation: demoLine2 14s ease-in-out infinite; }
+.demo-line:nth-of-type(3) { animation: demoLine3 14s ease-in-out infinite; }
+
+@keyframes demoLine1 {
+  0%, 2%    { opacity: 0; transform: translateY(4px); }
+  6%, 92%   { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; transform: translateY(4px); }
+}
+@keyframes demoLine2 {
+  0%, 22%   { opacity: 0; transform: translateY(4px); }
+  26%, 92%  { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; transform: translateY(4px); }
+}
+@keyframes demoLine3 {
+  0%, 48%   { opacity: 0; transform: translateY(4px); }
+  52%, 92%  { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; transform: translateY(4px); }
+}
+
+.demo-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgb(168 162 158);
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .demo {
+    font-size: 0.8rem;
+    padding: 0.85rem 0.95rem 0.95rem;
+  }
+  .demo-who {
+    min-width: 2.7rem;
+    font-size: 0.68rem;
+  }
+  .demo-line { gap: 0.5rem; }
+}
+
+/* ==========================================================================
+   Feature cards — used by beta-setup.html. */
+
 .feature-card {
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
@@ -84,15 +376,20 @@ body::before {
   transform: translateY(-2px);
 }
 
-.lang-btn { cursor: pointer; border: none; transition: all 0.15s; }
+/* ==========================================================================
+   Reduced motion. */
 
-/* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
   .animate-breathe,
-  .memory-mark-inner,
-  .memory-mark::before,
-  .memory-mark::after { animation: none; }
+  .brand-dot { animation: none; }
   body::before { animation: none; }
+  .ogilvy-cta { transition: none; }
+  .ogilvy-cta:hover { transform: none; }
   .feature-card { transition: none; }
   .feature-card:hover { transform: none; }
+  .demo-line {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
