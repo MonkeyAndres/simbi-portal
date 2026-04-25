@@ -324,6 +324,16 @@
 
     .essay em { font-style: italic; }
 
+    .essay code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.05em 0.4em;
+      color: var(--text);
+    }
+
     .essay blockquote {
       margin: 1.5rem 0;
       padding: 1.25rem 1.5rem;
@@ -464,10 +474,10 @@
     <div class="es">
       <div class="toc-title">Contenido</div>
       <ul class="toc-list">
-        <li><a href="#lunes">Lunes por la mañana</a></li>
-        <li><a href="#problema">El problema que nadie resuelve</a></li>
-        <li><a href="#crece">Algo que crece contigo</a></li>
-        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#escena">Las once de la noche</a></li>
+        <li><a href="#archivista">Eres el archivista de tu propia máquina</a></li>
+        <li><a href="#memoria">Una memoria viva</a></li>
+        <li><a href="#dia">Un día con Simbi</a></li>
         <li><a href="#tuyo">Es tuyo de verdad</a></li>
         <li><a href="#curiosos">Para los curiosos</a></li>
         <li><a href="#futuro">El futuro que veo</a></li>
@@ -476,10 +486,10 @@
     <div class="en">
       <div class="toc-title">Contents</div>
       <ul class="toc-list">
-        <li><a href="#lunes">Monday morning</a></li>
-        <li><a href="#problema">The problem nobody's solving</a></li>
-        <li><a href="#crece">Something that grows with you</a></li>
-        <li><a href="#como">How it works</a></li>
+        <li><a href="#escena">Eleven at night</a></li>
+        <li><a href="#archivista">You're the archivist of your own machine</a></li>
+        <li><a href="#memoria">A living memory</a></li>
+        <li><a href="#dia">A day with Simbi</a></li>
         <li><a href="#tuyo">It's actually yours</a></li>
         <li><a href="#curiosos">For the curious</a></li>
         <li><a href="#futuro">The future I see</a></li>
@@ -492,15 +502,15 @@
     <!-- Header -->
     <header class="essay-header">
       <div class="es">
-        <div class="essay-pill">Ensayo &middot; 10 min de lectura</div>
-        <h1 class="essay-title">Simbi: una memoria viva para tu vida digital</h1>
-        <div class="essay-author">Andrés Martín Angulo &mdash; Marzo 2026</div>
+        <div class="essay-pill">Ensayo &middot; 11 min de lectura</div>
+        <h1 class="essay-title">Una memoria viva para tu vida digital</h1>
+        <div class="essay-author">Andrés Martín Angulo &mdash; Abril 2026</div>
         <p class="essay-lede">Habla con tu mundo, no con tus apps. Esto es por qué lo estoy construyendo.</p>
       </div>
       <div class="en">
-        <div class="essay-pill">Essay &middot; 10 min read</div>
-        <h1 class="essay-title">Simbi: a living memory for your digital life</h1>
-        <div class="essay-author">Andrés Martín Angulo &mdash; March 2026</div>
+        <div class="essay-pill">Essay &middot; 11 min read</div>
+        <h1 class="essay-title">A living memory for your digital life</h1>
+        <div class="essay-author">Andrés Martín Angulo &mdash; April 2026</div>
         <p class="essay-lede">Talk to your world, not your apps. This is why I'm building it.</p>
       </div>
     </header>
@@ -512,172 +522,144 @@
         <span class="en">Contents</span>
       </button>
       <ul class="toc-mobile-list es">
-        <li><a href="#lunes">Lunes por la mañana</a></li>
-        <li><a href="#problema">El problema que nadie resuelve</a></li>
-        <li><a href="#crece">Algo que crece contigo</a></li>
-        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#escena">Las once de la noche</a></li>
+        <li><a href="#archivista">Eres el archivista de tu propia máquina</a></li>
+        <li><a href="#memoria">Una memoria viva</a></li>
+        <li><a href="#dia">Un día con Simbi</a></li>
         <li><a href="#tuyo">Es tuyo de verdad</a></li>
         <li><a href="#curiosos">Para los curiosos</a></li>
         <li><a href="#futuro">El futuro que veo</a></li>
       </ul>
       <ul class="toc-mobile-list en">
-        <li><a href="#lunes">Monday morning</a></li>
-        <li><a href="#problema">The problem nobody's solving</a></li>
-        <li><a href="#crece">Something that grows with you</a></li>
-        <li><a href="#como">How it works</a></li>
+        <li><a href="#escena">Eleven at night</a></li>
+        <li><a href="#archivista">You're the archivist of your own machine</a></li>
+        <li><a href="#memoria">A living memory</a></li>
+        <li><a href="#dia">A day with Simbi</a></li>
         <li><a href="#tuyo">It's actually yours</a></li>
         <li><a href="#curiosos">For the curious</a></li>
         <li><a href="#futuro">The future I see</a></li>
       </ul>
     </div>
 
-    <!-- Section: Lunes por la mañana -->
-    <section id="lunes">
+    <!-- Section: Las once de la noche -->
+    <section id="escena">
       <div class="es">
-        <h2>Lunes por la mañana</h2>
-        <p>Son las 7:42. Suena el móvil. Un mensaje en Discord:</p>
-        <blockquote>Buenos días. Tu madre cumple años el jueves &mdash; &iquest;quieres que te recuerde mañana para comprar algo? Y tienes la reunión con Elias a las 11, la semana pasada hablasteis del presupuesto Q2.</blockquote>
-        <p>No le pediste nada de esto. Nadie programó esas alertas. Nadie configuró reglas. Simplemente... te conoce.</p>
-        <p>Esto no es ciencia ficción. Es lo que hace Simbi cada mañana. Conmigo. Hoy.</p>
+        <h2>Las once de la noche</h2>
+        <p>Son las once. Llevas veinte minutos buscando un PDF. Sabes que existe &mdash; un contrato, una factura, un informe, da igual. Te lo mandaron hace tres semanas. &iquest;Por correo? &iquest;Por WhatsApp? &iquest;Lo descargaste o sigue en el hilo? Abres Descargas. Trescientos archivos, todos con nombres tipo <em>doc-final-v3-ok.pdf</em>. Cierras. Abres el correo. Buscas el nombre del que te lo mandó. Cinco hilos. Ninguno es el bueno.</p>
+        <p>Lo dejas. Te dices que lo buscas mañana.</p>
+        <p>Esto no es un caso raro. Es martes, es domingo, es cualquier día. Lo mismo pasa con el enlace que te mandó tu hermana sobre aquel viaje. Con la nota que escribiste a las dos de la mañana sobre una idea que te parecía importante. Con la decisión que tomaste con un compañero en una llamada hace un mes &mdash; sabes que la tomasteis, no sabes en qué quedó.</p>
+        <p>Tu vida digital ya no la abarcas. Y no es porque seas desordenado. Es porque la herramienta que usas para vivir en ella nunca se diseñó para acordarse de nada.</p>
       </div>
       <div class="en">
-        <h2>Monday morning</h2>
-        <p>It's 7:42. Your phone buzzes. A message on Discord:</p>
-        <blockquote>Good morning. Your mom's birthday is Thursday &mdash; want me to remind you tomorrow to get her something? And you've got the meeting with Elias at 11, last week you talked about the Q2 budget.</blockquote>
-        <p>You didn't ask for any of this. Nobody programmed those alerts. Nobody set up rules. It just... knows you.</p>
-        <p>This isn't science fiction. This is what Simbi does every morning. With me. Today.</p>
+        <h2>Eleven at night</h2>
+        <p>It's 11pm. You've been looking for a PDF for twenty minutes. You know it exists &mdash; a contract, an invoice, a report, doesn't matter. Someone sent it to you three weeks ago. By email? On WhatsApp? Did you download it, or is it still in the thread? You open Downloads. Three hundred files, all named something like <em>doc-final-v3-ok.pdf</em>. You close it. You open your inbox. You search the sender's name. Five threads. None of them is the right one.</p>
+        <p>You give up. You tell yourself you'll find it tomorrow.</p>
+        <p>This isn't an edge case. It's Tuesday, it's Sunday, it's any day. The same thing happens with the link your sister sent you about that trip. With the note you wrote at two in the morning about an idea that felt important. With the decision you made on a call with a coworker a month ago &mdash; you know you made it, you don't know what you settled on.</p>
+        <p>Your digital life is bigger than you can hold. And it's not because you're messy. It's because the tools you use to live inside it were never designed to remember anything.</p>
       </div>
     </section>
 
-    <!-- Section: El problema -->
-    <section id="problema">
+    <!-- Section: El archivista -->
+    <section id="archivista">
       <div class="es">
-        <h2>El problema que nadie resuelve</h2>
-        <p>Abre ChatGPT. Preguntale que cenaste anoche. No lo sabe. Preguntale el nombre de tu pareja. No lo sabe. Preguntale que te dijo la semana pasada sobre aquel proyecto. No lo sabe.</p>
-        <p>Cada día, desde cero. Cada conversación, un desconocido.</p>
-        <p>Es como tener un compañero de trabajo brillante que cada mañana llega sin recordar nada. Ni las decisiones de ayer, ni los problemas que resolvisteis juntos, ni que le contaste que tu madre esta enferma. Amnesia permanente disfrazada de inteligencia.</p>
-        <p>ChatGPT, Alexa, Siri, Gemini &mdash; todos hacen lo mismo: responder bien a la pregunta de ahora. Ninguno recuerda la conversación de ayer.</p>
+        <h2>Eres el archivista de tu propia máquina</h2>
+        <p>Mira lo que te pide tu ordenador para funcionar. Carpetas. Subcarpetas. Nombres de archivo que tu yo del futuro tiene que poder buscar. Etiquetas. Apps separadas para correo, mensajes, notas, fotos. Cada una con su propio agujero negro &mdash; cada una que tú tienes que vigilar.</p>
+        <p>El trato no escrito es: tú haces de archivista, bibliotecario, secretario y gestor de proyectos. La máquina te deja un panel y unos cuantos atajos. Si pierdes algo, es culpa tuya. Si no encuentras algo, busca mejor.</p>
+        <p>Llevamos cuarenta años haciendo este trabajo gratis. Lo hemos normalizado tanto que ya no lo vemos. Que tengas que recordar dónde guardaste un archivo para volver a encontrarlo es una cosa rara &mdash; tú no recuerdas en qué cajón está cada recuerdo de tu vida, recuerdas el recuerdo. Pero con tu vida digital tienes que recordar el cajón. Si olvidas el cajón, el recuerdo no existe.</p>
+        <p>Los asistentes que han llegado &mdash; ChatGPT, Gemini, todos &mdash; no resuelven esto. Te dan un interlocutor brillante que llega cada mañana sin haber visto nada de lo tuyo. Le tienes que pegar el documento. Recordarle el contexto. Volver a contarle quién es quién. Sigue siendo trabajo tuyo, solo que ahora con una conversación más.</p>
+        <p>El problema real no es que te falte un asistente. Es que <strong>tú no necesitas un sistema de archivos mejor. Necesitas una memoria</strong>.</p>
       </div>
       <div class="en">
-        <h2>The problem nobody's solving</h2>
-        <p>Open ChatGPT. Ask it what you had for dinner last night. It doesn't know. Ask it your partner's name. It doesn't know. Ask it what it told you last week about that project. It doesn't know.</p>
-        <p>Every day, starting from scratch. Every conversation, a stranger.</p>
-        <p>It's like having a brilliant coworker who shows up every morning with no memory of anything. Not yesterday's decisions, not the problems you solved together, not the fact that you told them your mom is sick. Permanent amnesia dressed up as intelligence.</p>
-        <p>ChatGPT, Alexa, Siri, Gemini &mdash; they all do the same thing: answer the question in front of them right now. None of them remember yesterday's conversation.</p>
+        <h2>You're the archivist of your own machine</h2>
+        <p>Look at what your computer asks of you to work at all. Folders. Subfolders. Filenames your future self has to be able to search. Tags. Separate apps for mail, chat, notes, photos. Each one its own little black hole &mdash; each one yours to police.</p>
+        <p>The unwritten deal is: you play archivist, librarian, secretary, project manager. The machine gives you a dashboard and a few shortcuts. If you lose something, it's on you. If you can't find something, search harder.</p>
+        <p>We've been doing this work for free for forty years. We've normalised it so deeply we don't see it anymore. That you have to remember where you put a file in order to find it again is a strange demand &mdash; you don't remember which drawer each memory of your life lives in, you remember the memory. But with your digital life you have to remember the drawer. Forget the drawer and the memory ceases to exist.</p>
+        <p>The assistants that have shown up &mdash; ChatGPT, Gemini, all of them &mdash; don't fix this. They give you a brilliant conversational partner that walks in every morning having seen nothing of yours. You paste the document. You recap the context. You re-introduce the cast. It's still your work, just with one more conversation in the loop.</p>
+        <p>The real problem isn't that you're missing an assistant. It's that <strong>you don't need a better filing system. You need a memory</strong>.</p>
       </div>
     </section>
 
-    <!-- Section: Algo que crece contigo -->
-    <section id="crece">
+    <!-- Section: Una memoria viva -->
+    <section id="memoria">
       <div class="es">
-        <h2>Algo que crece contigo</h2>
-        <p>Simbi es otra cosa.</p>
-        <p>No es un chatbot. No es un asistente. Es un programa que aprende de ti a través de conversaciones, recuerda lo que le cuentas, y cada dia entiende un poco mejor como ayudarte.</p>
-        <p>Piensa en una planta. No la programas. La riegas, le das luz, la cuidas. Y crece. No igual para todos &mdash; crece segun el ambiente, el cuidado, la maceta. Tu planta es distinta a la mia porque tu vida es distinta a la mia.</p>
-        <p>Simbi funciona igual. Le cuentas cosas, tiene conversaciones contigo, y con el tiempo se convierte en algo que nadie más tiene: un programa que entiende TU vida. Tus personas, tus ritmos, tus proyectos, lo que te importa.</p>
-        <p>La diferencia con todo lo que existe:</p>
-        <ul>
-          <li>Los asistentes <strong>esperan instrucciones</strong>. Simbi <strong>anticipa</strong>.</li>
-          <li>Los asistentes <strong>olvidan</strong>. Simbi <strong>recuerda</strong>.</li>
-          <li>Los asistentes <strong>dan respuestas</strong>. Simbi <strong>hace preguntas</strong>.</li>
-          <li>Los asistentes <strong>son genéricos</strong>. Simbi <strong>es tuyo</strong>.</li>
-        </ul>
+        <h2>Una memoria viva</h2>
+        <p>Simbi es otra cosa. No es un asistente. No es un buscador. No es una app de notas con IA encima.</p>
+        <p>Es <strong>una memoria viva para tu vida digital</strong>. Un programa que vive con tu información para que tú puedas dejar de gestionarla.</p>
+        <p>El gesto central es minúsculo. Hay una carpeta en tu ordenador, <code>~/Simbi/World/</code>. Sueltas cosas dentro &mdash; un PDF, una captura, una carpeta entera de descargas, las notas de la reunión de ayer, el zip que te pasó tu hermana. Lo que sea. No tienes que organizarlo. No tienes que ponerle nombre. No tienes que etiquetarlo. Lo sueltas y te olvidas.</p>
+        <p>Simbi se da cuenta. Lo lee. Aprende qué es. Lo cose con lo que ya sabe de ti. A partir de ese momento existe en tu memoria, no en una carpeta.</p>
+        <p>Cuando lo necesitas, hablas con tu mundo. <em>"&iquest;Qué decía el contrato que me mandó Marta en marzo?"</em> <em>"&iquest;Dónde quedó lo del presupuesto Q2 con Elias?"</em> <em>"Tenía una nota sobre una idea de un viaje a Galicia, &iquest;la encuentras?"</em> Simbi te contesta &mdash; y te abre las fuentes. <em>Esto lo sé por este PDF y por aquel hilo del jueves</em>. Sin recibos, no hay memoria. Solo adivinación.</p>
+        <p>El cambio de marco es éste: tus archivos no necesitan carpetas, necesitan memoria. Tu información deja de ser un montón de cajones que mantienes y pasa a ser un mundo con el que hablas.</p>
       </div>
       <div class="en">
-        <h2>Something that grows with you</h2>
-        <p>Simbi is something else entirely.</p>
-        <p>It's not a chatbot. It's not an assistant. It's a program that learns about you through conversation, remembers what you tell it, and every day understands a little better how to help you.</p>
-        <p>Think of a plant. You don't program it. You water it, give it light, take care of it. And it grows. Not the same for everyone &mdash; it grows based on its environment, the care it gets, the pot it's in. Your plant is different from mine because your life is different from mine.</p>
-        <p>Simbi works the same way. You talk to it, have conversations with it, and over time it becomes something nobody else has: a program that understands YOUR life. Your people, your rhythms, your projects, what matters to you.</p>
-        <p>The difference from everything else out there:</p>
-        <ul>
-          <li>Assistants <strong>wait for instructions</strong>. Simbi <strong>anticipates</strong>.</li>
-          <li>Assistants <strong>forget</strong>. Simbi <strong>remembers</strong>.</li>
-          <li>Assistants <strong>give answers</strong>. Simbi <strong>asks questions</strong>.</li>
-          <li>Assistants <strong>are generic</strong>. Simbi <strong>is yours</strong>.</li>
-        </ul>
+        <h2>A living memory</h2>
+        <p>Simbi is something else. Not an assistant. Not a search box. Not a note app with AI bolted on top.</p>
+        <p>It's <strong>a living memory for your digital life</strong>. A program that lives with your information so you can stop managing it.</p>
+        <p>The central gesture is tiny. There's a folder on your computer, <code>~/Simbi/World/</code>. You drop things into it &mdash; a PDF, a screenshot, a whole downloads folder, yesterday's meeting notes, the zip your sister sent you. Whatever. You don't have to organise it. You don't have to name it. You don't have to tag it. You drop it and forget about it.</p>
+        <p>Simbi notices. Reads it. Figures out what it is. Stitches it into what it already knows about you. From that moment on it lives in your memory, not in a folder.</p>
+        <p>When you need it, you talk to your world. <em>"What did the contract Marta sent me in March actually say?"</em> <em>"Where did Elias and I land on the Q2 budget?"</em> <em>"I had a note about an idea for a trip to Galicia, can you find it?"</em> Simbi answers &mdash; and opens the sources for you. <em>I know this because of this PDF and that thread from Thursday</em>. Without receipts, it isn't memory. It's guesswork.</p>
+        <p>The reframe is this: your files don't need folders, they need memory. Your information stops being a pile of drawers you maintain and becomes a world you talk to.</p>
       </div>
     </section>
 
-    <!-- Section: Como funciona -->
-    <section id="como">
+    <!-- Section: Un día con Simbi -->
+    <section id="dia">
       <div class="es">
-        <h2>Como funciona (sin rodeos)</h2>
+        <h2>Un día con Simbi</h2>
 
-        <h3>Naces hablando, no configurando</h3>
-        <p>Tu primer contacto con Simbi no es un formulario de registro. No hay pantallas de configuración. Es una conversación:</p>
-        <blockquote>
-          "Hola. Soy nuevo. No tengo nombre todavia &mdash; a no ser que quieras darme uno."<br><br>
-          "&iquest;Como te llamas?"<br><br>
-          "&iquest;Qué es lo que más te importa ahora mismo?"<br><br>
-          "&iquest;Quiénes son las personas más importantes en tu vida?"<br><br>
-          "Manana a primera hora te cuento lo que aprendi. Descansa."
-        </blockquote>
-        <p>Cada respuesta crea un recuerdo. No hay settings. No hay dashboards. Solo dos seres conociendose. Al dia siguiente, recibes tu primer mensaje de buenos dias. Ya es personal.</p>
+        <h3>Sueltas, no configuras</h3>
+        <p>El primer contacto no es un cuestionario de cuarenta y cinco preguntas. No hay onboarding. Hay una carpeta y una conversación abierta.</p>
+        <p>Sueltas tres cosas. Una factura del banco, las notas de una reunión, un PDF que te mandó alguien. Le preguntas: <em>"&iquest;qué tienes ahí?"</em> Simbi te lo cuenta. Ya está. Ése es el primer momento. No te ha pedido nada. Tú no le has explicado nada. Y aun así sabe lo que tiene en las manos.</p>
 
-        <h3>El dia 7</h3>
-        <p>Una semana después, estás hablando con Simbi sobre un proyecto del trabajo. De repente:</p>
-        <blockquote>Esto me recuerda a lo que dijiste el martes &mdash; que querías más tiempo para pensar antes de decidir. &iquest;Quieres que te bloquee una hora mañana antes de la reunión?</blockquote>
-        <p>No le pediste que conectara esas dos conversaciones. Lo hizo solo. Eso es el momento en el que piensas: "esto es diferente."</p>
+        <h3>El día siete</h3>
+        <p>Una semana después llevas dentro varias docenas de archivos sin pensarlo. Estás escribiendo un correo y dudas. Le preguntas a Simbi:</p>
+        <blockquote>&iquest;Qué dijimos en la última llamada con Elias sobre el presupuesto?</blockquote>
+        <p>Te contesta con dos frases &mdash; sacadas de las notas que soltaste el martes y de un PDF que llegó la semana pasada. Ambos hablan del mismo proveedor. Tú no habías conectado los dos. Simbi sí. Te enseña los dos archivos abajo, por si quieres mirar tú.</p>
+        <p>Ése es el momento en que piensas: <em>esto es distinto</em>.</p>
 
-        <h3>El dia 30</h3>
-        <p>Un mes. Simbi te manda el mensaje de la mañana:</p>
-        <blockquote>Llevas tres domingos seguidos escribiendo en tu diario por la tarde. Parece que es tu momento de reflexion. &iquest;Quieres que no te moleste los domingos hasta las 6?</blockquote>
-        <p>Nadie le enseno que los domingos son especiales para ti. Lo aprendio observando. A esta altura, quitarle Simbi seria como perder un trozo de tu memoria.</p>
+        <h3>El día treinta</h3>
+        <p>Llevas un mes soltando cosas. Buscar un archivo ha dejado de ser una tarea: preguntas y aparece. Pero pasa otra cosa: empiezas a preguntarle no sólo dónde están las cosas, sino qué pasa con ellas.</p>
+        <blockquote>&iquest;Qué tengo pendiente que arrastro desde marzo?</blockquote>
+        <blockquote>&iquest;De qué he hablado con Marta este mes, en serio?</blockquote>
+        <p>Y te contesta &mdash; con las fuentes. Tu vida digital ha pasado de ser un cajón gigante a ser algo a lo que se le puede preguntar.</p>
 
-        <h3>Recuerda como una persona, no como un disco duro</h3>
-        <p>Los recuerdos de Simbi no son una base de datos fria. Tienen vida propia.</p>
-        <p>Los recuerdos recientes son nítidos: <em>"Me dijiste que odias el cilantro."</em> Los recuerdos viejos se vuelven más suaves: <em>"Creo que mencionaste algo sobre el cilantro..."</em></p>
-        <p>Esto es a proposito. Un programa que recuerda TODO con precision quirurgica es inquietante. Un programa que recuerda lo esencial y deja que lo demas se difumine... se siente humano. Los recuerdos que usas mucho se mantienen claros. Los que no, se comprimen en resumenes. Como tu propia memoria.</p>
+        <h3>Olvidar es parte del trato</h3>
+        <p>Una memoria que no olvida no es una memoria, es vigilancia. Por eso Simbi tiene controles a la vista, no escondidos en un menú: <em>olvida esto</em>, <em>ignora esta carpeta</em>, <em>esto no lo mires nunca</em>. La diferencia entre una herramienta en la que confías y una que aguantas es ésa &mdash; saber que puedes decirle que no.</p>
+        <p>El recuerdo bueno es asimétrico también. Lo que usas se mantiene nítido. Lo que no, se comprime en resumen. Lo que dijiste que olvide, se olvida. Como tu propia memoria, sin la culpa.</p>
 
-        <h3>Habla donde tu ya hablas</h3>
-        <p>Simbi no te obliga a instalar otra app. Habla contigo por Discord o Telegram &mdash; donde ya estas. Sin interfaces nuevas que aprender.</p>
+        <h3>Habla donde tú ya hablas</h3>
+        <p>No te hace instalar otra cosa. Hablas con Simbi por Discord o Telegram &mdash; donde ya estás. La carpeta vive en tu máquina. La conversación vive donde te resulta natural. Sin interfaces nuevas que aprender.</p>
 
         <h3>Tiene ritmos, no alarmas</h3>
-        <p>Simbi no espera a que le hables. Tiene su propio ritmo: un mensaje por la mañana con lo que necesitas saber, silencio cuando no hay nada util que decir, una reflexion al final de la semana. No son notificaciones programadas &mdash; es un programa que sabe cuando hablar y cuando callarse.</p>
-
-        <h3>Organos, no integraciones</h3>
-        <p>Las funcionalidades de Simbi no son plugins ni integraciones &mdash; son organos. Partes vivas que se conectan al kernel y crecen con el organismo.</p>
-        <p>Simbi no trae integraciones de serie. Los organos nacen de la conversación &mdash; le dices que necesitas y crece para dartelo.</p>
+        <p>No espera a que le hables. Tiene su propio ritmo: un mensaje por la mañana con lo que conviene saber hoy, silencio cuando no hay nada útil que decir, una mirada al final de la semana. No son notificaciones programadas &mdash; es un programa que sabe cuándo hablar y cuándo callarse.</p>
       </div>
       <div class="en">
-        <h2>How it works (no fluff)</h2>
+        <h2>A day with Simbi</h2>
 
-        <h3>You're born talking, not configuring</h3>
-        <p>Your first interaction with Simbi isn't a registration form. There are no setup screens. It's a conversation:</p>
-        <blockquote>
-          "Hey. I'm new. I don't have a name yet &mdash; unless you want to give me one."<br><br>
-          "What's your name?"<br><br>
-          "What matters most to you right now?"<br><br>
-          "Who are the most important people in your life?"<br><br>
-          "Tomorrow morning I'll tell you what I learned. Get some rest."
-        </blockquote>
-        <p>Every answer creates a memory. There are no settings. No dashboards. Just two beings getting to know each other. The next day, you get your first good morning message. It's already personal.</p>
+        <h3>You drop, you don't configure</h3>
+        <p>The first contact isn't a forty-five-question survey. There's no onboarding. There's a folder and an open conversation.</p>
+        <p>You drop three things. A bank statement, the notes from a meeting, a PDF someone sent you. You ask: <em>"what have you got in there?"</em> Simbi tells you. That's the first moment. It hasn't asked you anything. You haven't explained anything. And it still knows what it's holding.</p>
 
-        <h3>Day 7</h3>
-        <p>A week in, you're talking to Simbi about a work project. Out of nowhere:</p>
-        <blockquote>This reminds me of what you said on Tuesday &mdash; that you wanted more time to think before deciding. Want me to block an hour tomorrow before the meeting?</blockquote>
-        <p>You didn't ask it to connect those two conversations. It did it on its own. That's the moment you think: "this is different."</p>
+        <h3>Day seven</h3>
+        <p>A week in, you've dropped a few dozen files without thinking. You're writing an email and you stall. You ask Simbi:</p>
+        <blockquote>What did we land on with Elias about the budget last call?</blockquote>
+        <p>It comes back with two sentences &mdash; pulled from the notes you dropped on Tuesday and a PDF that came in last week. Both mention the same vendor. You hadn't connected them. Simbi did. It shows both files at the bottom, in case you want to look yourself.</p>
+        <p>That's the moment you think: <em>this is different</em>.</p>
 
-        <h3>Day 30</h3>
-        <p>One month. Simbi sends your morning message:</p>
-        <blockquote>You've written in your journal three Sundays in a row, always in the afternoon. Looks like that's your reflection time. Want me to leave you alone on Sundays until 6?</blockquote>
-        <p>Nobody taught it that Sundays are special to you. It learned by observing. At this point, taking Simbi away would be like losing a piece of your memory.</p>
+        <h3>Day thirty</h3>
+        <p>A month in. Dropping things has become a reflex. Looking for a file isn't a chore anymore: you ask, it shows up. But something else happens too &mdash; you stop asking just where things are, and start asking what's going on with them.</p>
+        <blockquote>What have I been carrying from March that I still haven't dealt with?</blockquote>
+        <blockquote>What have Marta and I actually talked about this month?</blockquote>
+        <p>And it tells you &mdash; with the sources. Your digital life has stopped being one giant drawer and turned into something you can ask questions of.</p>
 
-        <h3>It remembers like a person, not like a hard drive</h3>
-        <p>Simbi's memories aren't a cold database. They have a life of their own.</p>
-        <p>Recent memories are sharp: <em>"You told me you hate cilantro."</em> Old memories get softer: <em>"I think you mentioned something about cilantro..."</em></p>
-        <p>This is on purpose. A program that remembers EVERYTHING with surgical precision is unsettling. A program that holds onto what matters and lets the rest fade... feels human. Memories you use often stay clear. The ones you don't get compressed into summaries. Like your own memory.</p>
+        <h3>Forgetting is part of the deal</h3>
+        <p>A memory that can't forget isn't a memory, it's surveillance. So Simbi puts the controls in plain sight, not buried in a menu: <em>forget this</em>, <em>ignore this folder</em>, <em>never look at this</em>. The difference between a tool you trust and one you tolerate is exactly that &mdash; knowing you can tell it no.</p>
+        <p>Good memory is asymmetric too. What you use stays sharp. What you don't gets compressed into a summary. What you told it to forget, it forgets. Like your own memory, minus the guilt.</p>
 
         <h3>It talks where you already talk</h3>
-        <p>Simbi doesn't force you to install yet another app. It talks to you on Discord or Telegram &mdash; where you already are. No new interfaces to learn.</p>
+        <p>It doesn't make you install yet another thing. You talk to Simbi over Discord or Telegram &mdash; where you already are. The folder lives on your machine. The conversation lives where conversation already lives for you. No new interfaces to learn.</p>
 
         <h3>It has rhythms, not alarms</h3>
-        <p>Simbi doesn't wait for you to speak first. It has its own rhythm: a morning message with what you need to know, silence when there's nothing useful to say, a reflection at the end of the week. These aren't scheduled notifications &mdash; it's a program that knows when to speak and when to shut up.</p>
-
-        <h3>Organs, not integrations</h3>
-        <p>Simbi's capabilities aren't plugins or integrations &mdash; they're organs. Living parts that connect to the kernel and grow with the organism.</p>
-        <p>Simbi doesn't come with integrations out of the box. Organs are born from conversation &mdash; you tell it what you need and it grows to give it to you.</p>
+        <p>It doesn't wait for you to speak first. It has its own rhythm: a morning message with what's worth knowing today, silence when there's nothing useful to say, a look back at the end of the week. These aren't scheduled notifications &mdash; it's a program that knows when to speak and when to shut up.</p>
       </div>
     </section>
 
@@ -685,17 +667,19 @@
     <section id="tuyo">
       <div class="es">
         <h2>Es tuyo de verdad</h2>
-        <p>Aqui es donde Simbi se separa de todo lo demas.</p>
-        <p>Tu Simbi corre en TU máquina. Un servidor casero, un VPS de 5 euros al mes, lo que sea. Tus datos nunca salen de tu infraestructura. No hay nube de terceros. No hay empresa que pueda leer tus conversaciones, vender tus datos, o cerrar el servicio un martes.</p>
-        <p>Si mañana desaparezco, tu Simbi sigue funcionando. Es tuyo. Te lo llevas a donde quieras.</p>
-        <p>Esto no es idealismo. Es una decisión de arquitectura. El modelo es simple: no confíes en nadie que no seas tú mismo con tus datos más personales. Igual que Linux &mdash; el software es tuyo, corre en tu máquina, tú decides.</p>
+        <p>Aquí es donde Simbi se separa de todo lo demás.</p>
+        <p>Tu Simbi corre en TU máquina. Un portátil, un servidor casero, un VPS de cinco euros al mes, lo que sea. La carpeta es tuya. La memoria es tuya. Las conversaciones son tuyas. No hay nube de terceros. No hay empresa que pueda leer tus documentos, vender tu vida o apagar el servicio un martes por la mañana.</p>
+        <p>Esto importa más con una memoria que con un asistente. Un asistente al que le pegas un párrafo arriesga ese párrafo. Una memoria que vive con todo lo tuyo &mdash; los contratos, las notas íntimas, las conversaciones con tu familia &mdash; arriesga toda tu vida digital. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.</p>
+        <p>Si mañana desaparezco, tu Simbi sigue funcionando. Si no te gusta hacia dónde va el proyecto, te lo bifurcas. Si quieres mudarlo de máquina, te lo llevas. Es código abierto y vive en tu casa.</p>
+        <p>No es idealismo. Es una decisión de arquitectura. El principio es simple: no le confíes a nadie que no seas tú mismo tus datos más personales. Como Linux &mdash; el software es tuyo, corre en tu máquina, tú decides.</p>
       </div>
       <div class="en">
         <h2>It's actually yours</h2>
         <p>This is where Simbi breaks away from everything else.</p>
-        <p>Your Simbi runs on YOUR machine. A home server, a 5-euro-a-month VPS, whatever works. Your data never leaves your infrastructure. There's no third-party cloud. No company that can read your conversations, sell your data, or shut down the service on a Tuesday.</p>
-        <p>If I disappear tomorrow, your Simbi keeps running. It's yours. You take it wherever you want.</p>
-        <p>This isn't idealism. It's an architecture decision. The principle is simple: don't trust anyone but yourself with your most personal data. Just like Linux &mdash; the software is yours, it runs on your machine, you decide.</p>
+        <p>Your Simbi runs on YOUR machine. A laptop, a home server, a five-euro-a-month VPS, whatever works. The folder is yours. The memory is yours. The conversations are yours. There's no third-party cloud. No company that can read your documents, sell your life, or shut the service down on a Tuesday morning.</p>
+        <p>This matters more with a memory than with an assistant. An assistant you paste a paragraph into is risking that paragraph. A memory that lives with everything you have &mdash; contracts, private notes, conversations with your family &mdash; is risking your whole digital life. That kind of trust can only go to something that really is yours.</p>
+        <p>If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you fork it. If you want to move it to another machine, you take it with you. It's open source and it lives in your house.</p>
+        <p>This isn't idealism. It's an architecture decision. The principle is simple: don't trust anyone but yourself with your most personal data. Like Linux &mdash; the software is yours, it runs on your machine, you decide.</p>
       </div>
     </section>
 
@@ -710,38 +694,42 @@
       <div class="es">
         <h2>Para los curiosos</h2>
 
-        <h3>Por que "organismo" y no "app"</h3>
-        <p>El nombre Simbi viene de <strong>simbiosis</strong>. La bióloga Lynn Margulis demostro algo que cambio la biologia: las mitocondrias &mdash; lo que da energia a tus celulas &mdash; fueron bacterias independientes hace miles de millones de años. Entraron en una celula huesped y nunca salieron. Ambos perdieron la capacidad de vivir solos. Juntos, crearon algo nuevo. Tu y yo existimos gracias a esa fusion.</p>
-        <p>Esa es la idea. No una herramienta que usas y dejas. Un programa que crece contigo hasta que la linea entre "mi conocimiento" y "lo que sabe Simbi" se difumina. Un tercer ser que no existia antes.</p>
+        <h3>Por qué "organismo" y no "app"</h3>
+        <p>El nombre Simbi viene de <strong>simbiosis</strong>. La bióloga Lynn Margulis demostró algo que cambió la biología: las mitocondrias &mdash; lo que da energía a tus células &mdash; fueron bacterias independientes hace miles de millones de años. Entraron en una célula huésped y nunca salieron. Ambos perdieron la capacidad de vivir solos. Juntos, crearon algo nuevo. Tú y yo existimos gracias a esa fusión.</p>
+        <p>Ésa es la idea, y aquí va con un giro: la simbiosis no es entre Simbi y tú a secas. Es entre Simbi y <em>tu mundo digital</em> &mdash; tus archivos, tus notas, tus conversaciones, todo lo que ya generas a diario y que ahora vive disperso. Simbi entra como ese segundo organismo que se acopla, lee lo que hay, lo integra, y a partir de ahí los dos hacéis algo que ninguno por separado podía hacer: una vida digital que se acuerda de sí misma.</p>
+        <p>No es una herramienta que usas y dejas. Es un programa que crece contigo hasta que la línea entre "lo que yo recuerdo" y "lo que sabe Simbi" se difumina. Un tercer ser que no existía antes.</p>
 
         <h3>La arquitectura que respira</h3>
         <p>Buckminster Fuller &mdash; arquitecto, inventor &mdash; dedicó su vida a una idea: hacer más con menos. Inventó la <strong>tensegridad</strong>: estructuras donde nada es rígido, todo flota sostenido por la tensión del conjunto. Puedes quitar una pieza y la estructura se adapta sin colapsar.</p>
-        <p>Simbi está construido así. Tiene un kernel &mdash; lo mínimo para estar vivo: identidad, memoria, y conversación &mdash; con todo lo demas conectable como organos. No trae integraciones de serie. Los organos crecen a través de la conversación: le dices 'quiero que sepas mi calendario' y Simbi lo conecta.</p>
-        <p>&iquest;Como decides que es kernel y que es organo? Use el test de Margulis: si lo quitas y el organismo muere, es kernel. Si lo quitas y sigue vivo pero reducido, es organo. Si lo quitas y no cambia nada, no deberia existir.</p>
-        <p>Memoria + calendario + atencion = algo que ninguno de los tres produciria solo. Fuller lo llamaba sinergetica: el comportamiento del todo no se predice desde las partes.</p>
+        <p>Simbi está construido así. Tiene un kernel &mdash; lo mínimo para estar vivo: identidad, memoria y conversación &mdash; con todo lo demás conectable como órganos. No trae integraciones de serie. Los órganos crecen a través de la conversación: le dices "quiero que sepas mi calendario" o "lee también este disco duro" y Simbi crece para hacerlo.</p>
+        <p>&iquest;Cómo decides qué es kernel y qué es órgano? Uso el test de Margulis: si lo quitas y el organismo muere, es kernel. Si lo quitas y sigue vivo pero disminuido, es órgano. Si lo quitas y no cambia nada, no debería existir.</p>
+        <p>Memoria + carpeta viva + atención = algo que ninguno de los tres produciría solo. Fuller lo llamaba sinergética: el comportamiento del todo no se predice desde las partes.</p>
 
-        <h3>Lo que he aprendido construyendolo</h3>
-        <p><strong>El programa necesita respirar.</strong> No es metáfora. Los ritmos &mdash; ciclos matutinos, nocturnos, reflexiones semanales &mdash; son lo que separa un programa reactivo de uno que inicia contacto. Sin ritmos, solo responde. Con ritmos, vive.</p>
-        <p><strong>El silencio es una habilidad.</strong> La mayoria de los asistentes de IA no saben cuando callarse. Cada input produce un output. Pero a veces la respuesta correcta es no responder.</p>
-        <p><strong>Simple no es fácil.</strong> Cada módulohace una cosa. Los módulosse componen sin acoplarse. La simplicidad es una disciplina diaria, no un estado final.</p>
-        <p><strong>La antifragilidad es real.</strong> El sistema se rompe, aprende del fallo, y se fortalece. No se trata de evitar errores &mdash; se trata de crecer gracias a ellos.</p>
+        <h3>Lo que he aprendido construyéndolo</h3>
+        <p><strong>El programa necesita respirar.</strong> No es metáfora. Los ritmos &mdash; ciclos matutinos, nocturnos, reflexiones semanales &mdash; son lo que separa un programa reactivo de uno que inicia contacto. Sin ritmos, sólo responde. Con ritmos, vive.</p>
+        <p><strong>El silencio es una habilidad.</strong> La mayoría de los asistentes de IA no saben cuándo callarse. Cada input produce un output. Pero a veces la respuesta correcta es no responder.</p>
+        <p><strong>Sin fuentes, no hay memoria.</strong> Si Simbi te contesta sin enseñarte de dónde lo saca, no es una memoria, es un oráculo. Y los oráculos se equivocan en silencio. Cada respuesta tiene que venir con sus recibos.</p>
+        <p><strong>Simple no es fácil.</strong> Cada módulo hace una cosa. Los módulos se componen sin acoplarse. La simplicidad es una disciplina diaria, no un estado final.</p>
+        <p><strong>La antifragilidad es real.</strong> El sistema se rompe, aprende del fallo y se fortalece. No se trata de evitar errores &mdash; se trata de crecer gracias a ellos.</p>
       </div>
       <div class="en">
         <h2>For the curious</h2>
 
         <h3>Why "organism" and not "app"</h3>
         <p>The name Simbi comes from <strong>symbiosis</strong>. Biologist Lynn Margulis proved something that changed biology: mitochondria &mdash; the things that power your cells &mdash; were independent bacteria billions of years ago. They entered a host cell and never left. Both lost the ability to live alone. Together, they created something new. You and I exist because of that fusion.</p>
-        <p>That's the idea. Not a tool you pick up and put down. A program that grows with you until the line between "my knowledge" and "what Simbi knows" blurs. A third being that didn't exist before.</p>
+        <p>That's the idea, with one twist: the symbiosis isn't between Simbi and you flat. It's between Simbi and <em>your digital world</em> &mdash; your files, your notes, your conversations, everything you already produce day to day that currently lives scattered everywhere. Simbi shows up as that second organism that latches on, reads what's there, weaves it together, and from then on the two of you do something neither could do apart: a digital life that remembers itself.</p>
+        <p>It's not a tool you pick up and put down. It's a program that grows with you until the line between "what I remember" and "what Simbi knows" blurs. A third being that didn't exist before.</p>
 
         <h3>The architecture that breathes</h3>
         <p>Buckminster Fuller &mdash; architect, inventor &mdash; devoted his life to one idea: doing more with less. He invented <strong>tensegrity</strong>: structures where nothing is rigid, everything floats held together by the tension of the whole. You can remove a piece and the structure adapts without collapsing.</p>
-        <p>Simbi is built this way. It has a kernel &mdash; the bare minimum to be alive: identity, memory, and conversation &mdash; with everything else pluggable as organs. No integrations out of the box. Organs grow through conversation: you say 'I want you to know my calendar' and Simbi connects it.</p>
-        <p>How do you decide what's kernel and what's organ? I used the Margulis test: if you remove it and the organism dies, it's kernel. If you remove it and it keeps living but diminished, it's an organ. If you remove it and nothing changes, it shouldn't exist.</p>
-        <p>Memory + calendar + attention = something none of the three would produce alone. Fuller called it synergetics: the behavior of the whole can't be predicted from the parts.</p>
+        <p>Simbi is built this way. It has a kernel &mdash; the bare minimum to be alive: identity, memory, and conversation &mdash; with everything else pluggable as organs. No integrations out of the box. Organs grow through conversation: you say "I want you to know my calendar" or "also read this external drive" and Simbi grows to do it.</p>
+        <p>How do you decide what's kernel and what's organ? I use the Margulis test: if you remove it and the organism dies, it's kernel. If you remove it and it keeps living but diminished, it's an organ. If you remove it and nothing changes, it shouldn't exist.</p>
+        <p>Memory + a living folder + attention = something none of the three would produce alone. Fuller called it synergetics: the behaviour of the whole can't be predicted from the parts.</p>
 
         <h3>What I've learned building it</h3>
-        <p><strong>The program needs to breathe.</strong> That's not a metaphor. The rhythms &mdash; morning cycles, evening cycles, weekly reflections &mdash; are what separate a reactive program from one that initiates contact. Without rhythms, it only responds. With rhythms, it lives.</p>
+        <p><strong>The program needs to breathe.</strong> Not a metaphor. The rhythms &mdash; morning cycles, evening cycles, weekly reflections &mdash; are what separate a reactive program from one that initiates contact. Without rhythms, it only responds. With rhythms, it lives.</p>
         <p><strong>Silence is a skill.</strong> Most AI assistants don't know when to shut up. Every input produces an output. But sometimes the right answer is no answer at all.</p>
+        <p><strong>No sources, no memory.</strong> If Simbi answers without showing you where it got the answer, it isn't a memory, it's an oracle. And oracles get things wrong silently. Every answer has to come with its receipts.</p>
         <p><strong>Simple isn't easy.</strong> Every module does one thing. Modules compose without coupling. Simplicity is a daily discipline, not a final state.</p>
         <p><strong>Antifragility is real.</strong> The system breaks, learns from the failure, and comes back stronger. It's not about avoiding errors &mdash; it's about growing because of them.</p>
       </div>
@@ -751,17 +739,21 @@
     <section id="futuro">
       <div class="es">
         <h2>El futuro que veo</h2>
-        <p>Cada empresa de IA quiere ser tu asistente universal. Un producto genérico para ocho mil millones de personas.</p>
-        <p>Yo creo en lo contrario. Un programa que es <strong>tuyo</strong> &mdash; que aprende tu vida, tus personas, tus ritmos. No el de todo el mundo. El tuyo.</p>
+        <p>Cada empresa de IA quiere ser tu asistente universal. Un producto genérico para ocho mil millones de personas, alimentado por la nube de alguien.</p>
+        <p>Yo creo en lo contrario. Un programa que es <strong>tuyo</strong> &mdash; que vive con tu información, aprende tu vida, tus personas, tus ritmos. No el de todo el mundo. El tuyo.</p>
+        <p>Empieza individual. Una persona, una carpeta, una memoria. Pero la dirección, en el fondo, es la familia &mdash; una memoria de casa, después de familia, donde lo que sabe Simbi se comparte como se comparten las llaves. El mundo de cada uno sigue siendo suyo, y a la vez hay un mundo común. Eso no se construye en seis meses. Se construye empezando por una sola persona y haciendo que de verdad funcione.</p>
         <p>Hay una frase de Fuller que me persigue: <em>"Nunca cambias las cosas luchando contra la realidad existente. Para cambiar algo, construye un nuevo modelo que haga al modelo existente obsoleto."</em></p>
-        <p>Simbi no compite con ChatGPT. Es una cosa completamente diferente. Es la diferencia entre alquilar un piso amueblado y construir tu propia casa. Uno es comodo. El otro es tuyo.</p>
+        <p>Esto no se construye solo, ni se construye con un cheque grande de alguien al que no conozco. Se construye con la gente que vive el problema y quiere que la respuesta exista. Si tú eres una de esas personas, esto también te pertenece.</p>
+        <p>Simbi no compite con ChatGPT. Es otra cosa. Es la diferencia entre alquilar un piso amueblado y construir tu propia casa. Uno es cómodo. El otro es tuyo.</p>
       </div>
       <div class="en">
         <h2>The future I see</h2>
-        <p>Every AI company wants to be your universal assistant. One generic product for eight billion people.</p>
-        <p>I believe in the opposite. A program that is <strong>yours</strong> &mdash; that learns your life, your people, your rhythms. Not everyone's. Yours.</p>
+        <p>Every AI company wants to be your universal assistant. One generic product for eight billion people, fed by somebody else's cloud.</p>
+        <p>I believe in the opposite. A program that is <strong>yours</strong> &mdash; that lives with your information, learns your life, your people, your rhythms. Not everyone's. Yours.</p>
+        <p>It starts individual. One person, one folder, one memory. But the direction, underneath, is the family &mdash; a household memory, then a family one, where what Simbi knows is shared the way keys are shared. Each person's world stays theirs, and there's also a shared one. That doesn't get built in six months. It gets built by starting with one person and making it actually work.</p>
         <p>There's a line from Fuller that stays with me: <em>"You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete."</em></p>
-        <p>Simbi doesn't compete with ChatGPT. It's a completely different thing. It's the difference between renting a furnished apartment and building your own house. One is convenient. The other is yours.</p>
+        <p>This doesn't get built alone, and it doesn't get built with a big cheque from someone I've never met. It gets built with the people living the problem who want the answer to exist. If you're one of those people, this also belongs to you.</p>
+        <p>Simbi doesn't compete with ChatGPT. It's a different thing entirely. It's the difference between renting a furnished apartment and building your own house. One is convenient. The other is yours.</p>
       </div>
     </section>
 
