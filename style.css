@@ -274,14 +274,13 @@ body::before {
 .demo-source {
   display: inline-block;
   margin-top: 0.55rem;
-  padding: 0.18em 0.7em;
+  padding: 0.22em 0.75em;
   background: rgba(16, 185, 129, 0.18);
   color: #047857;
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   border-radius: 0.45rem;
   font-style: italic;
   border: 1px solid rgba(16, 185, 129, 0.3);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   .demo-source {

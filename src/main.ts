@@ -8,8 +8,8 @@ const translations: Record<Lang, Record<string, string>> = {
     'demo.greet': "Good morning. Today is your mom's birthday.",
     'demo.q': 'Do I still have that cake recipe she used to make?',
     'demo.a': 'Yes. You photographed her handwritten one two years ago.',
-    'demo.src': '↪ moms-cake.jpg',
-    'demo.thanks': 'Thank you. Everything was so hard before you.',
+    'demo.src': "↪ 🎂 mom's recipe",
+    'demo.thanks': "Thanks! Two years already? I barely remembered.",
     'demo.caption': "That's the whole product.",
 
     's2.head': 'Three things, in this order.',
@@ -41,8 +41,8 @@ const translations: Record<Lang, Record<string, string>> = {
     'demo.greet': 'Buenos días. Hoy es el cumple de tu madre.',
     'demo.q': '¿Aún tengo aquella receta de tarta que hacía?',
     'demo.a': 'Sí. Hace dos años fotografiaste la que escribió a mano.',
-    'demo.src': '↪ tarta-mama.jpg',
-    'demo.thanks': 'Gracias. Qué difícil era todo antes de ti.',
+    'demo.src': '↪ 🎂 receta de mamá',
+    'demo.thanks': '¡Gracias! ¿Hace ya dos años? Yo apenas me acordaba.',
     'demo.caption': 'Ese es el producto entero.',
 
     's2.head': 'Tres cosas, en este orden.',
