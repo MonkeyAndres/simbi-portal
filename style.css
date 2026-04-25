@@ -210,16 +210,18 @@ body::before {
 }
 
 /* ==========================================================================
-   Demo — animated chat-style interaction. The proof. */
+   Demo — chat-bubble interaction. The proof.
+   Drop = system event (centered pill). User = right bubble. Simbi = left
+   bubble with source pill embedded. */
 
 .demo {
-  padding: 1rem 1.1rem 1.15rem;
+  padding: 1.15rem 1rem;
   background: rgb(255 255 255 / 0.55);
   border: 1px solid rgb(231 229 228);
-  border-radius: 0.875rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.875rem;
-  line-height: 1.65;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   box-shadow: 0 1px 24px rgba(52, 211, 153, 0.06);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -232,116 +234,123 @@ body::before {
   }
 }
 
-.demo-header {
-  display: flex;
+/* System event: file got dropped + remembered. Centered, subtle. */
+.demo-event {
+  align-self: center;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-bottom: 0.85rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px dashed rgba(168, 162, 158, 0.35);
-}
-.demo-dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  padding: 0.32rem 0.85rem;
+  background: rgba(168, 162, 158, 0.13);
   border-radius: 9999px;
-  background: rgb(214 211 209);
+  font-size: 0.78rem;
+  color: rgb(120 113 108);
 }
-@media (prefers-color-scheme: dark) {
-  .demo-dot { background: rgb(64 64 64); }
-}
-.demo-path {
-  margin-left: 0.4rem;
-  font-size: 0.72rem;
-  color: rgb(168 162 158);
-  letter-spacing: 0.03em;
-}
-@media (prefers-color-scheme: dark) {
-  .demo-path { color: rgb(115 115 115); }
-}
-
-.demo-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  margin-bottom: 0.65rem;
-  opacity: 0;
-  transform: translateY(4px);
-}
-.demo-line:last-child { margin-bottom: 0; }
-
-.demo-icon {
+.demo-event-icon {
   color: #10b981;
-  flex-shrink: 0;
   font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.4;
 }
-.demo-filename {
+.demo-event-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.74rem;
   color: rgb(87 83 78);
+}
+.demo-event-sep { color: rgb(168 162 158); }
+.demo-event-verb {
+  color: #047857;
   font-style: italic;
 }
 @media (prefers-color-scheme: dark) {
-  .demo-filename { color: rgb(168 162 158); }
+  .demo-event {
+    background: rgba(168, 162, 158, 0.1);
+    color: rgb(163 163 163);
+  }
+  .demo-event-name { color: rgb(168 162 158); }
+  .demo-event-verb { color: #34d399; }
 }
 
-.demo-who {
-  color: rgb(168 162 158);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  flex-shrink: 0;
-  padding-top: 0.25em;
-  min-width: 3.4rem;
-}
-.demo-who.simbi {
-  color: #10b981;
-  font-weight: 600;
+/* Chat bubbles. */
+.demo-bubble {
+  max-width: 82%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
-.demo-bubble { display: block; }
-
-.demo-msg { color: rgb(28 25 23); }
+.demo-bubble-you {
+  align-self: flex-end;
+  background: rgb(28 25 23);
+  color: rgb(245 245 244);
+  border-bottom-right-radius: 0.4rem;
+}
 @media (prefers-color-scheme: dark) {
-  .demo-msg { color: rgb(229 229 229); }
+  .demo-bubble-you {
+    background: rgb(64 64 64);
+    color: rgb(245 245 244);
+  }
+}
+
+.demo-bubble-simbi {
+  align-self: flex-start;
+  background: rgba(16, 185, 129, 0.1);
+  color: rgb(28 25 23);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-bottom-left-radius: 0.4rem;
+}
+@media (prefers-color-scheme: dark) {
+  .demo-bubble-simbi {
+    background: rgba(16, 185, 129, 0.13);
+    color: rgb(229 229 229);
+    border-color: rgba(52, 211, 153, 0.25);
+  }
 }
 
 .demo-source {
   display: inline-block;
-  margin-top: 0.45rem;
-  padding: 0.18em 0.65em;
-  background: rgba(16, 185, 129, 0.13);
+  margin-top: 0.55rem;
+  padding: 0.18em 0.7em;
+  background: rgba(16, 185, 129, 0.18);
   color: #047857;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   border-radius: 0.45rem;
   font-style: italic;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   .demo-source {
-    background: rgba(16, 185, 129, 0.16);
+    background: rgba(16, 185, 129, 0.22);
     color: #34d399;
-    border-color: rgba(52, 211, 153, 0.3);
+    border-color: rgba(52, 211, 153, 0.4);
   }
 }
 
-.demo-line:nth-of-type(1) { animation: demoLine1 14s ease-in-out infinite; }
-.demo-line:nth-of-type(2) { animation: demoLine2 14s ease-in-out infinite; }
-.demo-line:nth-of-type(3) { animation: demoLine3 14s ease-in-out infinite; }
+/* Staggered entrance: event drops in, user slides from right, simbi from left.
+   14s loop. All visible together for ~7s, then fade and restart. */
+.demo-event,
+.demo-bubble {
+  opacity: 0;
+}
 
-@keyframes demoLine1 {
-  0%, 2%    { opacity: 0; transform: translateY(4px); }
+.demo-event       { animation: demoEvent  14s ease-in-out infinite; }
+.demo-bubble-you  { animation: demoYou    14s ease-in-out infinite; }
+.demo-bubble-simbi{ animation: demoSimbi  14s ease-in-out infinite; }
+
+@keyframes demoEvent {
+  0%, 2%    { opacity: 0; transform: translateY(-4px); }
   6%, 92%   { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(4px); }
+  96%, 100% { opacity: 0; transform: translateY(-4px); }
 }
-@keyframes demoLine2 {
-  0%, 22%   { opacity: 0; transform: translateY(4px); }
-  26%, 92%  { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(4px); }
+@keyframes demoYou {
+  0%, 22%   { opacity: 0; transform: translateX(10px); }
+  26%, 92%  { opacity: 1; transform: translateX(0); }
+  96%, 100% { opacity: 0; transform: translateX(10px); }
 }
-@keyframes demoLine3 {
-  0%, 48%   { opacity: 0; transform: translateY(4px); }
-  52%, 92%  { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(4px); }
+@keyframes demoSimbi {
+  0%, 48%   { opacity: 0; transform: translateX(-10px); }
+  52%, 92%  { opacity: 1; transform: translateX(0); }
+  96%, 100% { opacity: 0; transform: translateX(-10px); }
 }
 
 .demo-caption {
@@ -354,14 +363,15 @@ body::before {
 
 @media (max-width: 480px) {
   .demo {
-    font-size: 0.8rem;
-    padding: 0.85rem 0.95rem 0.95rem;
+    padding: 1rem 0.85rem;
+    gap: 0.5rem;
   }
-  .demo-who {
-    min-width: 2.7rem;
-    font-size: 0.68rem;
+  .demo-bubble {
+    font-size: 0.88rem;
+    max-width: 88%;
   }
-  .demo-line { gap: 0.5rem; }
+  .demo-event { font-size: 0.72rem; }
+  .demo-event-name { font-size: 0.7rem; }
 }
 
 /* ==========================================================================
@@ -387,7 +397,8 @@ body::before {
   .ogilvy-cta:hover { transform: none; }
   .feature-card { transition: none; }
   .feature-card:hover { transform: none; }
-  .demo-line {
+  .demo-event,
+  .demo-bubble {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;

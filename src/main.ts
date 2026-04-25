@@ -5,8 +5,8 @@ const translations: Record<Lang, Record<string, string>> = {
     'headline': 'You have 12,000 files on your laptop.<br>You can name 200.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,800.</span>',
     'subhead': 'Drop a file. Ask anything. Open the source it came from.',
 
-    'demo.path': '~/Simbi/World/',
     'demo.file': 'contract-marta-mar.pdf',
+    'demo.remembered': 'remembered',
     'demo.q': 'What did Marta send me in March?',
     'demo.a': 'Net 30. Scope locked at €4,200. Signed both sides.',
     'demo.src': '↪ contract-marta-mar.pdf',
@@ -38,8 +38,8 @@ const translations: Record<Lang, Record<string, string>> = {
     'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 200.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.800.</span>',
     'subhead': 'Suelta un archivo. Pregunta. Abre la fuente de la que sale la respuesta.',
 
-    'demo.path': '~/Simbi/World/',
     'demo.file': 'contrato-marta-mar.pdf',
+    'demo.remembered': 'recordado',
     'demo.q': '¿Qué me mandó Marta en marzo?',
     'demo.a': 'Pago a 30 días. Alcance cerrado en €4.200. Firmado por ambos.',
     'demo.src': '↪ contrato-marta-mar.pdf',

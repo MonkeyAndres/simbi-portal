@@ -38,28 +38,25 @@
         Drop a file. Ask anything. Open the source it came from.
       </p>
 
-      <!-- The demo: the proof -->
+      <!-- The demo: the proof, as chat bubbles -->
       <div class="demo" role="img" aria-label="Example: drop a file, ask a question, get an answer with the source">
-        <div class="demo-header">
-          <span class="demo-dot"></span>
-          <span class="demo-dot"></span>
-          <span class="demo-dot"></span>
-          <span class="demo-path" data-i18n="demo.path">~/Simbi/World/</span>
+        <!-- System event: file dropped into ~/Simbi/World/ -->
+        <div class="demo-event">
+          <span class="demo-event-icon">+</span>
+          <span class="demo-event-name" data-i18n="demo.file">contract-marta-mar.pdf</span>
+          <span class="demo-event-sep">·</span>
+          <span class="demo-event-verb" data-i18n="demo.remembered">remembered</span>
         </div>
-        <div class="demo-line demo-drop">
-          <span class="demo-icon">+</span>
-          <span class="demo-filename" data-i18n="demo.file">contract-marta-mar.pdf</span>
+
+        <!-- User question -->
+        <div class="demo-bubble demo-bubble-you">
+          <span data-i18n="demo.q">What did Marta send me in March?</span>
         </div>
-        <div class="demo-line demo-you">
-          <span class="demo-who">you</span>
-          <span class="demo-msg" data-i18n="demo.q">What did Marta send me in March?</span>
-        </div>
-        <div class="demo-line demo-simbi">
-          <span class="demo-who simbi">simbi</span>
-          <span class="demo-bubble">
-            <span class="demo-msg" data-i18n="demo.a">Net 30. Scope locked at €4,200. Signed both sides.</span>
-            <span class="demo-source" data-i18n="demo.src">↪ contract-marta-mar.pdf</span>
-          </span>
+
+        <!-- Simbi answer + source pill -->
+        <div class="demo-bubble demo-bubble-simbi">
+          <span data-i18n="demo.a">Net 30. Scope locked at €4,200. Signed both sides.</span>
+          <span class="demo-source" data-i18n="demo.src">↪ contract-marta-mar.pdf</span>
         </div>
       </div>
 
