@@ -2,14 +2,14 @@ type Lang = 'en' | 'es'
 
 const translations: Record<Lang, Record<string, string>> = {
   en: {
-    'headline': 'You have 12,000 files on your laptop.<br>You can name 200.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,800.</span>',
+    'headline': 'You have 12,000 files on your laptop.<br>You can name 20.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,980.</span>',
     'subhead': 'Drop a file. Ask anything. Open the source it came from.',
 
-    'demo.file': 'contract-marta-mar.pdf',
-    'demo.remembered': 'remembered',
-    'demo.q': 'What did Marta send me in March?',
-    'demo.a': 'Net 30. Scope locked at €4,200. Signed both sides.',
-    'demo.src': '↪ contract-marta-mar.pdf',
+    'demo.greet': "Good morning. Today is your mom's birthday.",
+    'demo.q': 'Do I still have that cake recipe she used to make?',
+    'demo.a': 'Yes. You photographed her handwritten one two years ago.',
+    'demo.src': '↪ moms-cake.jpg',
+    'demo.thanks': 'Thank you. Everything was so hard before you.',
     'demo.caption': "That's the whole product.",
 
     's2.head': 'Three things, in this order.',
@@ -35,14 +35,14 @@ const translations: Record<Lang, Record<string, string>> = {
     'footer.motto': 'Your world stays yours.',
   },
   es: {
-    'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 200.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.800.</span>',
+    'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 20.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.980.</span>',
     'subhead': 'Suelta un archivo. Pregunta. Abre la fuente de la que sale la respuesta.',
 
-    'demo.file': 'contrato-marta-mar.pdf',
-    'demo.remembered': 'recordado',
-    'demo.q': '¿Qué me mandó Marta en marzo?',
-    'demo.a': 'Pago a 30 días. Alcance cerrado en €4.200. Firmado por ambos.',
-    'demo.src': '↪ contrato-marta-mar.pdf',
+    'demo.greet': 'Buenos días. Hoy es el cumple de tu madre.',
+    'demo.q': '¿Aún tengo aquella receta de tarta que hacía?',
+    'demo.a': 'Sí. Hace dos años fotografiaste la que escribió a mano.',
+    'demo.src': '↪ tarta-mama.jpg',
+    'demo.thanks': 'Gracias. Qué difícil era todo antes de ti.',
     'demo.caption': 'Ese es el producto entero.',
 
     's2.head': 'Tres cosas, en este orden.',

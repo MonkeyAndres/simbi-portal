@@ -234,41 +234,6 @@ body::before {
   }
 }
 
-/* System event: file got dropped + remembered. Centered, subtle. */
-.demo-event {
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.32rem 0.85rem;
-  background: rgba(168, 162, 158, 0.13);
-  border-radius: 9999px;
-  font-size: 0.78rem;
-  color: rgb(120 113 108);
-}
-.demo-event-icon {
-  color: #10b981;
-  font-weight: 700;
-}
-.demo-event-name {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.74rem;
-  color: rgb(87 83 78);
-}
-.demo-event-sep { color: rgb(168 162 158); }
-.demo-event-verb {
-  color: #047857;
-  font-style: italic;
-}
-@media (prefers-color-scheme: dark) {
-  .demo-event {
-    background: rgba(168, 162, 158, 0.1);
-    color: rgb(163 163 163);
-  }
-  .demo-event-name { color: rgb(168 162 158); }
-  .demo-event-verb { color: #34d399; }
-}
-
 /* Chat bubbles. */
 .demo-bubble {
   max-width: 82%;
@@ -326,31 +291,34 @@ body::before {
   }
 }
 
-/* Staggered entrance: event drops in, user slides from right, simbi from left.
-   14s loop. All visible together for ~7s, then fade and restart. */
-.demo-event,
-.demo-bubble {
-  opacity: 0;
-}
+/* Staggered entrance: 4 beats over 16s. Simbi slides in from left,
+   you from right. All visible from ~75% to 92%, then fade and restart. */
+.demo-bubble { opacity: 0; }
 
-.demo-event       { animation: demoEvent  14s ease-in-out infinite; }
-.demo-bubble-you  { animation: demoYou    14s ease-in-out infinite; }
-.demo-bubble-simbi{ animation: demoSimbi  14s ease-in-out infinite; }
+.demo-bubble:nth-of-type(1) { animation: demoBeat1 16s ease-in-out infinite; }
+.demo-bubble:nth-of-type(2) { animation: demoBeat2 16s ease-in-out infinite; }
+.demo-bubble:nth-of-type(3) { animation: demoBeat3 16s ease-in-out infinite; }
+.demo-bubble:nth-of-type(4) { animation: demoBeat4 16s ease-in-out infinite; }
 
-@keyframes demoEvent {
-  0%, 2%    { opacity: 0; transform: translateY(-4px); }
-  6%, 92%   { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(-4px); }
+@keyframes demoBeat1 { /* simbi: morning greeting */
+  0%, 1%    { opacity: 0; transform: translateX(-10px); }
+  5%, 92%   { opacity: 1; transform: translateX(0); }
+  96%, 100% { opacity: 0; transform: translateX(-10px); }
 }
-@keyframes demoYou {
+@keyframes demoBeat2 { /* you: ask */
   0%, 22%   { opacity: 0; transform: translateX(10px); }
   26%, 92%  { opacity: 1; transform: translateX(0); }
   96%, 100% { opacity: 0; transform: translateX(10px); }
 }
-@keyframes demoSimbi {
-  0%, 48%   { opacity: 0; transform: translateX(-10px); }
-  52%, 92%  { opacity: 1; transform: translateX(0); }
+@keyframes demoBeat3 { /* simbi: answer with source */
+  0%, 44%   { opacity: 0; transform: translateX(-10px); }
+  48%, 92%  { opacity: 1; transform: translateX(0); }
   96%, 100% { opacity: 0; transform: translateX(-10px); }
+}
+@keyframes demoBeat4 { /* you: gratitude */
+  0%, 67%   { opacity: 0; transform: translateX(10px); }
+  71%, 92%  { opacity: 1; transform: translateX(0); }
+  96%, 100% { opacity: 0; transform: translateX(10px); }
 }
 
 .demo-caption {
@@ -397,7 +365,6 @@ body::before {
   .ogilvy-cta:hover { transform: none; }
   .feature-card { transition: none; }
   .feature-card:hover { transform: none; }
-  .demo-event,
   .demo-bubble {
     opacity: 1 !important;
     transform: none !important;

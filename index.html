@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simbi — A memory for your digital life.</title>
-  <meta name="description" content="You have 12,000 files on your laptop. You can name 200. Simbi remembers the other 11,800. Free, open source, runs on your machine.">
+  <meta name="description" content="You have 12,000 files on your laptop. You can name 20. Simbi remembers the other 11,980. Free, open source, runs on your machine.">
   <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='35%25' cy='35%25'><stop offset='0%25' stop-color='%23fcd34d'/><stop offset='55%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23047857'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
@@ -30,33 +30,35 @@
 
       <h1 class="ogilvy-headline" data-i18n="headline">
         You have 12,000 files on your laptop.<br>
-        You can name 200.<br>
-        <span class="ogilvy-headline-accent">Simbi remembers the other 11,800.</span>
+        You can name 20.<br>
+        <span class="ogilvy-headline-accent">Simbi remembers the other 11,980.</span>
       </h1>
 
       <p class="ogilvy-subhead" data-i18n="subhead">
         Drop a file. Ask anything. Open the source it came from.
       </p>
 
-      <!-- The demo: the proof, as chat bubbles -->
-      <div class="demo" role="img" aria-label="Example: drop a file, ask a question, get an answer with the source">
-        <!-- System event: file dropped into ~/Simbi/World/ -->
-        <div class="demo-event">
-          <span class="demo-event-icon">+</span>
-          <span class="demo-event-name" data-i18n="demo.file">contract-marta-mar.pdf</span>
-          <span class="demo-event-sep">·</span>
-          <span class="demo-event-verb" data-i18n="demo.remembered">remembered</span>
-        </div>
-
-        <!-- User question -->
-        <div class="demo-bubble demo-bubble-you">
-          <span data-i18n="demo.q">What did Marta send me in March?</span>
-        </div>
-
-        <!-- Simbi answer + source pill -->
+      <!-- The demo: morning ritual → recall → emotional payoff. -->
+      <div class="demo" role="img" aria-label="Example: Simbi greets you in the morning, you ask about a file, it answers with the source, you thank it">
+        <!-- Beat 1 — Simbi initiates the morning -->
         <div class="demo-bubble demo-bubble-simbi">
-          <span data-i18n="demo.a">Net 30. Scope locked at €4,200. Signed both sides.</span>
-          <span class="demo-source" data-i18n="demo.src">↪ contract-marta-mar.pdf</span>
+          <span data-i18n="demo.greet">Good morning. Today is your mom's birthday.</span>
+        </div>
+
+        <!-- Beat 2 — User asks -->
+        <div class="demo-bubble demo-bubble-you">
+          <span data-i18n="demo.q">Do I still have that cake recipe she used to make?</span>
+        </div>
+
+        <!-- Beat 3 — Simbi answers + source pill -->
+        <div class="demo-bubble demo-bubble-simbi">
+          <span data-i18n="demo.a">Yes. You photographed her handwritten one two years ago.</span>
+          <span class="demo-source" data-i18n="demo.src">↪ moms-cake.jpg</span>
+        </div>
+
+        <!-- Beat 4 — User gratitude -->
+        <div class="demo-bubble demo-bubble-you">
+          <span data-i18n="demo.thanks">Thank you. Everything was so hard before you.</span>
         </div>
       </div>
 
