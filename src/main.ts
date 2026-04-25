@@ -3,18 +3,18 @@ type Lang = 'en' | 'es'
 const translations: Record<Lang, Record<string, string>> = {
   en: {
     'headline': 'You have 12,000 files on your laptop.<br>You can name 20.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,980.</span>',
-    'subhead': 'Drop a file. Ask anything. Open the source it came from.',
+    'subhead': 'Drop a file. Ask anything. Open the file the answer came from.',
 
     'demo.greet': "Good morning. Today is your mom's birthday.",
-    'demo.q': 'Do I still have that cake recipe she used to make?',
-    'demo.a': 'Yes. You photographed her handwritten one two years ago.',
+    'demo.q': 'Do I still have that cake recipe of hers?',
+    'demo.a': 'Yes. You took a photo of her handwritten one two years ago.',
     'demo.src': "↪ 🎂 mom's recipe",
     'demo.thanks': "Thanks! Two years already? I barely remembered.",
     'demo.caption': "That's the whole product.",
 
     's2.head': 'Three things, in this order.',
-    's2.p1': "You have a folder on your machine called <code>~/Simbi/World/</code>. You drop things into it — a PDF, a screenshot, a meeting note, a download, a whole zip your sister sent. You don't name them. You don't tag them. You don't sort them. You forget about them.",
-    's2.p2': 'When you need something, you ask in plain language. <em>"What did Marta send me in March?"</em> <em>"Where did Elias and I land on the budget?"</em> <em>"That note about the Galicia trip — find it."</em> Simbi answers. In a sentence.',
+    's2.p1': "You have a folder on your computer called Simbi. You drop things into it — a PDF, a screenshot, a meeting note, a download, a whole zip your sister sent. You don't name them. You don't tag them. You don't sort them. You forget about them.",
+    's2.p2': 'When you need something, you ask in plain language. <em>"What did my sister send me in March?"</em> <em>"Where are the photos from Cádiz?"</em> <em>"That note about Galicia — find it."</em> Simbi answers. In a sentence.',
     's2.p3': "Every answer comes with the file it came from. Click it. Open it. Read the source yourself. Without sources, an AI is an oracle, and oracles get things wrong silently. Simbi shows its work.",
     's2.p4': "It doesn't read your email yet. It doesn't watch your calendar. It doesn't speak. Today it does one thing: it remembers what you put in front of it, and finds it when you ask.",
 
@@ -25,43 +25,43 @@ const translations: Record<Lang, Record<string, string>> = {
     's3.p4': "This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.",
 
     's4.head': 'Built by one person, on purpose.',
-    's4.p1': "Simbi is made by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building Simbi because he wants it to exist — for himself, for his father, for the people who feel the same daily friction with their digital lives. If that's you, this also belongs to you.",
+    's4.p1': "Simbi is built by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building it because he wants it to exist — for himself, for his father, for anyone who feels the same daily friction with their digital life. If that's you, this belongs to you too.",
 
     's5.head': 'Start.',
-    's5.p1': "Read the longer story to know how it works, where it came from, and why it matters.",
+    's5.p1': "Read the longer story — how it works, where it came from, and why it matters.",
     's5.cta': 'Read the story →',
-    's5.email': 'or write me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
+    's5.email': 'or email me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
     'footer.motto': 'Your world stays yours.',
   },
   es: {
     'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 20.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.980.</span>',
-    'subhead': 'Suelta un archivo. Pregunta. Abre la fuente de la que sale la respuesta.',
+    'subhead': 'Suelta un archivo. Pregunta. Abre el archivo del que salió la respuesta.',
 
     'demo.greet': 'Buenos días. Hoy es el cumple de tu madre.',
-    'demo.q': '¿Aún tengo aquella receta de tarta que hacía?',
-    'demo.a': 'Sí. Hace dos años fotografiaste la que escribió a mano.',
+    'demo.q': '¿Tengo guardada la receta de la tarta que hacía ella?',
+    'demo.a': 'Sí. Le hiciste una foto a la que ella escribió a mano, hace dos años.',
     'demo.src': '↪ 🎂 receta de mamá',
     'demo.thanks': '¡Gracias! ¿Hace ya dos años? Yo apenas me acordaba.',
-    'demo.caption': 'Ese es el producto entero.',
+    'demo.caption': 'Eso es todo el producto.',
 
     's2.head': 'Tres cosas, en este orden.',
-    's2.p1': 'Tienes una carpeta en tu máquina, <code>~/Simbi/World/</code>. Sueltas cosas dentro — un PDF, una captura, las notas de una reunión, una descarga, el zip entero que te mandó tu hermana. No las nombras. No las etiquetas. No las ordenas. Te olvidas de ellas.',
-    's2.p2': 'Cuando necesitas algo, preguntas en lenguaje normal. <em>«¿Qué me mandó Marta en marzo?»</em> <em>«¿Qué quedamos con Elias sobre el presupuesto?»</em> <em>«Aquella nota sobre el viaje a Galicia — encuéntrala.»</em> Simbi responde. En una frase.',
-    's2.p3': 'Cada respuesta viene con el archivo del que sale. Haz clic. Ábrelo. Lee tú la fuente. Sin fuentes, una IA es un oráculo, y los oráculos se equivocan en silencio. Simbi enseña sus recibos.',
+    's2.p1': 'Tienes una carpeta en tu ordenador, llamada Simbi. Sueltas cosas dentro — un PDF, una captura, las notas de una reunión, una descarga, el zip entero que te mandó tu hermana. No las nombras. No las etiquetas. No las ordenas. Te olvidas de ellas.',
+    's2.p2': 'Cuando necesitas algo, preguntas en lenguaje normal. <em>«¿Qué me mandó mi hermana en marzo?»</em> <em>«¿Dónde están las fotos de Cádiz?»</em> <em>«Aquella nota sobre Galicia — encuéntrala.»</em> Simbi responde. En una frase.',
+    's2.p3': 'Cada respuesta viene con el archivo del que sale. Haz clic. Ábrelo. Lee tú la fuente. Sin fuentes, una IA es un oráculo, y los oráculos se equivocan en silencio. Simbi te enseña de dónde lo ha sacado.',
     's2.p4': 'Todavía no lee tu correo. No mira tu calendario. No habla. Hoy hace una sola cosa: recuerda lo que pones delante, y lo encuentra cuando preguntas.',
 
     's3.head': 'En tu máquina. En ningún otro sitio.',
-    's3.p1': 'Simbi corre en tu portátil, en un servidor casero, o en un VPS de cinco euros — cualquier hardware que tengas. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni tercero que reciba copia de nada.',
-    's3.p2': 'El código entero es de código abierto. Léelo. Ejecútalo. Bifúrcalo. Si yo desaparezco mañana, tu Simbi sigue corriendo. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. La licencia es permisiva a propósito.',
-    's3.p3': 'No hay nada que comprar. Sin suscripción, sin nivel premium, sin lista de espera. El único coste es el modelo de lenguaje — pones tu propia clave (Anthropic, OpenAI, o un modelo que corre en tu propio hardware). El almacenamiento es el disco que ya tienes.',
+    's3.p1': 'Simbi funciona en tu portátil, en un servidor casero, o en un VPS de cinco euros — el hardware que tengas a mano. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni nadie ahí fuera recibiendo copia de tus cosas.',
+    's3.p2': 'Todo el código es abierto. Léelo. Ejecútalo. Haz tu propio fork. Si yo desaparezco mañana, tu Simbi sigue funcionando. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. La licencia es permisiva a propósito.',
+    's3.p3': 'No hay nada que comprar. Sin suscripción, sin nivel premium, sin lista de espera. Lo único que pagas es el modelo de lenguaje — pones tu propia clave (Anthropic, OpenAI, o un modelo que corre en tu propio hardware). El almacenamiento es el disco que ya tienes.',
     's3.p4': 'Esto no es ideología. Es una decisión de arquitectura. Una memoria contiene todo lo tuyo. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.',
 
     's4.head': 'Hecho por una persona, a propósito.',
-    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para la gente que siente la misma fricción diaria con su vida digital. Si esa eres tú, esto también te pertenece.',
+    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para la gente que siente la misma fricción diaria con su vida digital. Si te ves ahí dentro, esto también es para ti.',
 
     's5.head': 'Empieza.',
-    's5.p1': 'Lee la historia larga para saber cómo funciona, de dónde viene, y por qué importa.',
+    's5.p1': 'Lee la historia entera: cómo funciona, de dónde viene y por qué importa.',
     's5.cta': 'Lee la historia →',
     's5.email': 'o escríbeme directamente: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
