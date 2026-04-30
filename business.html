@@ -94,14 +94,14 @@
     }
     section.block > h2 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1.9rem;
+      font-size: 2.15rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       color: var(--text);
-      margin-bottom: 1.4rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 2px solid var(--accent);
+      line-height: 1.15;
     }
     section.block > h3 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -143,57 +143,80 @@
       color: var(--accent-strong);
     }
 
-    /* ============ Pricing cards ============ */
+    /* ============ Pricing cards (stacked, two-column inside) ============ */
     .price-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin: 1rem 0;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin: 1.25rem 0 1.5rem;
     }
     .price-card {
       background: var(--bg-card);
       border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      padding: 1.25rem 1rem;
-      display: flex;
-      flex-direction: column;
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      display: grid;
+      grid-template-columns: minmax(170px, 220px) 1fr;
+      gap: 1.6rem;
+      align-items: center;
     }
     .price-card.featured {
       border-color: var(--accent);
       background: var(--accent-dim);
     }
     .price-card .when {
+      grid-column: 1;
+      grid-row: 1;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.7rem; font-weight: 600;
+      font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-faint);
-      margin-bottom: 0.5rem;
+      margin: 0 0 0.5rem;
+      align-self: end;
     }
     .price-card.featured .when { color: var(--accent-strong); }
     .price-card .amount {
+      grid-column: 1;
+      grid-row: 2;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.25rem;
-      line-height: 1.1;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
       white-space: nowrap;
+      color: var(--text);
+      align-self: start;
     }
     .price-card .amount .alt {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--text-dim);
       letter-spacing: 0;
-      margin-top: 0.2rem;
+      margin-top: 0.3rem;
     }
     .price-card .desc {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.45;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+      align-self: center;
     }
-    @media (max-width: 600px) { .price-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 540px) {
+      .price-card {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+        padding: 1.15rem 1.25rem 1.3rem;
+      }
+      .price-card .amount { font-size: 1.85rem; }
+      .price-card .when, .price-card .amount, .price-card .desc {
+        grid-column: 1;
+        grid-row: auto;
+        align-self: auto;
+      }
+    }
 
     /* ============ Money flow ============ */
     .flow {

@@ -566,6 +566,19 @@ body::before {
     max-width: 360px;
     display: none;
   }
+}
+
+/* Phone-only: full-width topbar (no centered max-width container) */
+@media (max-width: 640px) {
+  .topbar-inner {
+    max-width: none;
+    padding: 10px 14px;
+  }
+  .page-nav {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
   @media (prefers-color-scheme: dark) {
     .page-nav {
       background: rgb(20 20 19 / 0.98);
