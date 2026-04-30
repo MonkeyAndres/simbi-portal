@@ -44,6 +44,7 @@ const translations: Record<Lang, Record<string, string>> = {
 
     'footer.motto': 'Your world stays yours.',
     'footer.business': 'Business plan',
+    'footer.support': 'Support ♥',
   },
   es: {
     'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 20.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.980.</span>',
@@ -88,6 +89,7 @@ const translations: Record<Lang, Record<string, string>> = {
 
     'footer.motto': 'Tu mundo sigue siendo tuyo.',
     'footer.business': 'Plan de empresa',
+    'footer.support': 'Apoya el proyecto ♥',
   }
 }
 
