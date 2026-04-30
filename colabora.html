@@ -229,7 +229,7 @@
 
     .gh-callout {
       margin: 1.5rem 0;
-      padding: 1.1rem 1.3rem;
+      padding: 1.4rem 1.5rem;
       background: var(--accent-dim);
       border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
@@ -237,8 +237,37 @@
       line-height: 1.65;
     }
     .gh-callout strong { color: var(--accent-strong); }
-    .gh-callout p { margin-bottom: 0.6rem; }
+    .gh-callout p { margin-bottom: 0.7rem; }
     .gh-callout p:last-child { margin-bottom: 0; }
+
+    .gh-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 0.4rem;
+      padding: 0.7rem 1.1rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.005em;
+      text-decoration: none;
+      border-bottom: none !important;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .gh-button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+      border-bottom: none !important;
+    }
+    .gh-button svg {
+      width: 1rem;
+      height: 1rem;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
 
     section.way a {
       color: var(--accent-strong);
@@ -395,10 +424,14 @@
         <h2>Apoyo económico</h2>
         <p>Si lo que ves te aporta y quieres que el proyecto vaya más rápido, puedes apoyarlo con dinero. <strong>El 100% vuelve al proyecto</strong>: salario digno mientras el producto madure, infraestructura mínima, contratar más manos. Sin accionistas, sin <em>exit</em>. Si crece lo suficiente, fundación sin ánimo de lucro.</p>
         <div class="gh-callout">
-          <p><strong>GitHub Sponsors, próximamente.</strong> Estoy gestionando la inscripción. Cuando esté activo, podrás suscribirte mensualmente con dos clics desde GitHub. La aprobación tarda días o semanas.</p>
-          <p>Mientras tanto, hablamos por correo y vemos la forma más cómoda para ti (transferencia, PayPal, lo que prefieras).</p>
+          <p><strong>GitHub Sponsors está activo.</strong> Suscríbete mensualmente con dos clics desde tu cuenta de GitHub. Stripe procesa el cobro; yo no veo tus datos de pago.</p>
+          <p>Si prefieres otra forma (transferencia, PayPal, donación puntual), escríbeme y lo arreglamos.</p>
+          <a class="gh-button" href="https://github.com/sponsors/MonkeyAndres" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9.5-3.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 7.75A.75.75 0 017.25 7h1a.75.75 0 01.75.75v3.5h.5a.75.75 0 010 1.5h-3a.75.75 0 010-1.5h.5V8.5h-.5a.75.75 0 01-.75-.75z"/></svg>
+            Sponsor en GitHub →
+          </a>
         </div>
-        <p>Estos son los <strong>tiers que pondré en marcha</strong> cuando GitHub Sponsors apruebe la cuenta. Listados aquí para que sepas qué viene:</p>
+        <p>Estos son los <strong>tiers actuales</strong>:</p>
 
         <div class="tiers">
           <div class="tier">
@@ -479,10 +512,14 @@
         <h2>Financial support</h2>
         <p>If what you see helps you and you want the project to move faster, you can back it with money. <strong>100% goes back into the project</strong>: fair salary while the product matures, minimal infrastructure, more hands. No shareholders, no <em>exit</em>. If it grows enough, non-profit foundation.</p>
         <div class="gh-callout">
-          <p><strong>GitHub Sponsors, coming soon.</strong> I'm processing the application. Once it's live, you'll be able to subscribe monthly in two clicks from GitHub. Approval takes days or weeks.</p>
-          <p>Until then, we talk by email and find the most comfortable way for you (bank transfer, PayPal, whatever).</p>
+          <p><strong>GitHub Sponsors is live.</strong> Subscribe monthly in two clicks from your GitHub account. Stripe handles the payment; I don't see your card details.</p>
+          <p>If you'd rather use another channel (bank transfer, PayPal, one-off donation), email me and we'll sort it out.</p>
+          <a class="gh-button" href="https://github.com/sponsors/MonkeyAndres" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9.5-3.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 7.75A.75.75 0 017.25 7h1a.75.75 0 01.75.75v3.5h.5a.75.75 0 010 1.5h-3a.75.75 0 010-1.5h.5V8.5h-.5a.75.75 0 01-.75-.75z"/></svg>
+            Sponsor on GitHub →
+          </a>
         </div>
-        <p>These are the <strong>tiers I'll set up</strong> once GitHub Sponsors approves the account. Listed here so you know what's coming:</p>
+        <p>These are the <strong>current tiers</strong>:</p>
 
         <div class="tiers">
           <div class="tier">
