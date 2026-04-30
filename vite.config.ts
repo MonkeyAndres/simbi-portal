@@ -16,7 +16,6 @@ export default defineConfig({
         business: resolve(__dirname, 'business.html'),
         faq: resolve(__dirname, 'faq.html'),
         colabora: resolve(__dirname, 'colabora.html'),
-        'beta-setup': resolve(__dirname, 'beta-setup.html'),
       },
     },
   },
