@@ -568,11 +568,13 @@ body::before {
   }
 }
 
-/* Phone-only: full-width topbar (no centered max-width container) */
-@media (max-width: 640px) {
+/* Phone + tablet: full-width topbar (no centered max-width container).
+   Matches the 880px hamburger breakpoint so the bar feels intentional
+   on every viewport that doesn't show inline tabs. */
+@media (max-width: 880px) {
   .topbar-inner {
     max-width: none;
-    padding: 10px 14px;
+    padding: 10px 16px;
   }
   .page-nav {
     left: 10px;
