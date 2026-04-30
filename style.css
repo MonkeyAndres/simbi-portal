@@ -365,15 +365,13 @@ body::before {
 /* ==========================================================================
    Top bar with site nav (coherent across all pages). */
 
-/* Minimalist topbar: ☰ Simbi ● alive (left-aligned), drawer for the rest. */
+/* Minimalist topbar: ☰ Simbi ● alive (left-aligned), drawer for the rest.
+   The outer .topbar spans the full width (sticky bar + bottom border),
+   while .topbar-inner is centered and max-width-aligned with body content. */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
   background: rgb(245 245 244 / 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -387,10 +385,19 @@ body::before {
     border-bottom-color: rgb(38 38 38);
   }
 }
+.topbar-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  position: relative; /* anchor for absolute drawer */
+}
 
-/* Hamburger button — always visible, leftmost */
+/* Hamburger button — hidden on desktop, shown on tablet/mobile */
 .menu-toggle {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 36px;
@@ -489,57 +496,33 @@ body::before {
   .alive-pill::before { animation: none; }
 }
 
-/* Push the drawer trigger / quick lang to the right */
-.topbar-spacer { flex: 1; }
-
-/* Page nav — drawer revealed on hamburger click */
+/* Page nav — desktop default: inline pills */
 .page-nav {
   list-style: none;
-  position: absolute;
-  top: 100%;
-  left: 12px;
-  right: 12px;
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  margin: 6px 0 0;
-  padding: 6px;
-  background: rgb(252 251 249 / 0.98);
-  border: 1px solid rgb(214 211 209);
-  border-radius: 10px;
-  box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  z-index: 99;
-  max-width: 360px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0 0 0 12px;
+  padding: 0;
 }
-@media (prefers-color-scheme: dark) {
-  .page-nav {
-    background: rgb(20 20 19 / 0.98);
-    border-color: rgb(38 38 38);
-    box-shadow: 0 12px 32px rgb(0 0 0 / 0.55);
-  }
-}
-.topbar[data-menu="open"] .page-nav { display: flex; }
-.page-nav li { display: block; width: 100%; }
+.page-nav li { display: block; }
 .page-nav a {
-  display: block;
-  width: 100%;
-  color: rgb(28 25 23);
+  display: inline-block;
+  color: rgb(87 83 78);
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.005em;
-  padding: 12px 14px;
-  border-radius: 7px;
+  padding: 6px 12px;
+  border-radius: 6px;
   transition: color 0.15s, background 0.15s;
   white-space: nowrap;
 }
-.page-nav a:hover { background: rgb(231 229 228); }
+.page-nav a:hover { color: rgb(28 25 23); background: rgb(231 229 228); }
 @media (prefers-color-scheme: dark) {
-  .page-nav a { color: rgb(245 245 244); }
-  .page-nav a:hover { background: rgb(38 38 38); }
+  .page-nav a { color: rgb(168 162 158); }
+  .page-nav a:hover { color: rgb(245 245 244); background: rgb(38 38 38); }
 }
 .page-nav a.active {
   color: #047857;
@@ -551,13 +534,54 @@ body::before {
 }
 .page-nav a.active::before {
   content: "●";
-  margin-right: 8px;
+  margin-right: 6px;
   color: #047857;
-  font-size: 9px;
+  font-size: 8px;
   vertical-align: middle;
 }
 @media (prefers-color-scheme: dark) {
   .page-nav a.active::before { color: #34d399; }
+}
+
+/* Tablet & mobile: hamburger + drawer */
+@media (max-width: 880px) {
+  .menu-toggle { display: inline-flex; }
+  .topbar-inner { padding: 10px 16px; }
+  .page-nav {
+    position: absolute;
+    top: 100%;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 0;
+    margin: 6px 0 0;
+    padding: 6px;
+    background: rgb(252 251 249 / 0.98);
+    border: 1px solid rgb(214 211 209);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 99;
+    max-width: 360px;
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .page-nav {
+      background: rgb(20 20 19 / 0.98);
+      border-color: rgb(38 38 38);
+      box-shadow: 0 12px 32px rgb(0 0 0 / 0.55);
+    }
+  }
+  .topbar[data-menu="open"] .page-nav { display: flex; }
+  .page-nav li { width: 100%; }
+  .page-nav a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 7px;
+  }
 }
 
 /* Lang toggle — pinned to the right of the bar */
