@@ -20,7 +20,7 @@ const PAGES = [
   { slug: 'about', path: '/about.html' },
   { slug: 'business', path: '/business.html' },
   { slug: 'faq', path: '/faq.html' },
-  { slug: 'support', path: '/support.html' },
+  { slug: 'colabora', path: '/colabora.html' },
 ] as const
 
 const VIEWPORTS = [
