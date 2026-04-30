@@ -2,6 +2,10 @@ type Lang = 'en' | 'es'
 
 const translations: Record<Lang, Record<string, string>> = {
   en: {
+    'announce.pill': 'NEW',
+    'announce.text': 'Public business plan — read how Simbi sustains itself.',
+    'announce.aria': 'Read the public business plan',
+
     'headline': 'You have 12,000 files on your laptop.<br>You can name 20.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,980.</span>',
     'subhead': 'Drop a file. Ask anything. Open the file the answer came from.',
 
@@ -20,8 +24,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
     's3.head': 'On your machine. Nowhere else.',
     's3.p1': "Simbi runs on your laptop, your home server, or a five-euro VPS — whatever hardware you've got. Your files never leave that machine. There is no cloud account to sign into, no telemetry, no analytics, no third party that gets a copy of anything.",
-    's3.p2': "The whole code is open source. Read it. Run it. Fork it. If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you take your copy and go. The license is permissive on purpose.",
-    's3.p3': "There is nothing to buy. No subscription, no premium tier, no waitlist. The only cost is the language model — bring your own key (Anthropic, OpenAI, or a model running on your own hardware). Storage is whatever disk you already have.",
+    's3.p2': "The portal you're reading is open source. The product itself is opening progressively under a permissive license. If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you take your copy and go. No closed door, ever.",
+    's3.p3': "Today you can run it yourself for free with your own key (Anthropic, OpenAI, or a model running on your own hardware). Soon: a pre-installed box with a perpetual free tier and an optional Premium service. Either way the promise is the same: your data on your machine, no rent for the right to remember.",
     's3.p4': "This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.",
 
     's4.head': 'Built by one person, on purpose.',
@@ -33,8 +37,13 @@ const translations: Record<Lang, Record<string, string>> = {
     's5.email': 'or email me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
     'footer.motto': 'Your world stays yours.',
+    'footer.business': 'Business plan',
   },
   es: {
+    'announce.pill': 'NUEVO',
+    'announce.text': 'Plan de empresa público — léete cómo se sostiene Simbi.',
+    'announce.aria': 'Leer el plan de empresa público',
+
     'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 20.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.980.</span>',
     'subhead': 'Suelta un archivo. Pregunta. Abre el archivo del que salió la respuesta.',
 
@@ -53,8 +62,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
     's3.head': 'En tu máquina. En ningún otro sitio.',
     's3.p1': 'Simbi funciona en tu portátil, en un servidor casero, o en un VPS de cinco euros — el hardware que tengas a mano. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni nadie ahí fuera recibiendo copia de tus cosas.',
-    's3.p2': 'Todo el código es abierto. Léelo. Ejecútalo. Haz tu propio fork. Si yo desaparezco mañana, tu Simbi sigue funcionando. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. La licencia es permisiva a propósito.',
-    's3.p3': 'No hay nada que comprar. Sin suscripción, sin nivel premium, sin lista de espera. Lo único que pagas es el modelo de lenguaje — pones tu propia clave (Anthropic, OpenAI, o un modelo que corre en tu propio hardware). El almacenamiento es el disco que ya tienes.',
+    's3.p2': 'El portal que estás leyendo es código abierto. El producto en sí se va abriendo progresivamente bajo licencia permisiva. Si yo desaparezco mañana, tu Simbi sigue funcionando. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. Ninguna puerta cerrada, nunca.',
+    's3.p3': 'Hoy puedes correrlo tú mismo gratis con tu propia clave (Anthropic, OpenAI, o un modelo en tu propio hardware). Pronto: una caja preinstalada con un nivel gratuito perpetuo y un servicio Premium opcional. La promesa no cambia en ningún caso: tus datos en tu máquina, sin alquiler por el derecho a recordar.',
     's3.p4': 'Esto no es ideología. Es una decisión de arquitectura. Una memoria contiene todo lo tuyo. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.',
 
     's4.head': 'Hecho por una persona, a propósito.',
@@ -66,6 +75,7 @@ const translations: Record<Lang, Record<string, string>> = {
     's5.email': 'o escríbeme directamente: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
 
     'footer.motto': 'Tu mundo sigue siendo tuyo.',
+    'footer.business': 'Plan de empresa',
   }
 }
 
@@ -80,6 +90,12 @@ function setLang(lang: Lang) {
     const key = el.getAttribute('data-i18n')!
     const text = translations[lang][key]
     if (text) el.innerHTML = text
+  })
+
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria')!
+    const text = translations[lang][key]
+    if (text) el.setAttribute('aria-label', text)
   })
 
   const enBtn = document.getElementById('lang-en')!

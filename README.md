@@ -43,7 +43,7 @@ The portal is designed around three ideas:
 
 ## License
 
-MIT
+AGPL-3.0. See `LICENSE` in the project root.
 
 ---
 

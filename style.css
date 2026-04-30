@@ -362,6 +362,58 @@ body::before {
 }
 
 /* ==========================================================================
+   Announcement bar (top of landing). */
+
+.announce-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 1.75rem;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.announce-bar:hover {
+  background: rgba(52, 211, 153, 0.14);
+  border-color: rgba(52, 211, 153, 0.45);
+  transform: translateY(-1px);
+}
+.announce-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #047857;
+  color: #f0fdf4;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.announce-text {
+  flex: 1;
+  color: rgb(28 25 23);
+}
+@media (prefers-color-scheme: dark) {
+  .announce-text { color: rgb(231 229 228); }
+}
+.announce-arrow {
+  font-size: 0.95rem;
+  color: #047857;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.announce-bar:hover .announce-arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
    Reduced motion. */
 
 @media (prefers-reduced-motion: reduce) {
@@ -372,6 +424,10 @@ body::before {
   .ogilvy-cta:hover { transform: none; }
   .feature-card { transition: none; }
   .feature-card:hover { transform: none; }
+  .announce-bar { transition: none; }
+  .announce-bar:hover { transform: none; }
+  .announce-arrow { transition: none; }
+  .announce-bar:hover .announce-arrow { transform: none; }
   .demo-bubble {
     opacity: 1 !important;
     transform: none !important;
