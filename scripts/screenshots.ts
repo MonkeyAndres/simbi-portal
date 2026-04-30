@@ -24,8 +24,11 @@ const PAGES = [
 ] as const
 
 const VIEWPORTS = [
-  { name: 'desktop', width: 1280, height: 900 },
-  { name: 'mobile', width: 390, height: 844 },
+  { name: 'desktop-wide', width: 1920, height: 1080 },
+  { name: 'desktop',      width: 1280, height: 900  },
+  { name: 'tablet',       width: 768,  height: 1024 }, // iPad portrait
+  { name: 'iphone-15',    width: 393,  height: 852  }, // iPhone 15 / 14 Pro
+  { name: 'iphone-se',    width: 375,  height: 667  }, // smallest modern iPhone
 ] as const
 
 const LANGS = ['es', 'en'] as const
@@ -39,38 +42,36 @@ async function main(): Promise<void> {
   console.log(`   ${PAGES.length} pages × ${VIEWPORTS.length} viewports × ${LANGS.length} languages = ${PAGES.length * VIEWPORTS.length * LANGS.length} files`)
   console.log()
 
-  const browser = await chromium.launch()
-
+  // Launch a fresh browser per viewport to keep memory bounded
   for (const vp of VIEWPORTS) {
+    const browser = await chromium.launch()
     for (const lang of LANGS) {
       const ctx = await browser.newContext({
         viewport: { width: vp.width, height: vp.height },
-        deviceScaleFactor: 2,
+        deviceScaleFactor: 1,
         colorScheme: 'light',
       })
-      // Pre-set language so the page loads in that language without flicker.
       await ctx.addInitScript((l: string) => {
         try { localStorage.setItem('simbi-lang', l) } catch {}
       }, lang)
 
-      const page = await ctx.newPage()
-
       for (const p of PAGES) {
+        const page = await ctx.newPage()
+        page.setDefaultTimeout(60000)
         const url = BASE + p.path
-        await page.goto(url, { waitUntil: 'networkidle', timeout: 15000 })
-        // Tiny pause to let any post-load layout settle (font swap, etc).
-        await page.waitForTimeout(300)
+        await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
+        await page.waitForTimeout(200)
         const file = `${OUT}/${p.slug}-${vp.name}-${lang}.png`
-        await page.screenshot({ path: file, fullPage: true })
+        await page.screenshot({ path: file, fullPage: true, timeout: 60000 })
+        await page.close()
         const { size } = await stat(file)
-        console.log(`✓ ${p.slug.padEnd(10)} ${vp.name.padEnd(8)} ${lang.toUpperCase()}  ${file.replace(process.cwd() + '/', '')}  (${(size / 1024).toFixed(0)} KB)`)
+        console.log(`✓ ${p.slug.padEnd(10)} ${vp.name.padEnd(12)} ${lang.toUpperCase()}  ${file.replace(process.cwd() + '/', '')}  (${(size / 1024).toFixed(0)} KB)`)
       }
 
       await ctx.close()
     }
+    await browser.close()
   }
-
-  await browser.close()
   console.log()
   console.log('✓ Done.')
 }

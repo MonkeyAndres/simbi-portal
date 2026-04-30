@@ -117,11 +117,11 @@ function setLang(lang: Lang) {
   enBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false')
   esBtn.setAttribute('aria-pressed', lang === 'es' ? 'true' : 'false')
 
-  // Toggle visibility of inline language slots in the topbar nav.
-  document.querySelectorAll<HTMLElement>('.page-nav .es').forEach(el => {
+  // Toggle visibility of all bilingual slots in the topbar (page-nav, alive pill, anything else).
+  document.querySelectorAll<HTMLElement>('.topbar .es').forEach(el => {
     el.style.display = lang === 'es' ? '' : 'none'
   })
-  document.querySelectorAll<HTMLElement>('.page-nav .en').forEach(el => {
+  document.querySelectorAll<HTMLElement>('.topbar .en').forEach(el => {
     el.style.display = lang === 'en' ? '' : 'none'
   })
 }
@@ -142,6 +142,27 @@ document.getElementById('lang-es')!.addEventListener('click', () => setLang('es'
   if (page === '' || page === '/') page = 'index'
   document.querySelectorAll<HTMLElement>('.page-nav a[data-page]').forEach(a => {
     if (a.getAttribute('data-page') === page) a.classList.add('active')
+  })
+})()
+
+// Mobile menu toggle
+;(function setupMenuToggle() {
+  const topbar = document.querySelector<HTMLElement>('.topbar')
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle')
+  if (!topbar || !toggle) return
+  toggle.addEventListener('click', () => {
+    const open = topbar.getAttribute('data-menu') === 'open'
+    topbar.setAttribute('data-menu', open ? 'closed' : 'open')
+    toggle.setAttribute('aria-expanded', String(!open))
+    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu')
+  })
+  // Close menu when a nav link is clicked (so navigating feels right on mobile)
+  topbar.querySelectorAll<HTMLAnchorElement>('.page-nav a').forEach(a => {
+    a.addEventListener('click', () => {
+      topbar.setAttribute('data-menu', 'closed')
+      toggle.setAttribute('aria-expanded', 'false')
+      toggle.setAttribute('aria-label', 'Open menu')
+    })
   })
 })()
 

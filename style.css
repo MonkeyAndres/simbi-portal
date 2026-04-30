@@ -365,124 +365,216 @@ body::before {
 /* ==========================================================================
    Top bar with site nav (coherent across all pages). */
 
-/* Use px throughout the topbar so it stays identical across pages
-   regardless of each page's html { font-size } base. */
+/* Minimalist topbar: ☰ Simbi ● alive (left-aligned), drawer for the rest. */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 11px 24px;
-  background: rgb(245 245 244 / 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 18px;
+  background: rgb(245 245 244 / 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgb(214 211 209);
   font-size: 14px;
   line-height: 1;
 }
 @media (prefers-color-scheme: dark) {
   .topbar {
-    background: rgb(23 23 23 / 0.88);
+    background: rgb(20 20 19 / 0.92);
     border-bottom-color: rgb(38 38 38);
   }
 }
 
+/* Hamburger button — always visible, leftmost */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgb(214 211 209);
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgb(28 25 23);
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.menu-toggle:hover {
+  background: rgb(231 229 228);
+  border-color: rgb(168 162 158);
+}
+.menu-toggle svg { width: 20px; height: 20px; pointer-events: none; }
+.menu-toggle .ico-close { display: none; }
+.topbar[data-menu="open"] .menu-toggle .ico-open { display: none; }
+.topbar[data-menu="open"] .menu-toggle .ico-close { display: block; }
+@media (prefers-color-scheme: dark) {
+  .menu-toggle { color: rgb(245 245 244); border-color: rgb(64 64 64); }
+  .menu-toggle:hover { background: rgb(38 38 38); border-color: rgb(115 115 115); }
+}
+
+/* Simbi brand — big, prominent */
 .brand {
   display: flex;
   align-items: center;
-  gap: 7px;
-  color: rgb(87 83 78);
+  gap: 8px;
+  color: rgb(28 25 23);
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   line-height: 1;
   transition: color 0.2s;
 }
 .brand:hover { color: #047857; }
 @media (prefers-color-scheme: dark) {
-  .brand { color: rgb(168 162 158); }
+  .brand { color: rgb(245 245 244); }
   .brand:hover { color: #34d399; }
 }
 .brand-dot {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #fcd34d 0%, #34d399 55%, #047857 100%);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.35);
   flex-shrink: 0;
-  animation: none;
   margin: 0;
-  box-shadow: none;
+  animation: none;
 }
 
+/* Alive pill — the "we ship" signal */
+.alive-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px 4px 8px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #047857;
+  line-height: 1;
+}
+@media (prefers-color-scheme: dark) {
+  .alive-pill {
+    background: rgba(52, 211, 153, 0.14);
+    border-color: rgba(52, 211, 153, 0.4);
+    color: #34d399;
+  }
+}
+.alive-pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: alivePulse 2.4s infinite;
+}
+@keyframes alivePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
+  70%  { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .alive-pill::before { animation: none; }
+}
+
+/* Push the drawer trigger / quick lang to the right */
+.topbar-spacer { flex: 1; }
+
+/* Page nav — drawer revealed on hamburger click */
 .page-nav {
   list-style: none;
-  display: flex;
-  gap: 1px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;
+  position: absolute;
+  top: 100%;
+  left: 12px;
+  right: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  margin: 6px 0 0;
+  padding: 6px;
+  background: rgb(252 251 249 / 0.98);
+  border: 1px solid rgb(214 211 209);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99;
+  max-width: 360px;
 }
-.page-nav li { display: block; }
+@media (prefers-color-scheme: dark) {
+  .page-nav {
+    background: rgb(20 20 19 / 0.98);
+    border-color: rgb(38 38 38);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.55);
+  }
+}
+.topbar[data-menu="open"] .page-nav { display: flex; }
+.page-nav li { display: block; width: 100%; }
 .page-nav a {
-  display: inline-block;
-  color: rgb(120 113 108);
+  display: block;
+  width: 100%;
+  color: rgb(28 25 23);
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  padding: 6px 10px;
-  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 12px 14px;
+  border-radius: 7px;
   transition: color 0.15s, background 0.15s;
   white-space: nowrap;
 }
-.page-nav a:hover {
-  color: rgb(28 25 23);
-  background: rgb(231 229 228);
-}
+.page-nav a:hover { background: rgb(231 229 228); }
 @media (prefers-color-scheme: dark) {
-  .page-nav a { color: rgb(120 113 108); }
-  .page-nav a:hover { color: rgb(245 245 244); background: rgb(38 38 38); }
+  .page-nav a { color: rgb(245 245 244); }
+  .page-nav a:hover { background: rgb(38 38 38); }
 }
 .page-nav a.active {
   color: #047857;
-  font-weight: 600;
-  position: relative;
+  font-weight: 700;
+  background: rgba(4, 120, 87, 0.08);
 }
 @media (prefers-color-scheme: dark) {
-  .page-nav a.active { color: #34d399; }
+  .page-nav a.active { color: #34d399; background: rgba(52, 211, 153, 0.12); }
 }
 .page-nav a.active::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #047857;
-  margin-right: 6px;
-  vertical-align: 2px;
+  content: "●";
+  margin-right: 8px;
+  color: #047857;
+  font-size: 9px;
+  vertical-align: middle;
 }
 @media (prefers-color-scheme: dark) {
-  .page-nav a.active::before { background: #34d399; }
+  .page-nav a.active::before { color: #34d399; }
 }
 
+/* Lang toggle — pinned to the right of the bar */
 .topbar .lang-toggle {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgb(214 211 209 / 0.6);
+  margin-left: auto;
+  background: rgb(214 211 209 / 0.5);
   border: 1px solid rgb(214 211 209);
   border-radius: 6px;
-  padding: 3px 7px;
+  padding: 4px 8px;
+  flex-shrink: 0;
 }
 @media (prefers-color-scheme: dark) {
   .topbar .lang-toggle {
-    background: rgb(38 38 38 / 0.6);
+    background: rgb(38 38 38 / 0.5);
     border-color: rgb(64 64 64);
   }
 }
@@ -510,10 +602,10 @@ body::before {
   user-select: none;
 }
 
-@media (max-width: 540px) {
-  .topbar { padding: 10px 16px; }
-  .brand span:not(.brand-dot) { display: none; }
-  .page-nav a { padding: 6px 7px; font-size: 12px; }
+@media (max-width: 480px) {
+  .topbar { padding: 10px 14px; gap: 10px; }
+  .brand { font-size: 17px; }
+  .alive-pill { font-size: 10px; padding: 3px 8px 3px 7px; }
 }
 
 /* ==========================================================================

@@ -403,12 +403,17 @@
 <body>
 
   <!-- Top bar -->
-  <nav class="topbar" aria-label="Site">
+  <nav class="topbar" data-menu="closed" aria-label="Site">
+    <button class="menu-toggle" aria-expanded="false" aria-controls="page-nav-menu" aria-label="Open menu">
+      <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <a href="index.html" class="brand">
       <span class="brand-dot" aria-hidden="true"></span>
       <span>Simbi</span>
     </a>
-    <ul class="page-nav">
+    <span class="alive-pill" aria-label="alive"><span class="es">vivo</span><span class="en">alive</span></span>
+    <ul id="page-nav-menu" class="page-nav">
       <li><a href="index.html" data-page="index"><span class="es">Inicio</span><span class="en">Home</span></a></li>
       <li><a href="about.html" data-page="about"><span class="es">Historia</span><span class="en">Story</span></a></li>
       <li><a href="business.html" data-page="business"><span class="es">Plan</span><span class="en">Plan</span></a></li>
@@ -775,6 +780,25 @@
         document.querySelectorAll('.page-nav a[data-page]').forEach(function(a) {
           if (a.getAttribute('data-page') === page) a.classList.add('active');
         });
+
+      // Mobile menu toggle
+      var topbar_ = document.querySelector('.topbar');
+      var toggle_ = document.querySelector('.menu-toggle');
+      if (topbar_ && toggle_) {
+        toggle_.addEventListener('click', function () {
+          var open = topbar_.getAttribute('data-menu') === 'open';
+          topbar_.setAttribute('data-menu', open ? 'closed' : 'open');
+          toggle_.setAttribute('aria-expanded', String(!open));
+          toggle_.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+        });
+        topbar_.querySelectorAll('.page-nav a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            topbar_.setAttribute('data-menu', 'closed');
+            toggle_.setAttribute('aria-expanded', 'false');
+            toggle_.setAttribute('aria-label', 'Open menu');
+          });
+        });
+      }
       })();
 
       // Mobile TOC toggle
