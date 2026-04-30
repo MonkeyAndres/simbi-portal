@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simbi · Preguntas en cristiano / Plain-language FAQ</title>
+  <meta name="description" content="Preguntas frecuentes sobre Simbi en lenguaje normal: para madres, abuelas, padres, gente sin tecnología.">
+  <meta property="og:title" content="Simbi · Preguntas en cristiano">
+  <meta property="og:description" content="Preguntas en lenguaje normal. Para gente que no quiere oír palabras raras.">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141413;
+      --text: #ececea;
+      --text-dim: #a8a29e;
+      --text-faint: #57534e;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.12);
+      --accent-strong: #34d399;
+      --border: #1f1f1d;
+      --border-strong: #2a2a27;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #faf9f6;
+        --bg-card: #fff;
+        --text: #1c1917;
+        --text-dim: #57534e;
+        --text-faint: #a8a29e;
+        --accent: #047857;
+        --accent-dim: rgba(4, 120, 87, 0.08);
+        --accent-strong: #059669;
+        --border: #e7e5e0;
+        --border-strong: #d6d3ce;
+      }
+    }
+
+    html { font-size: 18px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 1.5rem;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .back-link {
+      color: var(--text-dim); text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+    }
+    .back-link:hover { color: var(--accent-strong); }
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0.25rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 0.2rem 0.45rem;
+    }
+    .lang-btn {
+      background: none; border: none; color: var(--text-faint);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
+      cursor: pointer; padding: 0.1rem 0.3rem; border-radius: 3px;
+    }
+    .lang-btn.active { color: var(--accent-strong); }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+    .lang-sep { color: var(--border-strong); font-size: 0.7rem; user-select: none; }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    .meta {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+    p.lede {
+      font-size: 1.02rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      max-width: 56ch;
+    }
+
+    /* FAQ items */
+    .qa {
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 0 1.5rem;
+    }
+    .qa:last-of-type { border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+    .qa h2 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+    .qa p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+    .qa p:last-child { margin-bottom: 0; }
+    .qa p strong { color: var(--text); }
+    .qa em {
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* group dividers */
+    .group {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin: 2.25rem 0 0.5rem;
+    }
+
+    /* close cta */
+    .close {
+      margin-top: 2rem;
+      padding: 1.25rem 1.4rem;
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+    }
+    .close p { margin-bottom: 0.55rem; font-size: 0.98rem; }
+    .close p:last-child { margin-bottom: 0; }
+    .close a { color: var(--accent-strong); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+    .close a:hover { border-bottom-color: var(--accent-strong); }
+
+    /* footer */
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      text-align: center;
+    }
+    footer a { color: var(--text-faint); text-decoration: none; border-bottom: 1px dotted var(--text-faint); }
+    footer a:hover { color: var(--accent-strong); border-bottom-color: var(--accent-strong); }
+    footer p { margin-bottom: 0.4rem; }
+
+    @media print {
+      :root {
+        --bg: #fff; --bg-card: #fff; --text: #000;
+        --text-dim: #333; --text-faint: #555;
+        --accent: #047857; --accent-strong: #047857;
+        --accent-dim: #f0faf6;
+        --border: #ccc; --border-strong: #999;
+      }
+      body { font-size: 11pt; line-height: 1.4; }
+      .topbar { display: none; }
+      .wrap { max-width: 100%; padding: 0; }
+      .qa { page-break-inside: avoid; }
+    }
+    ::selection { background: var(--accent-dim); color: var(--text); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+  <nav class="topbar">
+    <a href="index.html" class="back-link">&larr; Simbi</a>
+    <div class="lang-toggle" aria-label="Language selector">
+      <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <div class="es"><p class="meta">Documento vivo · Última actualización: abril 2026</p></div>
+    <div class="en"><p class="meta">Living document · Last updated: April 2026</p></div>
+
+    <header>
+      <div class="es">
+        <h1>Preguntas en cristiano</h1>
+        <p class="lede">Para madres, abuelas, padres, hijos, primos, vecinos. Para cualquiera que no quiera oír palabras raras antes de entender qué es esto.</p>
+      </div>
+      <div class="en">
+        <h1>Plain-language questions</h1>
+        <p class="lede">For mums, grandmothers, dads, kids, cousins, neighbours. For anyone who doesn't want to hear weird words before understanding what this is.</p>
+      </div>
+    </header>
+
+    <!-- ============ Lo básico ============ -->
+    <div class="es"><h3 class="group">Lo básico</h3></div>
+    <div class="en"><h3 class="group">The basics</h3></div>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Qué es Simbi en una frase?</h2>
+        <p>Es un programa que se acuerda por ti de las cosas que pones en una carpeta de tu ordenador. Le hablas y te las encuentra.</p>
+        <p>Sueltas un PDF, una foto, una nota, un correo. No tienes que ponerle nombre, ni guardarlo en ningún sitio especial. Cuando luego le preguntas <em>"¿qué decía aquel documento que me mandó Marta?"</em>, te lo encuentra y te lo abre.</p>
+      </div>
+      <div class="en">
+        <h2>What is Simbi, in one sentence?</h2>
+        <p>A program that remembers, on your behalf, the things you drop into a folder on your computer. You talk to it, it finds them.</p>
+        <p>You drop a PDF, a photo, a note, an email. No need to name it or save it anywhere special. Later you ask <em>"what did that document Marta sent me say?"</em>, and it finds it and opens it.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Qué es eso de "un PC pequeño Simbi"?</h2>
+        <p>Es un ordenador pequeñito, parecido a un router de internet, que se enchufa una vez en casa. Hace su trabajo en silencio. <strong>Tú no lo tocas más</strong>: hablas con él desde tu móvil o tu portátil, como cuando usas WhatsApp.</p>
+        <p>Está pensado para que vaya en una estantería del salón o un mueble. Consume poca luz (parecido a una bombilla LED) y no hace ruido.</p>
+      </div>
+      <div class="en">
+        <h2>What's that "small Simbi PC"?</h2>
+        <p>A small computer, about the size of an internet router, that you plug in at home once. It works in silence. <strong>You don't touch it again</strong>: you talk to it from your phone or laptop, just like using WhatsApp.</p>
+        <p>It's designed to sit on a shelf or in a piece of furniture. It uses little electricity (about the same as an LED bulb) and makes no noise.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Necesito saber de ordenadores?</h2>
+        <p>No. La idea es que <strong>si tienes un móvil, ya sabes lo necesario</strong>. Abres una aplicación, escribes lo que quieres, y Simbi te contesta. Como cuando le mandas un mensaje a alguien.</p>
+        <p>El PC pequeño lo configuro yo (o un técnico cercano) la primera vez. Después funciona solo.</p>
+      </div>
+      <div class="en">
+        <h2>Do I need to know about computers?</h2>
+        <p>No. The idea is that <strong>if you have a phone, you already know enough</strong>. You open an app, type what you want, Simbi answers. Like sending someone a message.</p>
+        <p>The small PC is set up by me (or a nearby technician) the first time. After that it just works.</p>
+      </div>
+    </article>
+
+    <!-- ============ Privacidad y datos ============ -->
+    <div class="es"><h3 class="group">Privacidad y tus datos</h3></div>
+    <div class="en"><h3 class="group">Privacy and your data</h3></div>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Mis cosas están seguras? ¿Quién las ve?</h2>
+        <p>Tus archivos, tus fotos, tus notas, tus conversaciones con Simbi <strong>viven en el PC pequeño que está en tu casa</strong>. No están en mis servidores. No están en una nube de una empresa. Están en tu sala.</p>
+        <p>Yo no las puedo ver. Mi familia no las puede ver. Nadie de fuera las puede ver. Como un cuaderno tuyo en tu cajón.</p>
+      </div>
+      <div class="en">
+        <h2>Are my things safe? Who can see them?</h2>
+        <p>Your files, photos, notes, your conversations with Simbi <strong>live on the small PC in your home</strong>. Not on my servers. Not on some company's cloud. In your living room.</p>
+        <p>I can't see them. My family can't see them. No outsider can see them. Like a notebook of yours in your drawer.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Y si te quedas con mis cosas?</h2>
+        <p>No puedo. No las tengo nunca. Yo no toco tu PC pequeño una vez está en tu casa.</p>
+        <p>Lo único que pasa por algo mío es un canalillo cifrado para que tu móvil hable con tu PC cuando estás fuera de casa, como una tubería tapada: ve que pasa algo, no ve qué pasa. Y ese canalillo es reemplazable, otra persona podría montar uno igual.</p>
+      </div>
+      <div class="en">
+        <h2>What if you keep my stuff?</h2>
+        <p>I can't. I never have it. I don't touch your small PC once it's at your home.</p>
+        <p>The only thing of mine in the loop is an encrypted little pipe so your phone can talk to your PC when you're away from home — like a sealed pipe: it sees that something is going through, not what. And that little pipe is replaceable: someone else could set up an identical one.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Y si me arrepiento? ¿Puedo borrarlo todo?</h2>
+        <p>Sí, en cualquier momento. La carpeta es tuya. Borras la carpeta y se acabó. Apagas el PC y se acabó. No hay nada en mi lado que tengas que pedirme que borre.</p>
+      </div>
+      <div class="en">
+        <h2>What if I change my mind? Can I delete everything?</h2>
+        <p>Yes, anytime. The folder is yours. You delete the folder, done. You unplug the PC, done. There's nothing on my side you need to ask me to remove.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Lee mis emails sin yo querer?</h2>
+        <p>No. Lo único que Simbi sabe es lo que <strong>tú decides ponerle delante</strong>. Si le sueltas un correo en su carpeta, lo lee. Si no, no.</p>
+        <p>No mira tu correo automáticamente, no entra en tus chats, no espía nada.</p>
+      </div>
+      <div class="en">
+        <h2>Does it read my emails without me wanting it to?</h2>
+        <p>No. The only thing Simbi knows is what <strong>you choose to put in front of it</strong>. If you drop an email in its folder, it reads it. If you don't, it doesn't.</p>
+        <p>It doesn't peek at your inbox automatically, it doesn't go into your chats, it doesn't spy on anything.</p>
+      </div>
+    </article>
+
+    <!-- ============ Si pasa algo ============ -->
+    <div class="es"><h3 class="group">¿Y si pasa algo?</h3></div>
+    <div class="en"><h3 class="group">What if something happens?</h3></div>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Qué pasa si Andrés desaparece o esto se cierra?</h2>
+        <p>Tu PC sigue funcionando. Como cuando se cierra la marca del coche que tienes: el coche sigue siendo tuyo y sigue andando.</p>
+        <p>Las "actualizaciones nuevas" dejarían de llegar, pero lo que ya hay en tu casa seguiría haciendo lo que ya sabe hacer. Y siempre podrías llamar a otra persona técnica para que te lo siga manteniendo, porque el código es público.</p>
+      </div>
+      <div class="en">
+        <h2>What if Andrés disappears or this shuts down?</h2>
+        <p>Your PC keeps working. Like when the brand of your car closes down: the car is still yours and still drives.</p>
+        <p>"New updates" would stop coming, but what's already in your home would keep doing what it knows how to do. And you could always call another technical person to keep maintaining it, because the code is public.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Qué pasa si se rompe el PC pequeño?</h2>
+        <p>Te haré llegar otro o te lo arreglo, dentro de lo razonable. Y los datos importantes los puedes haber guardado también en otro disco como copia de seguridad (yo te ayudo a configurar eso si quieres).</p>
+        <p>Es un PC pequeño normal, así que también lo puede arreglar cualquier técnico de tu pueblo o ciudad.</p>
+      </div>
+      <div class="en">
+        <h2>What if the small PC breaks?</h2>
+        <p>I send you another or I fix it, within reason. And important data can also be backed up on another disk (I help you set that up if you want).</p>
+        <p>It's a regular small PC, so any technician in your town or city can also fix it.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Funciona si se va la luz o el internet?</h2>
+        <p>Si se va la luz, el PC se apaga, como cualquier electrodoméstico. Cuando vuelve, vuelve solo.</p>
+        <p>Si se va el internet, lo que ya tiene Simbi recordado <strong>sigue siendo tuyo y consultable</strong>. Algunas cosas avanzadas (las que necesitan "pensar mucho") sí dependen de internet por ahora; estamos trabajando para que cada vez dependan menos.</p>
+      </div>
+      <div class="en">
+        <h2>What if the power or internet goes out?</h2>
+        <p>If the power goes out, the PC turns off, like any appliance. When it comes back, it comes back on its own.</p>
+        <p>If the internet goes out, what Simbi has already remembered <strong>is still yours and still searchable</strong>. Some advanced things (the ones that need "heavy thinking") do depend on the internet for now; we're working to make them depend less and less.</p>
+      </div>
+    </article>
+
+    <!-- ============ Dinero ============ -->
+    <div class="es"><h3 class="group">Dinero</h3></div>
+    <div class="en"><h3 class="group">Money</h3></div>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Cuánto cuesta de verdad?</h2>
+        <p>El PC pequeño se paga una vez (alrededor de 499 €) y trae 5 meses incluidos del servicio bueno. Después de esos 5 meses, tú decides:</p>
+        <p>— Sigues sin pagar nada, con modelos de inteligencia artificial gratuitos. Tu PC sigue siendo útil para casi todo.</p>
+        <p>— O pagas una cuota mensual (100 € al mes) si quieres usar los modelos más potentes, soporte humano y mantenimiento remoto.</p>
+        <p>Y se acabó. No hay sorpresas, no hay cobros automáticos sin avisar.</p>
+      </div>
+      <div class="en">
+        <h2>How much does it really cost?</h2>
+        <p>The small PC is paid once (around €499) and comes with 5 months of the good service included. After those 5 months, you decide:</p>
+        <p>— You keep paying nothing, with free AI models. Your PC keeps being useful for almost everything.</p>
+        <p>— Or you pay a monthly fee (€100/month) if you want the most powerful models, human support, and remote maintenance.</p>
+        <p>That's it. No surprises, no auto-charges without warning.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Por qué si es tuyo te tengo que pagar a ti?</h2>
+        <p>El PC pequeño y el programa que va dentro: por ese trabajo cobro una vez al venderlo. Como cuando compras una lavadora.</p>
+        <p>La cuota mensual del servicio bueno es <strong>opcional</strong> y solo si quieres acceder a "los cerebros" de inteligencia artificial más potentes (que son caros porque los corre una empresa muy grande). Si no la pagas, sigues teniendo lo gratuito, que ya es bastante.</p>
+      </div>
+      <div class="en">
+        <h2>Why do I have to pay you if it's mine?</h2>
+        <p>The small PC and the program inside: I charge once for that, when I sell it. Like buying a washing machine.</p>
+        <p>The monthly service fee is <strong>optional</strong> and only if you want access to the most powerful AI "brains" (which are expensive because they run on a very big company's machines). If you don't pay it, you keep the free tier, which is already plenty.</p>
+      </div>
+    </article>
+
+    <!-- ============ Familia ============ -->
+    <div class="es"><h3 class="group">Familia y convivencia</h3></div>
+    <div class="en"><h3 class="group">Family and household</h3></div>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Mis hijos pueden ver lo mío y al revés?</h2>
+        <p>Cada persona tiene su <strong>cuenta separada</strong> dentro de Simbi. Lo tuyo es tuyo, lo de tu hijo o tu hija es suyo. No se mezclan.</p>
+        <p>En el futuro habrá una "carpeta compartida" para cosas familiares (recetas de la abuela, fotos del verano, calendarios), pero solo lo que tú metas a propósito ahí. Lo demás, privado.</p>
+      </div>
+      <div class="en">
+        <h2>Can my kids see my stuff and the other way around?</h2>
+        <p>Each person has their <strong>own separate account</strong> inside Simbi. Yours is yours, your son's or daughter's is theirs. They don't mix.</p>
+        <p>In the future there will be a "shared folder" for family things (grandma's recipes, summer photos, calendars), but only what you put there on purpose. Everything else, private.</p>
+      </div>
+    </article>
+
+    <article class="qa">
+      <div class="es">
+        <h2>¿Cuántas Simbis necesito en casa?</h2>
+        <p>Una por persona, idealmente. Pero solo necesitas <strong>un PC pequeño</strong>: dentro caben varias Simbis, una por miembro de la familia, sin que se vean entre ellas.</p>
+        <p>Para una familia normal con un solo PC suele bastar.</p>
+      </div>
+      <div class="en">
+        <h2>How many Simbis do I need at home?</h2>
+        <p>One per person, ideally. But you only need <strong>one small PC</strong>: it can hold several Simbis inside, one per family member, without them seeing each other.</p>
+        <p>For a regular family one PC is usually enough.</p>
+      </div>
+    </article>
+
+    <!-- ============ Cierre ============ -->
+    <article class="qa">
+      <div class="es">
+        <h2>¿Y si tengo otra duda que no está aquí?</h2>
+        <p>Escríbeme un correo a <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a> y la añado a esta página. Esto se hace mejor entre varios.</p>
+      </div>
+      <div class="en">
+        <h2>What if I have a question that's not here?</h2>
+        <p>Email me at <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a> and I'll add it to this page. This works better with several heads.</p>
+      </div>
+    </article>
+
+    <!-- ===== Close box ===== -->
+    <div class="close">
+      <div class="es">
+        <p><strong>¿Quieres saber más?</strong></p>
+        <p><a href="about.html">La historia y por qué existe Simbi →</a></p>
+        <p><a href="business.html">Cómo se paga Simbi y qué prometo →</a></p>
+      </div>
+      <div class="en">
+        <p><strong>Want to know more?</strong></p>
+        <p><a href="about.html">The story and why Simbi exists →</a></p>
+        <p><a href="business.html">How Simbi gets paid and what I promise →</a></p>
+      </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+      <p class="es">Por <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · <a href="index.html">Inicio</a> · <a href="about.html">Historia</a> · <a href="business.html">Plan de empresa</a></p>
+      <p class="en">By <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · <a href="index.html">Home</a> · <a href="about.html">Story</a> · <a href="business.html">Business plan</a></p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function() {
+      var langBtns = document.querySelectorAll('.lang-btn');
+      var esEls = document.querySelectorAll('.es');
+      var enEls = document.querySelectorAll('.en');
+
+      function setLang(lang) {
+        localStorage.setItem('simbi-lang', lang);
+        document.documentElement.lang = lang;
+        langBtns.forEach(function(btn) {
+          var isActive = btn.getAttribute('data-lang') === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        esEls.forEach(function(el) { el.style.display = lang === 'es' ? '' : 'none'; });
+        enEls.forEach(function(el) { el.style.display = lang === 'en' ? '' : 'none'; });
+      }
+      langBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.getAttribute('data-lang')); });
+      });
+      var saved = localStorage.getItem('simbi-lang');
+      var browser = navigator.language.slice(0, 2).toLowerCase();
+      var initLang = saved || (browser === 'es' ? 'es' : 'en');
+      setLang(initLang);
+    })();
+  </script>
+
+</body>
+</html>

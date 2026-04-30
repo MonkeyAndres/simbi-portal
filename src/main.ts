@@ -2,10 +2,6 @@ type Lang = 'en' | 'es'
 
 const translations: Record<Lang, Record<string, string>> = {
   en: {
-    'announce.pill': 'NEW',
-    'announce.text': 'Public business plan — read how Simbi sustains itself.',
-    'announce.aria': 'Read the public business plan',
-
     'headline': 'You have 12,000 files on your laptop.<br>You can name 20.<br><span class="ogilvy-headline-accent">Simbi remembers the other 11,980.</span>',
     'subhead': 'Drop a file. Ask anything. Open the file the answer came from.',
 
@@ -29,21 +25,27 @@ const translations: Record<Lang, Record<string, string>> = {
     's3.p4': "This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.",
 
     's4.head': 'Built by one person, on purpose.',
-    's4.p1': "Simbi is built by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building it because he wants it to exist — for himself, for his father, for anyone who feels the same daily friction with their digital life. If that's you, this belongs to you too.",
+    's4.p1': "Simbi is built by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building it because he wants it to exist — for himself, for his father, for the three families already using it daily, for the eleven more waiting their turn, for anyone who feels the same daily friction. If that's you, this belongs to you too.",
 
-    's5.head': 'Start.',
-    's5.p1': "Read the longer story — how it works, where it came from, and why it matters.",
-    's5.cta': 'Read the story →',
-    's5.email': 'or email me directly: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
+    's5.head': 'Two ways to keep going.',
+    's5.p1': 'Pick whichever you want first. Both are public, both are honest.',
+    's5.story.tag': 'The story',
+    's5.story.title': 'Why it exists, the philosophy',
+    's5.story.desc': 'An 11-minute essay. The frustration that started it, the idea of "memory not search", and why intimate things shouldn\'t live on someone else\'s servers.',
+    's5.story.cta': 'Read the essay →',
+    's5.biz.tag': 'The plan',
+    's5.biz.title': 'How it sustains itself, what I promise',
+    's5.biz.desc': 'A public business plan. What it costs, where the money goes, the four promises, where we are right now. Living document.',
+    's5.biz.cta': 'Read the plan →',
+    's5.faq.lead': 'No-tech questions?',
+    's5.faq.link': 'Plain-language FAQ',
+    's5.faq.sep': ' · ',
+    's5.email.lead': 'or email me directly:',
 
     'footer.motto': 'Your world stays yours.',
     'footer.business': 'Business plan',
   },
   es: {
-    'announce.pill': 'NUEVO',
-    'announce.text': 'Plan de empresa público — léete cómo se sostiene Simbi.',
-    'announce.aria': 'Leer el plan de empresa público',
-
     'headline': 'Tienes 12.000 archivos en tu portátil.<br>Puedes nombrar 20.<br><span class="ogilvy-headline-accent">Simbi recuerda los otros 11.980.</span>',
     'subhead': 'Suelta un archivo. Pregunta. Abre el archivo del que salió la respuesta.',
 
@@ -67,12 +69,22 @@ const translations: Record<Lang, Record<string, string>> = {
     's3.p4': 'Esto no es ideología. Es una decisión de arquitectura. Una memoria contiene todo lo tuyo. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.',
 
     's4.head': 'Hecho por una persona, a propósito.',
-    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para la gente que siente la misma fricción diaria con su vida digital. Si te ves ahí dentro, esto también es para ti.',
+    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para las tres familias que ya lo usan a diario, para las once que esperan turno, para quien sienta la misma fricción diaria. Si te ves ahí dentro, esto también es para ti.',
 
-    's5.head': 'Empieza.',
-    's5.p1': 'Lee la historia entera: cómo funciona, de dónde viene y por qué importa.',
-    's5.cta': 'Lee la historia →',
-    's5.email': 'o escríbeme directamente: <a href="mailto:monkeyandres@protonmail.com?subject=Simbi">monkeyandres@protonmail.com</a>',
+    's5.head': 'Dos formas de seguir.',
+    's5.p1': 'Empieza por la que quieras. Las dos son públicas y honestas.',
+    's5.story.tag': 'La historia',
+    's5.story.title': 'Por qué existe, la filosofía',
+    's5.story.desc': 'Un ensayo de 11 minutos. La frustración que lo empezó, la idea de "memoria, no buscador", y por qué lo íntimo no debería vivir en servidores ajenos.',
+    's5.story.cta': 'Leer el ensayo →',
+    's5.biz.tag': 'El plan',
+    's5.biz.title': 'Cómo se sostiene, qué prometo',
+    's5.biz.desc': 'Plan de empresa público. Qué cuesta, adónde va el dinero, las cuatro promesas, dónde estamos ahora mismo. Documento vivo.',
+    's5.biz.cta': 'Leer el plan →',
+    's5.faq.lead': '¿Dudas básicas, sin tecnicismos?',
+    's5.faq.link': 'FAQ en cristiano',
+    's5.faq.sep': ' · ',
+    's5.email.lead': 'o escríbeme directamente:',
 
     'footer.motto': 'Tu mundo sigue siendo tuyo.',
     'footer.business': 'Plan de empresa',

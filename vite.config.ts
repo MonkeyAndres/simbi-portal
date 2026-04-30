@@ -14,6 +14,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
         business: resolve(__dirname, 'business.html'),
+        faq: resolve(__dirname, 'faq.html'),
         'beta-setup': resolve(__dirname, 'beta-setup.html'),
       },
     },

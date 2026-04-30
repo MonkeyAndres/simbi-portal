@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simbi · How Simbi sustains itself / Cómo se sostiene Simbi</title>
-  <meta name="description" content="Public sustenance plan for Simbi: how money comes in, where it goes, and what happens with profit. By Andrés Martín Angulo.">
-  <meta property="og:title" content="Simbi · How Simbi sustains itself">
-  <meta property="og:description" content="Public sustenance plan. No closed doors, no exit, no shareholders. Plan público de sostenimiento.">
+  <title>Simbi · Cómo se sostiene / How Simbi sustains itself</title>
+  <meta name="description" content="Tus datos en tu casa. Si yo desaparezco mañana, tu Simbi sigue funcionando. Cómo se paga, qué se promete, qué pasa si te quieres ir.">
+  <meta property="og:title" content="Simbi · Cómo se sostiene">
+  <meta property="og:description" content="Tus datos en tu casa. Si yo desaparezco mañana, tu Simbi sigue funcionando.">
   <meta property="og:type" content="article">
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
@@ -16,310 +16,550 @@
 
     :root {
       --bg: #0a0a0a;
-      --bg-subtle: #0f0f0f;
-      --text: #e8e8e8;
-      --text-dim: #a0a0a0;
-      --text-faint: #666;
-      --accent: #059669;
-      --accent-dim: rgba(5, 150, 105, 0.12);
-      --border: #1a1a1a;
-      --separator: #141414;
-      --topbar-bg: rgba(10, 10, 10, 0.85);
+      --bg-subtle: #111;
+      --bg-card: #141413;
+      --text: #ececea;
+      --text-dim: #a8a29e;
+      --text-faint: #57534e;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.12);
+      --accent-strong: #34d399;
+      --border: #1f1f1d;
+      --border-strong: #2a2a27;
     }
-
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f5f5f4;
-        --bg-subtle: #ececea;
+        --bg: #faf9f6;
+        --bg-subtle: #f3f1eb;
+        --bg-card: #fff;
         --text: #1c1917;
         --text-dim: #57534e;
         --text-faint: #a8a29e;
-        --accent: #059669;
-        --accent-dim: rgba(5, 150, 105, 0.1);
-        --border: #d6d3d1;
-        --separator: #e7e5e4;
-        --topbar-bg: rgba(245, 245, 244, 0.85);
+        --accent: #047857;
+        --accent-dim: rgba(4, 120, 87, 0.08);
+        --accent-strong: #059669;
+        --border: #e7e5e0;
+        --border-strong: #d6d3ce;
       }
     }
 
-    html {
-      font-size: 18px;
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-
+    html { font-size: 17px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: Georgia, 'Times New Roman', serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.75;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
+    /* ============ Topbar ============ */
     .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0; z-index: 100;
+      position: sticky;
+      top: 0; z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1.5rem;
-      background: var(--topbar-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      padding: 0.7rem 1.5rem;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     .back-link {
       color: var(--text-dim); text-decoration: none;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.02em;
-      transition: color 0.2s;
+      font-size: 0.8rem;
     }
-    .back-link:hover { color: var(--accent); }
-
+    .back-link:hover { color: var(--accent-strong); }
     .lang-toggle {
       display: flex; align-items: center; gap: 0.25rem;
-      background: var(--accent-dim);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: 6px;
-      padding: 0.25rem 0.5rem;
+      padding: 0.2rem 0.45rem;
     }
     .lang-btn {
       background: none; border: none; color: var(--text-faint);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
-      cursor: pointer; padding: 0.15rem 0.35rem; border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
+      cursor: pointer; padding: 0.1rem 0.3rem; border-radius: 3px;
     }
-    .lang-btn.active { color: var(--accent); background: var(--accent-dim); }
+    .lang-btn.active { color: var(--accent-strong); }
     .lang-btn:hover:not(.active) { color: var(--text); }
-    .lang-sep { color: var(--border); font-size: 0.7rem; user-select: none; }
+    .lang-sep { color: var(--border-strong); font-size: 0.7rem; user-select: none; }
 
-    .essay {
-      max-width: 720px;
+    .wrap {
+      max-width: 760px;
       margin: 0 auto;
-      padding: 5rem 1.5rem 4rem;
+      padding: 2.5rem 1.5rem 5rem;
     }
 
-    .essay-header {
-      margin-bottom: 3.5rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .essay-title {
-      font-size: 2rem; font-weight: 700; line-height: 1.2;
-      letter-spacing: -0.01em; margin-bottom: 0.75rem;
-      color: var(--text);
-    }
-    .essay-pill {
-      display: inline-block;
+    .meta {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
-      color: var(--accent); background: var(--accent-dim);
-      padding: 0.25rem 0.75rem; border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ============ Hero ============ */
+    .hero { margin-bottom: 3.5rem; }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 700;
       margin-bottom: 1rem;
     }
-    .essay-author { font-size: 0.85rem; color: var(--text-dim); font-style: italic; }
-    .essay-lede {
-      margin-top: 1.25rem;
-      font-size: 1.05rem; color: var(--text-dim); line-height: 1.6;
-    }
-
-    .toc {
-      position: fixed;
-      left: calc(50% + 400px);
-      top: 5rem; width: 220px; z-index: 50;
-    }
-    .toc-title {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-faint);
-      margin-bottom: 0.75rem;
-    }
-    .toc-list { list-style: none; }
-    .toc-list li { margin-bottom: 0.4rem; }
-    .toc-list a {
-      color: var(--text-faint); text-decoration: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.72rem; line-height: 1.4; display: block;
-      transition: color 0.2s;
-    }
-    .toc-list a:hover, .toc-list a.active { color: var(--accent); }
-
-    .toc-mobile {
-      display: none;
-      margin-bottom: 2.5rem;
-      border: 1px solid var(--border); border-radius: 8px;
-      overflow: hidden;
-    }
-    .toc-mobile-toggle {
-      width: 100%; background: var(--bg-subtle); border: none;
+    .hero h1 strong { color: var(--accent-strong); font-weight: 700; }
+    .hero p.lede {
+      font-size: 1.05rem;
       color: var(--text-dim);
+      max-width: 60ch;
+    }
+
+    /* ============ Section base ============ */
+    section.block {
+      margin-bottom: 3rem;
+      scroll-margin-top: 4rem;
+    }
+    section.block > h2 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
-      padding: 0.75rem 1rem; cursor: pointer; text-align: left;
-      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
     }
-    .toc-mobile-toggle::after { content: '+'; font-size: 1rem; color: var(--text-faint); }
-    .toc-mobile.open .toc-mobile-toggle::after { content: '-'; }
-    .toc-mobile-list { list-style: none; padding: 0.5rem 1rem 0.75rem; display: none; }
-    .toc-mobile.open .toc-mobile-list { display: block; }
-    .toc-mobile-list li { margin-bottom: 0.35rem; }
-    .toc-mobile-list a {
-      color: var(--text-faint); text-decoration: none;
+    section.block > h3 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.75rem; line-height: 1.5; display: block;
-      transition: color 0.2s;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.6rem;
+      letter-spacing: -0.005em;
     }
-    .toc-mobile-list a:hover { color: var(--accent); }
+    section.block > p { margin-bottom: 1rem; }
+    section.block > p.intro {
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+    section.block ul { margin-bottom: 1rem; padding-left: 0; list-style: none; }
+    section.block ul > li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.45rem;
+    }
+    section.block ul > li::before {
+      content: "—"; position: absolute; left: 0;
+      color: var(--accent-strong);
+    }
 
-    @media (max-width: 1180px) {
-      .toc { display: none; }
-      .toc-mobile { display: block; }
+    /* ============ Pricing cards ============ */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
     }
-
-    .essay section { margin-bottom: 2.5rem; scroll-margin-top: 4rem; }
-
-    .essay h2 {
-      font-size: 1.4rem; font-weight: 700; line-height: 1.25;
-      margin-bottom: 1rem; color: var(--text);
-      letter-spacing: -0.01em; padding-top: 1rem;
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
     }
-    .essay h3 {
-      font-size: 1.05rem; font-weight: 600; line-height: 1.35;
-      margin-top: 2rem; margin-bottom: 0.75rem;
-      color: var(--text); font-style: italic;
+    .price-card.featured {
+      border-color: var(--accent);
+      background: var(--accent-dim);
     }
-    .essay h4 {
-      font-size: 0.95rem; font-weight: 600; line-height: 1.35;
-      margin-top: 1.5rem; margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-    .essay p { margin-bottom: 1.15rem; color: var(--text); }
-    .essay ul, .essay ol {
-      list-style: none; margin-bottom: 1.15rem; padding-left: 0;
-    }
-    .essay ul li, .essay ol li {
-      position: relative; padding-left: 1.25rem; margin-bottom: 0.4rem;
-    }
-    .essay ul li::before {
-      content: '-'; position: absolute; left: 0; color: var(--accent);
-    }
-    .essay ol { counter-reset: olist; }
-    .essay ol li {
-      counter-increment: olist;
-    }
-    .essay ol li::before {
-      content: counter(olist) '.'; position: absolute; left: 0; color: var(--accent);
+    .price-card .when {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.85rem; top: 0.18rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.5rem;
     }
+    .price-card.featured .when { color: var(--accent-strong); }
+    .price-card .amount {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      line-height: 1.1;
+    }
+    .price-card .amount .alt {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      letter-spacing: 0;
+      margin-top: 0.2rem;
+    }
+    .price-card .desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+    @media (max-width: 600px) { .price-grid { grid-template-columns: 1fr; } }
 
-    .essay strong { font-weight: 600; color: var(--text); }
-    .essay em { font-style: italic; }
-
-    .company-link {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px dotted var(--text-faint);
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .company-link:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-    .essay code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.92em; background: var(--bg-subtle);
-      border: 1px solid var(--border); border-radius: 4px;
-      padding: 0.05em 0.4em; color: var(--text);
-    }
-
-    .essay blockquote {
-      margin: 1.5rem 0; padding: 1.25rem 1.5rem;
-      background: var(--bg-subtle);
-      border-left: 2px solid var(--accent);
+    /* ============ Money flow ============ */
+    .flow {
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
-      color: var(--text); font-style: italic; line-height: 1.65;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
     }
-    .essay blockquote strong { color: var(--accent); font-style: normal; }
-
-    .essay hr {
-      border: none; height: 1px; background: var(--border); margin: 2.5rem 0;
+    .flow ol {
+      list-style: none;
+      counter-reset: flow;
+      padding: 0;
+    }
+    .flow ol > li {
+      counter-increment: flow;
+      position: relative;
+      padding-left: 2.2rem;
+      margin-bottom: 0.85rem;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .flow ol > li:last-child { margin-bottom: 0; }
+    .flow ol > li::before {
+      content: counter(flow);
+      position: absolute;
+      left: 0; top: 0.05em;
+      width: 1.55rem; height: 1.55rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flow ol > li strong { color: var(--accent-strong); font-weight: 600; }
+    .flow .closer {
+      margin-top: 1.1rem;
+      padding-top: 1.1rem;
+      border-top: 1px dashed var(--border-strong);
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 0.95rem;
     }
 
-    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-    .essay table {
+    /* ============ Promises grid ============ */
+    .promises {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .promise {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1.1rem 1.15rem;
+    }
+    .promise .ico {
+      width: 1.4rem; height: 1.4rem;
+      color: var(--accent-strong);
+      margin-bottom: 0.6rem;
+      stroke-width: 1.8;
+    }
+    .promise h3 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.005em;
+    }
+    .promise p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-dim);
+      margin: 0;
+    }
+    @media (max-width: 600px) { .promises { grid-template-columns: 1fr; } }
+
+    /* ============ Stats ============ */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1.1rem 1.15rem;
+    }
+    .stat .num {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent-strong);
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+    }
+    .stat .label {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    @media (max-width: 600px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 0.9rem; }
+      .stat .num { font-size: 1.4rem; }
+      .stat .label { font-size: 0.78rem; }
+    }
+
+    /* ============ Timeline (where we are now) ============ */
+    .timeline {
+      margin: 1rem 0;
+      padding-left: 0;
+      list-style: none;
+      border-left: 2px solid var(--border-strong);
+    }
+    .timeline > li {
+      position: relative;
+      padding: 0 0 1.4rem 1.4rem;
+      margin-left: 0.5rem;
+    }
+    .timeline > li:last-child { padding-bottom: 0; }
+    .timeline > li::before {
+      content: "";
+      position: absolute;
+      left: -8px; top: 0.35em;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border-strong);
+    }
+    .timeline > li.done::before { background: var(--accent); border-color: var(--accent); }
+    .timeline > li.now::before { background: var(--bg); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); }
+    .timeline > li.next::before { background: var(--bg); border-color: var(--text-faint); }
+    .timeline .when {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .timeline > li.done .when { color: var(--accent-strong); }
+    .timeline > li.now .when { color: var(--accent-strong); }
+    .timeline ul {
+      margin: 0; padding: 0; list-style: none;
+    }
+    .timeline ul > li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+    .timeline ul > li::before {
+      content: "—"; position: absolute; left: 0;
+      color: var(--text-faint);
+    }
+    .timeline > li:not(:last-child)::before { /* keep dot from list base */ }
+
+    /* ============ Pull quote ============ */
+    blockquote.pull {
+      margin: 1.25rem 0;
+      padding: 1rem 1.25rem;
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-family: Georgia, serif;
+      font-size: 1.02rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    /* ============ Section divider (visible separator between Part A and B) ============ */
+    .divider {
+      margin: 4rem 0 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .divider::before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+    .divider span {
+      position: relative;
+      display: inline-block;
+      background: var(--bg);
+      padding: 0 1.25rem;
+      color: var(--text-faint);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ============ Detail tables ============ */
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table {
       width: 100%;
       border-collapse: collapse;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 0.85rem;
-      font-style: normal;
     }
-    .essay table th, .essay table td {
+    table th, table td {
       padding: 0.55rem 0.75rem;
       border-bottom: 1px solid var(--border);
       text-align: left;
       vertical-align: top;
       line-height: 1.45;
     }
-    .essay table th {
+    table th {
       background: var(--bg-subtle);
       color: var(--text-dim);
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       border-bottom: 1px solid var(--accent);
     }
-    .essay table td.highlight, .essay table tr.highlight td { background: var(--accent-dim); font-weight: 600; }
+    table tr.highlight td { background: var(--accent-dim); font-weight: 600; }
+    table strong { color: var(--text); }
 
-    .roadmap-list li, .phase-list li { margin-bottom: 0.6rem; }
-    .phase-block {
-      margin-top: 1.25rem; padding: 1rem 1.25rem;
-      background: var(--bg-subtle);
-      border-radius: 6px;
-      border-left: 2px solid var(--accent);
+    /* ============ Phase blocks (financial plan) ============ */
+    .phase {
+      margin-top: 1rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
     }
-    .phase-block h4 { margin-top: 0; }
-    .phase-block p:last-child { margin-bottom: 0; }
-    .phase-total {
-      font-weight: 600; color: var(--accent);
+    .phase h3 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 0.65rem;
+      color: var(--accent-strong);
+    }
+    .phase p { margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .phase p:last-child { margin-bottom: 0; }
+    .phase .total {
+      font-weight: 600;
+      color: var(--accent-strong);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    .essay-footer {
-      margin-top: 4rem; padding: 2rem 0;
+    /* ============ Drill-down cards ============ */
+    .drill {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .drill a {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .drill a:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .drill a .arr {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--accent-strong);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .drill a h3 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0.4rem 0 0.3rem;
+    }
+    .drill a p {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--text-dim);
+      margin: 0;
+    }
+    @media (max-width: 600px) { .drill { grid-template-columns: 1fr; } }
+
+    /* ============ Inline emphasis link ============ */
+    p a, .phase a { color: var(--accent-strong); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+    p a:hover { border-bottom-color: var(--accent-strong); }
+
+    /* ============ Footer ============ */
+    footer.foot {
+      margin-top: 3.5rem;
+      padding-top: 1.75rem;
       border-top: 1px solid var(--border);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-faint);
       text-align: center;
     }
-    .essay-footer p {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem; color: var(--text-faint);
-      margin-bottom: 0.5rem;
+    footer.foot a {
+      color: var(--text-faint);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--text-faint);
     }
-    .essay-footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
-    .essay-footer a:hover { color: var(--accent); }
+    footer.foot a:hover { color: var(--accent-strong); border-bottom-color: var(--accent-strong); }
+    footer.foot p { margin-bottom: 0.45rem; }
 
-    ::selection { background: rgba(74, 222, 128, 0.2); color: var(--text); }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    @media (max-width: 600px) {
-      html { font-size: 16px; }
-      .essay { padding: 4.5rem 1.25rem 3rem; }
-      .essay-title { font-size: 1.65rem; }
-      .essay h2 { font-size: 1.25rem; }
-      .essay blockquote { padding: 1rem 1.15rem; }
-      .essay table { font-size: 0.78rem; }
-      .essay table th, .essay table td { padding: 0.45rem 0.55rem; }
+    /* ============ Print ============ */
+    @media print {
+      :root {
+        --bg: #fff;
+        --bg-subtle: #fff;
+        --bg-card: #fff;
+        --text: #000;
+        --text-dim: #333;
+        --text-faint: #555;
+        --accent: #047857;
+        --accent-strong: #047857;
+        --accent-dim: #f0faf6;
+        --border: #ccc;
+        --border-strong: #999;
+      }
+      body { font-size: 10.5pt; line-height: 1.45; }
+      .topbar { display: none; }
+      .wrap { max-width: 100%; padding: 0; }
+      section.block { page-break-inside: avoid; margin-bottom: 1.5rem; }
+      .price-grid, .promises, .stats, .drill { page-break-inside: avoid; }
+      .phase { page-break-inside: avoid; }
+      a { color: var(--accent); text-decoration: underline; }
+      a[href]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
+      a[href^="#"]::after, a[href^="mailto:"]::after { content: ""; }
+      .price-card.featured, blockquote.pull { background: #f0faf6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .divider span { background: #fff; }
     }
 
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--accent); outline-offset: 2px;
-    }
+    ::selection { background: var(--accent-dim); color: var(--text); }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
@@ -334,160 +574,278 @@
     </div>
   </nav>
 
-  <nav class="toc" aria-label="Table of contents">
-    <div class="es">
-      <div class="toc-title">Contenido</div>
-      <ul class="toc-list">
-        <li><a href="#porque">Por qué este documento</a></li>
-        <li><a href="#descripcion">El proyecto</a></li>
-        <li><a href="#tecnica">Viabilidad técnica</a></li>
-        <li><a href="#comercial">Modelo de negocio</a></li>
-        <li><a href="#plan">Plan de actividad</a></li>
-        <li><a href="#impacto">Impacto y beneficios</a></li>
-        <li><a href="#riesgos">Riesgos</a></li>
-        <li><a href="#conclusion">Conclusión</a></li>
-      </ul>
-    </div>
-    <div class="en">
-      <div class="toc-title">Contents</div>
-      <ul class="toc-list">
-        <li><a href="#porque">Why this document</a></li>
-        <li><a href="#descripcion">The project</a></li>
-        <li><a href="#tecnica">Technical viability</a></li>
-        <li><a href="#comercial">Business model</a></li>
-        <li><a href="#plan">Activity plan</a></li>
-        <li><a href="#impacto">Impact and profit</a></li>
-        <li><a href="#riesgos">Risks</a></li>
-        <li><a href="#conclusion">Conclusion</a></li>
-      </ul>
-    </div>
-  </nav>
+  <main class="wrap">
 
-  <article class="essay">
+    <!-- ===== Meta ===== -->
+    <div class="es"><p class="meta">Documento vivo · Última actualización: abril 2026</p></div>
+    <div class="en"><p class="meta">Living document · Last updated: April 2026</p></div>
 
-    <header class="essay-header">
+    <!-- ===== Hero ===== -->
+    <header class="hero">
       <div class="es">
-        <div class="essay-pill">Plan de empresa &middot; documento público</div>
-        <h1 class="essay-title">Cómo se sostiene Simbi</h1>
-        <div class="essay-author">Andrés Martín Angulo, Abril 2026</div>
-        <p class="essay-lede">Cómo entran euros, en qué se gastan, qué pasa cuando hay beneficio. Sin tapujos.</p>
+        <h1>Tus datos en tu casa.<br><strong>Si yo desaparezco mañana, tu Simbi sigue funcionando.</strong></h1>
+        <p class="lede">Esto explica, en lenguaje normal, cómo se paga Simbi, adónde va el dinero y qué te prometo. Sin venderte nada.</p>
       </div>
       <div class="en">
-        <div class="essay-pill">Business plan &middot; public document</div>
-        <h1 class="essay-title">How Simbi sustains itself</h1>
-        <div class="essay-author">Andrés Martín Angulo, April 2026</div>
-        <p class="essay-lede">How money comes in, where it goes, what happens with profit. No fine print.</p>
+        <h1>Your data in your home.<br><strong>If I disappear tomorrow, your Simbi keeps running.</strong></h1>
+        <p class="lede">This explains, in plain language, how Simbi gets paid, where the money goes, and what I promise. Not selling you anything.</p>
       </div>
     </header>
 
-    <div class="toc-mobile" id="toc-mobile">
-      <button class="toc-mobile-toggle" id="toc-mobile-toggle">
-        <span class="es">Contenido</span><span class="en">Contents</span>
-      </button>
-      <ul class="toc-mobile-list es">
-        <li><a href="#porque">Por qué este documento</a></li>
-        <li><a href="#descripcion">El proyecto</a></li>
-        <li><a href="#tecnica">Viabilidad técnica</a></li>
-        <li><a href="#comercial">Modelo de negocio</a></li>
-        <li><a href="#plan">Plan de actividad</a></li>
-        <li><a href="#impacto">Impacto y beneficios</a></li>
-        <li><a href="#riesgos">Riesgos</a></li>
-        <li><a href="#conclusion">Conclusión</a></li>
-      </ul>
-      <ul class="toc-mobile-list en">
-        <li><a href="#porque">Why this document</a></li>
-        <li><a href="#descripcion">The project</a></li>
-        <li><a href="#tecnica">Technical viability</a></li>
-        <li><a href="#comercial">Business model</a></li>
-        <li><a href="#plan">Activity plan</a></li>
-        <li><a href="#impacto">Impact and profit</a></li>
-        <li><a href="#riesgos">Risks</a></li>
-        <li><a href="#conclusion">Conclusion</a></li>
-      </ul>
+    <!-- ============ PARTE A · LO IMPORTANTE ============ -->
+
+    <!-- ===== Cuánto cuesta ===== -->
+    <section class="block" id="precios">
+      <div class="es">
+        <h2>¿Cuánto cuesta?</h2>
+        <p class="intro">Tres formas, en orden de menos a más implicación.</p>
+        <div class="price-grid">
+          <div class="price-card">
+            <div class="when">Hoy mismo</div>
+            <div class="amount">0 €</div>
+            <div class="desc">Si te animas a montártelo tú con tu propia clave de Anthropic, OpenAI o un modelo en tu propio ordenador. Para gente técnica.</div>
+          </div>
+          <div class="price-card featured">
+            <div class="when">Próximamente</div>
+            <div class="amount">499 €</div>
+            <div class="desc">Un <strong>PC pequeño Simbi</strong> que enchufas en casa una vez (parecido a un router pequeño) y lo usas desde tu móvil o portátil. Pago único. Incluye 5 meses de servicio Premium para que lo pruebes con calma.</div>
+          </div>
+          <div class="price-card">
+            <div class="when">Tras los 5 meses</div>
+            <div class="amount">0 €<span class="alt">o 100 €/mes</span></div>
+            <div class="desc">Tú decides: sigues gratis con modelos abiertos (los datos siguen en tu casa), o pagas Premium si quieres modelos de gama alta.</div>
+          </div>
+        </div>
+        <p>Lo importante: el tier gratuito es <strong>perpetuo</strong>. Tu PC Simbi sigue funcionando aunque mañana yo cierre el chiringuito.</p>
+      </div>
+      <div class="en">
+        <h2>How much does it cost?</h2>
+        <p class="intro">Three ways, from least to most involved.</p>
+        <div class="price-grid">
+          <div class="price-card">
+            <div class="when">Right now</div>
+            <div class="amount">€0</div>
+            <div class="desc">If you're up for setting it up yourself with your own Anthropic or OpenAI key, or a model on your own machine. For technical folks.</div>
+          </div>
+          <div class="price-card featured">
+            <div class="when">Soon</div>
+            <div class="amount">€499</div>
+            <div class="desc">A <strong>small Simbi PC</strong> you plug in once at home (about the size of a small router) and use from your phone or laptop. One-time payment. Includes 5 months of Premium so you try it without rush.</div>
+          </div>
+          <div class="price-card">
+            <div class="when">After 5 months</div>
+            <div class="amount">€0<span class="alt">or €100/month</span></div>
+            <div class="desc">Your call: stay free with open-source models (data still in your home), or pay Premium if you want top-tier models.</div>
+          </div>
+        </div>
+        <p>The key thing: the free tier is <strong>perpetual</strong>. Your Simbi PC keeps working even if I shut everything down tomorrow.</p>
+      </div>
+    </section>
+
+    <!-- ===== Adónde va el dinero ===== -->
+    <section class="block" id="dinero">
+      <div class="es">
+        <h2>¿Adónde va el dinero?</h2>
+        <p class="intro">El dinero que entra paga, en este orden:</p>
+        <div class="flow">
+          <ol>
+            <li><strong>Una persona para soporte y comunicación.</strong> Yo soy técnico; el cuello de botella real está en hablar con la gente, atender dudas, y abrir puertas con fabricantes que quieran preinstalar Simbi.</li>
+            <li><strong>El coste real.</strong> Modelos en la nube, hardware, infraestructura mínima, gestoría, alta como autónomo.</li>
+            <li><strong>Lo que sobra vuelve al proyecto.</strong> Bajar precios, ampliar lo gratuito, contratar más gente con condiciones justas.</li>
+          </ol>
+          <p class="closer">No hay accionistas que se lleven dividendos. No hay inversores que pidan multiplicar su dinero. Si esto crece lo suficiente, lo blindo como fundación sin ánimo de lucro para que el compromiso no dependa de mi memoria ni de mi humor.</p>
+        </div>
+      </div>
+      <div class="en">
+        <h2>Where does the money go?</h2>
+        <p class="intro">The money coming in pays, in this order:</p>
+        <div class="flow">
+          <ol>
+            <li><strong>One person for support and communication.</strong> I'm technical; the real bottleneck is talking to people, answering questions, and opening doors with manufacturers that may want to pre-install Simbi.</li>
+            <li><strong>The actual costs.</strong> Cloud models, hardware, minimal infrastructure, accounting, self-employment paperwork.</li>
+            <li><strong>What's left goes back into the project.</strong> Lower prices, expand the free tier, hire more people with fair conditions.</li>
+          </ol>
+          <p class="closer">No shareholders taking dividends. No investors demanding a multiple back. If this grows enough, I lock it in as a non-profit foundation so the commitment doesn't depend on my memory or my mood.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cuatro promesas ===== -->
+    <section class="block" id="promesas">
+      <div class="es">
+        <h2>Cuatro promesas</h2>
+        <p class="intro">Si en algún momento alguna de estas cuatro cosas deja de cumplirse, este proyecto ha fallado.</p>
+        <div class="promises">
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12L12 3l9 9"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+            <h3>Tus datos viven en tu casa</h3>
+            <p>No en mis servidores. Yo no tengo infraestructura que guarde tus archivos, tu memoria, tus conversaciones.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><circle cx="6" cy="12" r="0.6" fill="currentColor"/></svg>
+            <h3>Sin puerta cerrada</h3>
+            <p>Si te quieres ir, te llevas tu carpeta y todos los datos. Sin penalizaciones, sin secuestros.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6"/></svg>
+            <h3>Sin alquiler para recordar</h3>
+            <p>El nivel gratuito es para siempre. No te voy a cobrar por acceder a tu propia memoria.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l3-9h12l3 9"/><path d="M3 12v8h18v-8"/><path d="M9 12v4"/><path d="M15 12v4"/></svg>
+            <h3>Sin venta a un gigante</h3>
+            <p>No voy a vender Simbi a una empresa grande para que cierre el grifo de lo gratuito. Si crece, va a fundación.</p>
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <h2>Four promises</h2>
+        <p class="intro">If at any point any of these four breaks, this project has failed.</p>
+        <div class="promises">
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12L12 3l9 9"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+            <h3>Your data lives in your home</h3>
+            <p>Not on my servers. I don't run infrastructure that stores your files, your memory, your conversations.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><circle cx="6" cy="12" r="0.6" fill="currentColor"/></svg>
+            <h3>No closed door</h3>
+            <p>If you want out, you take your folder and your data with you. No penalties, no hostages.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6"/></svg>
+            <h3>No rent for remembering</h3>
+            <p>The free tier is forever. I will not charge you for access to your own memory.</p>
+          </div>
+          <div class="promise">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l3-9h12l3 9"/><path d="M3 12v8h18v-8"/><path d="M9 12v4"/><path d="M15 12v4"/></svg>
+            <h3>No sale to a giant</h3>
+            <p>I won't sell Simbi to a big company so they can shut down the free tier. If it grows, it becomes a foundation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Lo que hay hoy ===== -->
+    <section class="block" id="hoy">
+      <div class="es">
+        <h2>Lo que hay hoy, de verdad</h2>
+        <p class="intro">Sin proyecciones ni promesas para 2027. Estos son los hechos verificables hoy:</p>
+        <div class="stats">
+          <div class="stat"><div class="num">3</div><div class="label">familias usándolo a diario, incluida la mía</div></div>
+          <div class="stat"><div class="num">14</div><div class="label">familias más esperando turno</div></div>
+          <div class="stat"><div class="num">8 años</div><div class="label">de servidor doméstico funcionando, con Simbi sobre él desde marzo de 2026</div></div>
+          <div class="stat"><div class="num">2.850 €</div><div class="label">de mi bolsillo personal en hardware reacondicionado para regalar a las primeras familias</div></div>
+        </div>
+        <blockquote class="pull">No es inversión del proyecto, no espero recuperarlo. Es regalo personal para validar que esto le sirve a gente real, no solo a mí.</blockquote>
+      </div>
+      <div class="en">
+        <h2>What exists today, for real</h2>
+        <p class="intro">No projections or 2027 promises. These are verifiable facts as of today:</p>
+        <div class="stats">
+          <div class="stat"><div class="num">3</div><div class="label">families using it daily, mine included</div></div>
+          <div class="stat"><div class="num">14</div><div class="label">more families waiting their turn</div></div>
+          <div class="stat"><div class="num">8 years</div><div class="label">of home server running, with Simbi on top of it since March 2026</div></div>
+          <div class="stat"><div class="num">€2,850</div><div class="label">out of my own pocket on refurbished hardware to gift to the first families</div></div>
+        </div>
+        <blockquote class="pull">Not project investment, I don't expect it back. Personal gift to verify that this is useful to real people, not just me.</blockquote>
+      </div>
+    </section>
+
+    <!-- ===== Dónde estamos ahora ===== -->
+    <section class="block" id="ahora">
+      <div class="es">
+        <h2>Dónde estamos ahora</h2>
+        <p class="intro">Una foto del proyecto en este preciso momento. Sin filtros.</p>
+        <ul class="timeline">
+          <li class="done">
+            <span class="when">Hace poco</span>
+            <ul>
+              <li>Simbi corriendo en producción doméstica desde principios de marzo de 2026.</li>
+              <li>Hardware reacondicionado adquirido (2.850 € de bolsillo) para regalar a las primeras familias.</li>
+              <li>Plan de empresa público escrito y publicado: este documento.</li>
+            </ul>
+          </li>
+          <li class="now">
+            <span class="when">Esta semana</span>
+            <ul>
+              <li>Solicitud de capitalización de la prestación por desempleo presentada al SEPE.</li>
+              <li>Provisión de cajas físicas a los primeros hogares del grupo de adopción temprana.</li>
+              <li>Primeros contactos exploratorios con fabricantes de hardware.</li>
+              <li>Línea de impartición docente y consultoría en universidades, ya en marcha.</li>
+            </ul>
+          </li>
+          <li class="next">
+            <span class="when">Próximo hito</span>
+            <ul>
+              <li>Alta como autónomo y arranque de la actividad comercial.</li>
+              <li>Contratación parcial del primer perfil de ventas y comunicación.</li>
+              <li>Activación del tier Base con modelos abiertos en cloud económico.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Si lees esto y la fecha de "última actualización" es de hace mucho, sospecha. Este documento se mueve con el proyecto.</p>
+      </div>
+      <div class="en">
+        <h2>Where we are right now</h2>
+        <p class="intro">A snapshot of the project at this exact moment. Unfiltered.</p>
+        <ul class="timeline">
+          <li class="done">
+            <span class="when">Recently</span>
+            <ul>
+              <li>Simbi running in home production since early March 2026.</li>
+              <li>Refurbished hardware acquired (€2,850 out of pocket) to gift to the first families.</li>
+              <li>Public business plan written and published: this document.</li>
+            </ul>
+          </li>
+          <li class="now">
+            <span class="when">This week</span>
+            <ul>
+              <li>Unemployment-benefit capitalisation application filed with the Spanish public employment service.</li>
+              <li>Physical box provisioning for the first early-adopter households.</li>
+              <li>First exploratory contacts with hardware manufacturers.</li>
+              <li>University consulting and teaching line already in motion.</li>
+            </ul>
+          </li>
+          <li class="next">
+            <span class="when">Next milestone</span>
+            <ul>
+              <li>Self-employment registration and commercial activity kick-off.</li>
+              <li>Part-time hire of the first sales and communications profile.</li>
+              <li>Activation of the Base tier with open-source models on cheap cloud.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>If you're reading this and the "last updated" date is way back, be suspicious. This document moves with the project.</p>
+      </div>
+    </section>
+
+    <!-- ===== Y los fabricantes ===== -->
+    <section class="block" id="socios">
+      <div class="es">
+        <h2>Y los fabricantes</h2>
+        <p>A medio plazo, quiero que cualquier fabricante de cajas (Synology, QNAP, UGREEN y similares) pueda preinstalar Simbi en sus equipos. Eso multiplica los usuarios sin que tenga que vender cajas yo mismo, y mantiene la promesa intacta para todos.</p>
+        <p>La regla del trato es simple, y viene del nombre: <em>simbiosis</em>. <strong>Tú, el fabricante y Simbi ganamos los tres, o no se firma</strong>. Sin exclusividades. Sin que el fabricante meta la mano en tus datos.</p>
+      </div>
+      <div class="en">
+        <h2>And the hardware makers</h2>
+        <p>Mid-term, I want any box maker (Synology, QNAP, UGREEN and similar) to be able to pre-install Simbi on their devices. That multiplies users without me having to sell boxes myself, and keeps the promise intact for everyone.</p>
+        <p>The deal rule is simple, and it comes from the name: <em>symbiosis</em>. <strong>You, the manufacturer and Simbi all win, or no deal</strong>. No exclusivities. No reaching into your data by the manufacturer.</p>
+      </div>
+    </section>
+
+    <!-- ============ DIVIDER ============ -->
+    <div class="divider">
+      <span class="es">Detalle técnico ↓</span>
+      <span class="en">Technical detail ↓</span>
     </div>
 
-    <!-- ============ §0 ============ -->
-    <section id="porque">
+    <!-- ============ PARTE B · DETALLE ============ -->
+
+    <!-- ===== Estado real ===== -->
+    <section class="block" id="estado">
       <div class="es">
-        <h2>Por qué este documento</h2>
-        <p>Aquí explico cómo se sostiene económicamente Simbi: cómo entran euros, en qué se gastan y qué pasa cuando hay beneficio. Lo escribo porque un programa que pretende vivir con la información más íntima de las familias no puede permitirse opacidad sobre quién paga qué.</p>
-        <blockquote>
-          <p><strong>Por qué se construye así.</strong> Yo creo que la información de las personas debería vivir en sus máquinas, no en servidores de empresas. Creo que un programa que entra en la vida íntima de una familia no puede pertenecer a accionistas que la abandonen al primer pivot de estrategia. Y creo que si todo eso es verdad, el proyecto no debería tener exit.</p>
-          <p>Esto no es altruismo, es coherencia: si pretendo construir esto y al final lo vendo a un gigante, lo construido no era esto. Cualquier beneficio que el proyecto genere se reinvierte en mantenerlo vivo y en pagar dignamente al equipo que lo construya. Si crece lo suficiente para que esto pase de promesa a riesgo, lo blindo como <strong>fundación sin ánimo de lucro</strong> o vehículo equivalente para que el compromiso no dependa de mi memoria ni de mi humor.</p>
-        </blockquote>
-      </div>
-      <div class="en">
-        <h2>Why this document</h2>
-        <p>Here I explain how Simbi sustains itself economically: where the money comes in, where it goes out, and what happens with profit. I'm writing it because a program that intends to live with the most intimate information of families cannot afford to be opaque about who pays for what.</p>
-        <blockquote>
-          <p><strong>Why it's built this way.</strong> I believe people's information should live on their own machines, not on company servers. I believe a program that enters the intimate life of a family cannot belong to shareholders that would abandon it at the first strategy pivot. And I believe that if all of that is true, the project shouldn't have an exit.</p>
-          <p>This isn't altruism, it's coherence: if I claim to build this and end up selling to a giant, what I built wasn't this. Any profit the project generates is reinvested into keeping it alive and into paying fair wages to whoever builds it. If the project grows enough that the commitment turns from personal promise into real risk, I will lock it in as a <strong>non-profit foundation</strong> or equivalent vehicle, so the commitment doesn't depend on my memory or my mood.</p>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ============ §1 ============ -->
-    <section id="descripcion">
-      <div class="es">
-        <h2>El proyecto</h2>
-        <p>Simbi es <strong>una memoria viva para tu vida digital</strong>. No es un asistente conversacional de propósito general (como <a class="company-link" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> o Gemini), ni una nueva app de notas, ni un buscador. Es un programa que vive con la información del usuario (documentos, notas, fotos, correos, conversaciones) para que el usuario deje de tener que organizarla y pueda, simplemente, hablar con su mundo y obtener respuestas con las fuentes originales a la vista.</p>
-        <p>El usuario tiene una carpeta en su ordenador llamada Simbi. Suelta archivos dentro: un PDF, una captura, una carpeta entera de descargas, las notas de una reunión, un correo importante. No los nombra, no los etiqueta, no los ordena. Simbi se da cuenta, los lee, los entiende y los integra en su memoria. Cuando el usuario necesita algo (<em>"&iquest;qué decía el contrato que me mandó Marta en marzo?"</em>), Simbi responde y le abre la fuente original.</p>
-
-        <h3>El problema real que resuelve</h3>
-        <p>Llevamos cuarenta años ejerciendo de archivistas, bibliotecarios y secretarios de nuestra propia vida digital. Carpetas, subcarpetas, nombres de archivo que el yo del futuro tenga que poder buscar, etiquetas, apps separadas para correo, mensajes, notas, fotos. Si pierdes algo, es culpa tuya. Si no lo encuentras, busca mejor.</p>
-        <p>Los asistentes de IA que han llegado al mercado no resuelven este problema: cada conversación con <a class="company-link" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> o Gemini empieza desde cero, sin haber visto nada de lo del usuario. Hay que pegar el documento, recordar el contexto, volver a contar quién es quién. Sigue siendo trabajo del usuario, sólo que ahora con una conversación más.</p>
-        <p>Simbi propone otra cosa: <strong>un programa que crece con los datos del usuario hasta que la frontera entre "lo que yo recuerdo" y "lo que sabe Simbi" se difumina</strong>. Un programa que, además, muestra siempre las fuentes, porque sin recibos, no es memoria; son suposiciones.</p>
-
-        <h3>Soberanía radical de los datos</h3>
-        <p>Esto es lo que diferencia a Simbi de cualquier producto comparable existente.</p>
-        <p><strong>Tu Simbi corre en TU máquina.</strong> Un portátil, una caja doméstica, un servidor casero, lo que sea. La carpeta es tuya. La memoria es tuya. Las conversaciones son tuyas. <strong>No hay nube central de terceros. No hay empresa que pueda leer tus documentos, vender tu vida o apagar el servicio un martes por la mañana.</strong></p>
-        <p>El operador del proyecto <strong>no posee infraestructura que almacene datos de usuario</strong>. La única pieza cloud que opera es una pasarela de transporte que conecta la app del usuario con su caja Simbi cuando no están en la misma red local. Esa pasarela:</p>
-        <ul>
-          <li><strong>No almacena nada.</strong> Es un mero enrutador.</li>
-          <li><strong>No descifra contenido.</strong> El tráfico viaja con TLS pinning + autenticación de aplicación encima del túnel. La pasarela ve paquetes, no mensajes.</li>
-          <li><strong>Es destruible y reemplazable</strong> sin pérdida de datos del usuario.</li>
-        </ul>
-        <p>El compromiso es explícito y comprobable: <strong>si el operador desaparece mañana, la Simbi del usuario sigue funcionando</strong>. La caja sigue arrancando, los datos siguen siendo accesibles, los modelos abiertos del tier gratuito siguen estando disponibles a través de cualquier proveedor cloud económico configurable por el propio usuario. No hay puerta cerrada, no hay rehén de datos, no hay vendor lock-in.</p>
-        <p>Esto no es marketing ni postura ideológica. Es <strong>una decisión de arquitectura</strong> que se cumple a nivel técnico y se puede auditar. El paralelo correcto es Linux: el software es del usuario, corre en su máquina, el usuario decide.</p>
-
-        <h3>Estado actual de la dependencia cloud (transparencia)</h3>
-        <p>A día de hoy, el razonamiento del lenguaje (la "voz" de Simbi) se delega en modelos comerciales (<a class="company-link" href="https://www.anthropic.com/claude" target="_blank" rel="noopener">Anthropic Claude</a>) o en modelos abiertos servidos por proveedores cloud económicos (Groq, Together, Fireworks). La razón es práctica, no ideológica: ejecutar modelos de calidad comparable en hardware doméstico de coste razonable aún no es viable en 2026, los modelos competitivos requieren GPUs profesionales que duplican o triplican el coste de la caja.</p>
-        <p><strong>Los datos del usuario nunca viven en servidores del proveedor de IA</strong>: cada llamada al modelo va con datos únicamente del propietario de esa caja, sin perfiles cruzados, y los proveedores serios contractualmente no usan los datos para entrenamiento. Cuando el hardware doméstico permita ejecutar modelos competitivos en local (cuestión de 2-4 años según las curvas actuales), Simbi puede prescindir totalmente de la dependencia cloud sin cambios de arquitectura del lado del usuario.</p>
-      </div>
-      <div class="en">
-        <h2>The project</h2>
-        <p>Simbi is <strong>a living memory for your digital life</strong>. It is not a general-purpose conversational assistant (like <a class="company-link" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> or Gemini), not a new note-taking app, not a search box. It is a program that lives with the user's information (documents, notes, photos, mail, conversations) so that the user can stop having to organise it and simply talk to their own world, getting answers with the original sources right there to open and verify.</p>
-        <p>The user has a folder on their computer called Simbi. They drop things into it: a PDF, a screenshot, a whole downloads folder, last meeting's notes, an important email. They don't name them, don't tag them, don't sort them. Simbi notices, reads them, understands them, and weaves them into its memory. When the user needs something (<em>"what did the contract Marta sent me in March actually say?"</em>), Simbi answers, and opens the source.</p>
-
-        <h3>The real problem it solves</h3>
-        <p>For forty years now we have been the archivists, librarians and secretaries of our own digital lives. Folders, subfolders, filenames our future selves have to be able to search, tags, separate apps for mail, chat, notes, photos. Lose something, your fault. Can't find it, search harder.</p>
-        <p>The AI assistants that have arrived don't fix this: every conversation with <a class="company-link" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> or Gemini starts from zero, having seen nothing of yours. You paste the document, recap the context, re-introduce the cast. It's still your work, just with one more conversation in the loop.</p>
-        <p>Simbi proposes something else: <strong>a program that grows with the user's data until the line between "what I remember" and "what Simbi knows" blurs.</strong> A program that, on top of that, always shows its sources, because without receipts, it isn't memory; it's guesswork.</p>
-
-        <h3>Radical data sovereignty</h3>
-        <p>This is what separates Simbi from any comparable product on the market.</p>
-        <p><strong>Your Simbi runs on YOUR machine.</strong> A laptop, a home box, a small home server, whatever works. The folder is yours. The memory is yours. The conversations are yours. <strong>There is no third-party central cloud. No company that can read your documents, sell your life, or shut the service down on a Tuesday morning.</strong></p>
-        <p>The project's operator <strong>owns no infrastructure that stores user data</strong>. The only cloud component is a transport gateway that lets the user's app reach their Simbi box when the two are not on the same local network. This gateway:</p>
-        <ul>
-          <li><strong>Stores nothing.</strong> It is purely a router.</li>
-          <li><strong>Decrypts nothing.</strong> Traffic is wrapped in TLS pinning + application authentication on top of the tunnel. The gateway sees packets, not messages.</li>
-          <li><strong>Is destructible and replaceable</strong> without losing a byte of user data.</li>
-        </ul>
-        <p>The commitment is explicit and verifiable: <strong>if the operator disappears tomorrow, the user's Simbi keeps running.</strong> The box keeps booting, the data stays accessible, the open-source models behind the free tier remain available through any cheap cloud provider the user can configure themselves. There is no closed door, no data hostage, no vendor lock-in.</p>
-        <p>This isn't marketing or ideological posturing. It is <strong>an architecture decision</strong> that holds at the technical level and can be audited. The right parallel is Linux: the software is the user's, runs on the user's machine, the user decides.</p>
-
-        <h3>Honest disclosure of cloud dependency</h3>
-        <p>Today, the language reasoning (Simbi's "voice") is delegated to commercial models (<a class="company-link" href="https://www.anthropic.com/claude" target="_blank" rel="noopener">Anthropic Claude</a>) or to open-source models served by cheap cloud providers (Groq, Together, Fireworks). The reason is practical, not ideological: running models of comparable quality on affordable home hardware is not yet viable in 2026, competitive models require professional GPUs that double or triple the cost of the box.</p>
-        <p><strong>The user's data never lives on the AI provider's servers</strong>: each model call only carries data belonging to the owner of that one box, with no cross-profile aggregation, and serious providers contractually do not use the data for training. When home hardware can run competitive models locally (a 2-to-4-year horizon based on current curves), Simbi can drop cloud dependency entirely with no architecture changes on the user's side.</p>
-      </div>
-    </section>
-
-    <!-- ============ §2 ============ -->
-    <section id="tecnica">
-      <div class="es">
-        <h2>Viabilidad técnica</h2>
-
-        <h3>Estado real del producto</h3>
+        <h2>Estado real del producto</h2>
         <ul>
           <li><strong>3 instancias en uso diario real</strong> (el autor, su padre, una usuaria externa). Configuradas y disponibles en infraestructura: 5.</li>
           <li><strong>14 plazas comprometidas</strong> en lista de espera (3 familiares + 11 externos), con plan de provisión escalonada.</li>
@@ -505,28 +863,17 @@
 
         <h3>Componentes técnicos implementados</h3>
         <ul>
-          <li><strong>Aplicación web progresiva (PWA)</strong> instalable en cualquier dispositivo como interfaz única para el usuario. Conexión directa a la caja por LAN cuando ambos están en la misma red, o a través de la pasarela cifrada (con anclaje TLS + autenticación por dispositivo) cuando el usuario está fuera de casa.</li>
+          <li><strong>Aplicación web progresiva (PWA)</strong> instalable en móvil, tablet u ordenador como interfaz única. Conexión directa a la caja por LAN cuando ambos están en la misma red, o a través de pasarela cifrada (TLS pinning + autenticación por dispositivo) cuando estás fuera de casa.</li>
           <li>Memoria contextual de larga duración por familia (SQLite + búsqueda vectorial).</li>
           <li>Ingesta y comprensión de documentos: PDFs, imágenes, hojas de cálculo, correo, calendario.</li>
           <li>Procedencia trazable de cada hecho recordado (cita la fuente original).</li>
-          <li><strong>Soporte multilingüe</strong>, validado en uso diario en castellano e inglés. La arquitectura es agnóstica al idioma: los documentos del usuario se conservan, indexan y consultan en su lengua materna, sin traducción intermediaria que altere matices. Esta propiedad permite cobertura honesta de las <strong>lenguas cooficiales del Estado</strong> (catalán, gallego, euskera), con compromiso de validación con hablantes nativos antes de habilitarlas oficialmente.</li>
-          <li>Aislamiento por contenedor: cada seat tiene su propio volumen de datos cifrado.</li>
-          <li>Sistema de releases versionado con notas legibles para el usuario final.</li>
-        </ul>
-
-        <h3>Hoja de ruta técnica 2026-2027</h3>
-        <ul class="roadmap-list">
-          <li><strong>Q3 2026:</strong> Despliegue de las 5 cajas HP compactas en hogares del primer grupo. Migración de datos del servidor central a la caja del usuario.</li>
-          <li><strong>Q4 2026:</strong> Tier Base operativo con modelos abiertos en cloud económico (<a class="company-link" href="https://groq.com" target="_blank" rel="noopener">Groq</a>, Together, Fireworks). Cambio fluido entre Premium y Base.</li>
-          <li><strong>Q1 2027:</strong> Validación con hablantes nativos en catalán, gallego y euskera. Habilitación oficial.</li>
-          <li><strong>Q2 2027:</strong> Hoy ya hay caché offline de archivos recientes y datos esenciales. La meta del Q2 es modo full-offline para todas las tareas que no requieran razonamiento de gama alta: memoria, búsqueda local, lectura, resumen. El uso cotidiano resiste cortes de conectividad.</li>
-          <li><strong>Segunda mitad 2027:</strong> Apertura progresiva del código del producto. Evaluación de hardware más capaz para ejecución 100% local de modelos premium.</li>
+          <li><strong>Búsqueda web vía SearXNG auto-alojado</strong>, una alternativa más privada que Google. Las consultas no se envían a buscadores comerciales y el usuario puede correr su propia instancia para no depender ni siquiera de la del proyecto.</li>
+          <li><strong>Soporte multilingüe</strong>, validado en castellano e inglés. La arquitectura es agnóstica al idioma: los documentos se conservan, indexan y consultan en la lengua materna del usuario, sin traducción intermediaria que altere matices. Esta propiedad permite cobertura honesta de las <strong>lenguas cooficiales del Estado</strong> (catalán, gallego, euskera), con compromiso de validación con hablantes nativos antes de habilitarlas oficialmente.</li>
+          <li>Aislamiento por contenedor: cada usuario tiene su propio volumen de datos cifrado.</li>
         </ul>
       </div>
       <div class="en">
-        <h2>Technical viability</h2>
-
-        <h3>Real product status</h3>
+        <h2>Real product status</h2>
         <ul>
           <li><strong>3 instances in real daily use</strong> (the author, his father, an external user). Configured and available in infrastructure: 5.</li>
           <li><strong>14 committed seats</strong> on the wait-list (3 family + 11 external), with a staged provisioning plan.</li>
@@ -544,306 +891,189 @@
 
         <h3>Implemented technical components</h3>
         <ul>
-          <li><strong>Progressive Web App (PWA)</strong> installable on any device as the single user interface. Direct LAN connection when on the same network, or through the encrypted gateway (TLS pinning + per-device auth) when away from home.</li>
+          <li><strong>Progressive Web App (PWA)</strong> installable on phone, tablet or computer as the single user interface. Direct LAN connection when on the same network, or through the encrypted gateway (TLS pinning + per-device auth) when away from home.</li>
           <li>Long-term contextual memory per family (SQLite + vector search).</li>
           <li>Document ingestion and understanding: PDFs, images, spreadsheets, mail, calendar.</li>
           <li>Traceable provenance for every remembered fact (cites the original source).</li>
-          <li><strong>Multilingual support</strong>, validated in daily use in Spanish and English. The architecture is language-agnostic: documents are stored, indexed and queried in the user's native language with no English intermediary that flattens nuance. This allows honest coverage of <strong>Spain's co-official languages</strong> (Catalan, Galician, Basque), with a commitment to native-speaker validation before official enablement.</li>
-          <li>Per-container isolation: each seat has its own encrypted data volume.</li>
-          <li>Versioned release system with notes legible to the end user.</li>
+          <li><strong>Web search through self-hosted SearXNG</strong>, a more private alternative to Google. Queries are not sent to commercial search engines, and the user can run their own instance, not even depending on the project's.</li>
+          <li><strong>Multilingual support</strong>, validated in Spanish and English. The architecture is language-agnostic: documents are stored, indexed and queried in the user's native language with no English intermediary that flattens nuance. This allows honest coverage of <strong>Spain's co-official languages</strong> (Catalan, Galician, Basque), with native-speaker validation before official enablement.</li>
+          <li>Per-container isolation: each user has their own encrypted data volume.</li>
         </ul>
+      </div>
+    </section>
 
-        <h3>Technical roadmap 2026-2027</h3>
-        <ul class="roadmap-list">
-          <li><strong>Q3 2026:</strong> Deploy the 5 compact HP boxes to the early-adopter group. Migrate data from the central server to the user's box.</li>
-          <li><strong>Q4 2026:</strong> Base tier live with open-source models on cheap cloud (<a class="company-link" href="https://groq.com" target="_blank" rel="noopener">Groq</a>, Together, Fireworks). Smooth switch between Premium and Base.</li>
+    <!-- ===== Hoja de ruta ===== -->
+    <section class="block" id="ruta">
+      <div class="es">
+        <h2>Hoja de ruta 2026-2027</h2>
+        <ul>
+          <li><strong>Q3 2026:</strong> Despliegue de las 5 cajas HP compactas en hogares del primer grupo. Migración de datos del servidor central a la caja del usuario.</li>
+          <li><strong>Q4 2026:</strong> Tier Base operativo con modelos abiertos en cloud económico (Groq, Together, Fireworks). Cambio fluido entre Premium y Base.</li>
+          <li><strong>Q1 2027:</strong> Validación con hablantes nativos en catalán, gallego y euskera. Habilitación oficial.</li>
+          <li><strong>Q2 2027:</strong> Hoy ya hay caché offline de archivos recientes y datos esenciales. La meta del Q2 es modo full-offline para todas las tareas que no requieran razonamiento de gama alta: memoria, búsqueda local, lectura, resumen. El uso cotidiano resiste cortes de conectividad.</li>
+          <li><strong>Segunda mitad 2027:</strong> Apertura progresiva del código del producto. Evaluación de hardware más capaz para ejecución 100% local de modelos premium.</li>
+        </ul>
+      </div>
+      <div class="en">
+        <h2>Roadmap 2026-2027</h2>
+        <ul>
+          <li><strong>Q3 2026:</strong> Deploy the 5 compact HP boxes to first-group households. Migrate data from central server to the user's box.</li>
+          <li><strong>Q4 2026:</strong> Base tier live on open-source models via cheap cloud (Groq, Together, Fireworks). Smooth switch between Premium and Base.</li>
           <li><strong>Q1 2027:</strong> Native-speaker validation of Catalan, Galician and Basque. Official enablement.</li>
-          <li><strong>Q2 2027:</strong> Partial offline mode for local tasks. Everyday use survives connectivity outages.</li>
+          <li><strong>Q2 2027:</strong> offline cache of recent files and core data is already in place. The Q2 goal is full-offline mode for everything that doesn't require high-end reasoning: memory, local search, reading, summarisation. Reasoning-heavy tasks still need cloud, but everyday use survives connectivity outages.</li>
           <li><strong>H2 2027:</strong> Progressive opening of the product code. Evaluation of more capable hardware for 100% local execution of premium-class models.</li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ §3 ============ -->
-    <section id="comercial">
+    <!-- ===== Modelo de negocio detallado ===== -->
+    <section class="block" id="modelo">
       <div class="es">
-        <h2>Modelo de negocio</h2>
-        <p>El modelo se estructura en cinco líneas, ordenadas por su peso esperado a medio-largo plazo. La principal, y la más importante para entender la visión del proyecto, es la de partnerships con fabricantes de hardware: el operador no aspira a vender cajas él mismo de forma indefinida, sino a convertir Simbi en el <strong>software de IA familiar que cualquier fabricante de NAS, mini-PC o appliance doméstico pueda preinstalar y comercializar</strong>.</p>
+        <h2>Modelo de negocio detallado</h2>
+        <p class="intro">El modelo se estructura en cinco líneas, ordenadas por su peso esperado a medio-largo plazo.</p>
 
-        <h3>Línea A: Partnerships con fabricantes (vector estratégico principal)</h3>
-        <p><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a>, QNAP, UGREEN, TerraMaster, Asustor y similares están en la búsqueda de "el ángulo IA" para sus dispositivos. Hoy ofrecen NAS vacíos a precios entre 325 € y 770 € (ver benchmark abajo) sin ninguna capa de IA respetuosa con la privacidad. Simbi encaja exactamente como esa capa.</p>
-        <p>El planteamiento de partnership:</p>
-        <ul>
-          <li>Simbi se convierte en software preinstalable en cajas de partners.</li>
-          <li>El partner mantiene su marca, su canal de distribución y su soporte de hardware.</li>
-          <li>El operador (Simbi) cobra un <strong>fee de licencia por unidad vendida</strong> (rango objetivo 50-150 € por caja), más un revenue share de las suscripciones Premium si las hay.</li>
-          <li>Mismo modelo aplicable a tiendas de hardware reacondicionado (<a class="company-link" href="https://www.backmarket.es" target="_blank" rel="noopener">Back Market</a>, ALSO, fabricantes de reacondicionado empresarial), distribuidores rurales, telcos con productos de "casa conectada".</li>
-        </ul>
+        <h3>A. Partnerships con fabricantes (vector estratégico)</h3>
+        <p>Synology, QNAP, UGREEN, TerraMaster y similares buscan "el ángulo IA" para sus dispositivos. Hoy ofrecen NAS vacíos sin capa de IA respetuosa con la privacidad. Simbi encaja como esa capa: software preinstalable en cajas de partners, con un fee de licencia por unidad vendida (rango objetivo 50-150 € por caja) y revenue share opcional sobre Premium. Patrón B2B2C ya recorrido por Plex, Jellyfin, Sonos software o el propio HomeAssistant.</p>
 
-        <h4>Por qué se llama Simbi: el modelo de relación</h4>
-        <p>El nombre viene de <em>simbiosis</em>, la relación biológica donde dos organismos distintos hacen algo que ninguno puede solo. Esa es la forma exacta de las partnerships que Simbi busca: <strong>usuario, partner y Simbi ganan los tres, o no se firma</strong>.</p>
-        <ul>
-          <li>El <strong>usuario</strong> gana porque el producto le sirve y nadie le tiene rehén.</li>
-          <li>El <strong>fabricante de hardware</strong> gana porque ofrece a sus clientes un ángulo de IA respetuoso con la privacidad que él solo no podría construir.</li>
-          <li><strong>Simbi</strong> gana porque accede a un canal de distribución que no podría abrir solo.</li>
-        </ul>
-        <p>Si alguna de las tres partes no está ganando, la relación no se firma o no se renueva. No hay exclusividades, los datos siempre son del usuario, los términos económicos son visibles, y cualquiera puede salir sin penalizar a los otros dos.</p>
+        <h3>B. Venta directa de la caja (vector inicial)</h3>
+        <p>Hasta firmar las primeras alianzas, venta directa de cajas con hardware empresarial reacondicionado a <strong>499 €</strong>, incluyendo 5 meses de Premium. Benchmark abajo.</p>
 
-        <p>Esto convierte el negocio en B2B2C de software-en-hardware, el patrón seguido por <a class="company-link" href="https://www.plex.tv" target="_blank" rel="noopener">Plex</a>, Jellyfin, Sonos software, o el propio HomeAssistant (con HA Green/Yellow). Los primeros 18-24 meses se dedican a hacer Simbi suficientemente sólido como para que estas conversaciones sean productivas.</p>
+        <h3>C. Simbi Premium (cuota opcional, 100 €/mes)</h3>
+        <p>Tras la promo, el usuario decide si contratar Premium: modelos de razonamiento de gama alta gestionados por el operador, actualizaciones, soporte humano, mantenimiento remoto, respaldo cifrado adicional.</p>
 
-        <h3>Línea B: Venta directa de la caja Simbi</h3>
-        <p>Hasta que las primeras alianzas con fabricantes estén firmadas, el operador vende directamente cajas Simbi montadas sobre hardware empresarial reacondicionado. <strong>PVP objetivo: 499 €</strong>, incluyendo <strong>5 meses de Simbi Premium</strong> sin coste adicional como período de aprendizaje.</p>
-        <h4>Benchmark con el mercado NAS (precios de referencia Q2 2026)</h4>
+        <h3>D. Simbi Base, gratuito perpetuo</h3>
+        <p>Pieza diferencial. Quien no continúe Premium conserva una Simbi totalmente funcional con modelos abiertos (Llama, Mistral, Qwen, DeepSeek v4 con saltos enormes los últimos meses) servidos a través de proveedores cloud económicos. Coste de inferencia 10-30× inferior al premium, lo que hace sostenible el tier gratuito financiado con el margen de la caja o el fee del partner.</p>
+
+        <h3>E. Consultoría y docencia universitaria (primer año)</h3>
+        <p>Ingresos puente mediante consultoría técnica y impartición docente en universidades en IA aplicada. Línea ya en marcha, aprovechando red profesional y experiencia previa como Lead AI Engineer.</p>
+      </div>
+      <div class="en">
+        <h2>Detailed business model</h2>
+        <p class="intro">Five lines, ordered by expected long-term weight.</p>
+
+        <h3>A. Partnerships with manufacturers (strategic vector)</h3>
+        <p>Synology, QNAP, UGREEN, TerraMaster and similar are hunting for "the AI angle" for their devices. They sell empty NAS boxes with no privacy-respecting AI layer. Simbi fits as that layer: pre-installable software on partner boxes, with a per-unit license fee (target €50-150 per box) and optional revenue share on Premium. B2B2C pattern already followed by Plex, Jellyfin, Sonos software, HomeAssistant itself.</p>
+
+        <h3>B. Direct sale of the box (initial vector)</h3>
+        <p>Until partnerships are signed, direct sale of boxes built on refurbished enterprise hardware at <strong>€499</strong>, including 5 months of Premium. Benchmark below.</p>
+
+        <h3>C. Simbi Premium (optional, €100/month)</h3>
+        <p>After the promo, user decides whether to subscribe: top-tier reasoning models operated by us, updates, human support, remote maintenance, additional encrypted backup.</p>
+
+        <h3>D. Simbi Base, free, perpetual</h3>
+        <p>The differentiator. If you don't continue Premium you keep a fully functional Simbi powered by open-source models (Llama, Mistral, Qwen, DeepSeek v4 with huge jumps in the last months) served through cheap cloud providers. Inference cost 10-30× cheaper than premium, which makes the free tier sustainable, financed by the box-sale margin or the partner's fee.</p>
+
+        <h3>E. Consulting and university teaching (first year)</h3>
+        <p>Bridge income through technical consulting and university teaching in applied AI. Line already in motion, drawing on professional network and prior experience as Lead AI Engineer.</p>
+      </div>
+    </section>
+
+    <!-- ===== Benchmark NAS ===== -->
+    <section class="block" id="benchmark">
+      <div class="es">
+        <h2>Benchmark con el mercado NAS (Q2 2026)</h2>
+        <p class="intro">Comparativa con productos NAS típicos para situar el precio de la caja Simbi:</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Producto</th><th>PVP</th><th>Incluye</th></tr></thead>
             <tbody>
-              <tr><td><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS224+ (2 bahías)</td><td>397 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
-              <tr><td><a class="company-link" href="https://nas.ugreen.com" target="_blank" rel="noopener">UGREEN</a> NASync DXP2800 (2 bahías)</td><td>400 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
-              <tr><td><a class="company-link" href="https://www.qnap.com" target="_blank" rel="noopener">QNAP</a> TS-264 (2 bahías)</td><td>482 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
-              <tr><td><a class="company-link" href="https://nas.ugreen.com" target="_blank" rel="noopener">UGREEN</a> NASync DXP4800 (4 bahías)</td><td>550 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
-              <tr><td><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS923+ (4 bahías)</td><td>768 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
+              <tr><td>Synology DS224+ (2 bahías)</td><td>397 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
+              <tr><td>UGREEN NASync DXP2800 (2 bahías)</td><td>400 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
+              <tr><td>QNAP TS-264 (2 bahías)</td><td>482 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
+              <tr><td>UGREEN NASync DXP4800 (4 bahías)</td><td>550 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
+              <tr><td>Synology DS923+ (4 bahías)</td><td>768 €</td><td>Caja vacía, sin discos, sin AI</td></tr>
               <tr class="highlight"><td><strong>Caja Simbi (objetivo)</strong></td><td><strong>499 €</strong></td><td><strong>Funcional + OS + memoria viva instalada + 5 meses Premium</strong></td></tr>
             </tbody>
           </table>
         </div>
-        <p>Posicionamiento: por debajo de un <a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS923+, en línea con un DS224+ + discos, y muy por encima de la utilidad inmediata para el usuario final, que recibe un producto que funciona desde el día 1 en lugar de una caja vacía con su propia curva de configuración.</p>
-
-        <h3>Línea C: Simbi Premium (cuota opcional, 100 €/mes)</h3>
-        <p>Tras el período promocional, el usuario decide si contratar Premium. Cubre:</p>
-        <ul>
-          <li>Acceso a modelos de razonamiento de última generación (Claude, GPT u otros líderes) gestionados por el operador.</li>
-          <li>Actualizaciones continuas y funcionalidades nuevas.</li>
-          <li>Soporte humano y mantenimiento remoto.</li>
-          <li>Respaldo cifrado adicional.</li>
-        </ul>
-
-        <h3>Línea D: Simbi Base, gratuito (0 €/mes), perpetuo</h3>
-        <p>Pieza diferencial del modelo. Quien no continúe Premium <strong>conserva una Simbi totalmente funcional</strong> apoyada en modelos abiertos (<a class="company-link" href="https://www.llama.com" target="_blank" rel="noopener">Llama</a>, Mistral, Qwen) servidos a través de proveedores cloud económicos. El coste de inferencia de estos modelos es entre <strong>10 y 30 veces inferior</strong> al de los modelos premium, lo que hace económicamente sostenible ofrecerlo a coste cero para el usuario, financiado con el margen de la venta de la caja o el fee de licencia del partner.</p>
-        <p>Este diseño resuelve dos objeciones reales del mercado actual:</p>
-        <ul>
-          <li><em>"&iquest;Y si la empresa cierra o sube los precios?"</em> La caja sigue funcionando, los datos siguen siendo del usuario, y el tier Base sigue siendo gratuito.</li>
-          <li><em>"&iquest;Y si quiero salir?"</em> No hay puerta cerrada: exportación de datos en cualquier momento, modelos abiertos ejecutables por terceros sin permiso del operador.</li>
-        </ul>
-
-        <h3>Línea E: Consultoría e impartición docente (primer año)</h3>
-        <p>Durante los primeros 12 meses, ingresos complementarios mediante <strong>consultoría técnica e impartición docente en universidades</strong> en el ámbito de IA aplicada y modelos de lenguaje. Línea ya en marcha (contactos y propuestas activas), aprovecha la red profesional del autor y su experiencia previa como Lead AI Engineer.</p>
-
-        <h3>Ventaja por momento de mercado</h3>
-        <ul>
-          <li><strong>Reglamento Europeo de IA (AI Act)</strong> en vigor: penaliza modelos opacos sobre datos personales, premia trazabilidad y minimización.</li>
-          <li><strong>Conciencia creciente sobre privacidad</strong>, especialmente en familias con menores.</li>
-          <li><strong>Maduración acelerada de modelos abiertos</strong> (Llama, Mistral, Qwen, DeepSeek v4 con saltos cualitativos enormes en los últimos meses): hoy permiten un tier Base usable vía cloud económico; en 2-4 años permitirán ejecución 100% local en hardware doméstico.</li>
-          <li><strong>Brecha en la oferta de fabricantes de NAS y mini-PC</strong>: ninguno tiene una capa de IA respetuosa con la privacidad para sus clientes finales. Simbi es exactamente esa capa, lista para licenciar.</li>
-          <li><strong>Atención política y mediática</strong> sobre la dependencia tecnológica respecto de plataformas estadounidenses y chinas.</li>
-        </ul>
+        <p>Por debajo de un Synology DS923+, en línea con un DS224+ + discos, pero el usuario recibe un producto que funciona desde el día 1 en lugar de una caja vacía con curva de configuración.</p>
       </div>
       <div class="en">
-        <h2>Business model</h2>
-        <p>The model is structured in five lines, ordered by their expected long-term weight. The principal one, and the most important to understand the project's vision, is partnerships with hardware manufacturers: the operator does not aspire to keep selling boxes himself indefinitely, but to make Simbi <strong>the family-AI software that any NAS, mini-PC or home-appliance manufacturer can pre-install and ship</strong>.</p>
-
-        <h3>Line A: Partnerships with manufacturers (principal strategic vector)</h3>
-        <p><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a>, QNAP, UGREEN, TerraMaster, Asustor and similar players are all hunting for "the AI angle" for their devices. Today they sell empty NAS boxes for €325-770 (see benchmark below) with no privacy-respecting AI layer. Simbi fits exactly as that layer.</p>
-        <p>Partnership shape:</p>
-        <ul>
-          <li>Simbi becomes pre-installable software on partner boxes.</li>
-          <li>The partner keeps its brand, distribution channel, and hardware support.</li>
-          <li>The Simbi operator collects a <strong>per-unit license fee</strong> (target range €50-150 per box), plus a revenue share on Premium subscriptions where present.</li>
-          <li>Same model applies to refurbished hardware retailers (<a class="company-link" href="https://www.backmarket.es" target="_blank" rel="noopener">Back Market</a>, ALSO, enterprise refurbishers), rural distributors, and telcos offering "connected home" bundles.</li>
-        </ul>
-
-        <h4>Why it's called Simbi: the partnership model</h4>
-        <p>The name comes from <em>symbiosis</em>, the biological relationship where two distinct organisms together do something neither can alone. That is exactly the shape of the partnerships Simbi seeks: <strong>user, partner and Simbi all win, or no deal</strong>.</p>
-        <ul>
-          <li>The <strong>user</strong> wins because the product serves them and nobody holds them hostage.</li>
-          <li>The <strong>hardware manufacturer</strong> wins because they can offer their customers a privacy-respecting AI angle they couldn't build alone.</li>
-          <li><strong>Simbi</strong> wins because it gains access to a distribution channel it couldn't open by itself.</li>
-        </ul>
-        <p>If any of the three parties isn't winning, the relationship doesn't get signed or renewed. No exclusivities, data is always the user's, economic terms are visible, and any party can exit without penalising the other two.</p>
-
-        <p>This turns the business into B2B2C of software-on-hardware, the same pattern followed by <a class="company-link" href="https://www.plex.tv" target="_blank" rel="noopener">Plex</a>, Jellyfin, Sonos software, or HomeAssistant itself (with HA Green/Yellow). The first 18-24 months are dedicated to making Simbi solid enough that these conversations can be productive.</p>
-
-        <h3>Line B: Direct sale of the Simbi box</h3>
-        <p>Until the first manufacturer partnerships are signed, the operator sells Simbi boxes directly, built on refurbished enterprise hardware. <strong>Target retail price: €499</strong>, including <strong>5 months of Simbi Premium</strong> at no additional cost as a learning period.</p>
-        <h4>NAS market benchmark (reference prices Q2 2026)</h4>
+        <h2>NAS market benchmark (Q2 2026)</h2>
+        <p class="intro">Comparison with typical NAS products to anchor the Simbi box price:</p>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Product</th><th>Price</th><th>What's included</th></tr></thead>
+            <thead><tr><th>Product</th><th>Price</th><th>Includes</th></tr></thead>
             <tbody>
-              <tr><td><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS224+ (2-bay)</td><td>€397</td><td>Empty case, no drives, no AI</td></tr>
-              <tr><td><a class="company-link" href="https://nas.ugreen.com" target="_blank" rel="noopener">UGREEN</a> NASync DXP2800 (2-bay)</td><td>€400</td><td>Empty case, no drives, no AI</td></tr>
-              <tr><td><a class="company-link" href="https://www.qnap.com" target="_blank" rel="noopener">QNAP</a> TS-264 (2-bay)</td><td>€482</td><td>Empty case, no drives, no AI</td></tr>
-              <tr><td><a class="company-link" href="https://nas.ugreen.com" target="_blank" rel="noopener">UGREEN</a> NASync DXP4800 (4-bay)</td><td>€550</td><td>Empty case, no drives, no AI</td></tr>
-              <tr><td><a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS923+ (4-bay)</td><td>€768</td><td>Empty case, no drives, no AI</td></tr>
+              <tr><td>Synology DS224+ (2-bay)</td><td>€397</td><td>Empty case, no drives, no AI</td></tr>
+              <tr><td>UGREEN NASync DXP2800 (2-bay)</td><td>€400</td><td>Empty case, no drives, no AI</td></tr>
+              <tr><td>QNAP TS-264 (2-bay)</td><td>€482</td><td>Empty case, no drives, no AI</td></tr>
+              <tr><td>UGREEN NASync DXP4800 (4-bay)</td><td>€550</td><td>Empty case, no drives, no AI</td></tr>
+              <tr><td>Synology DS923+ (4-bay)</td><td>€768</td><td>Empty case, no drives, no AI</td></tr>
               <tr class="highlight"><td><strong>Simbi box (target)</strong></td><td><strong>€499</strong></td><td><strong>Working appliance + OS + living memory installed + 5 months Premium</strong></td></tr>
             </tbody>
           </table>
         </div>
-        <p>Positioning: below a <a class="company-link" href="https://www.synology.com" target="_blank" rel="noopener">Synology</a> DS923+, in line with a DS224+ plus drives, and well above the immediate utility for the end user, who receives a working product on day one instead of an empty case with its own configuration learning curve.</p>
-
-        <h3>Line C: Simbi Premium (optional subscription, €100/month)</h3>
-        <p>After the promotional period, the user decides whether to subscribe to Premium. Premium includes:</p>
-        <ul>
-          <li>Access to top-tier reasoning models (Claude, GPT or other market leaders) operated by us.</li>
-          <li>Continuous updates and new features.</li>
-          <li>Human support and remote maintenance.</li>
-          <li>Additional encrypted backup.</li>
-        </ul>
-
-        <h3>Line D: Simbi Base, free (€0/month), perpetual</h3>
-        <p>The model's differentiator. Anyone who doesn't continue with Premium <strong>keeps a fully functional Simbi</strong>, powered by open-source models (<a class="company-link" href="https://www.llama.com" target="_blank" rel="noopener">Llama</a>, Mistral, Qwen) served through cheap cloud providers. The inference cost of these models is <strong>10 to 30 times lower</strong> than premium models, which makes it economically sustainable to offer this tier at zero cost to the user, financed by the box sale margin or the partner's licence fee.</p>
-        <p>This design answers two genuine objections to today's market:</p>
-        <ul>
-          <li><em>"What if the company shuts down or hikes prices?"</em> The box keeps working, the data stays the user's, and the Base tier stays free.</li>
-          <li><em>"What if I want out?"</em> No closed door: data export at any time, open-source models runnable by third parties with no operator permission required.</li>
-        </ul>
-
-        <h3>Line E: Consulting and university teaching (first year)</h3>
-        <p>During the first 12 months, supplementary income through <strong>technical consulting and university teaching</strong> in the field of applied AI and language models. This line is already in motion (active contacts and proposals), drawing on the author's professional network and prior experience as Lead AI Engineer.</p>
-
-        <h3>Market timing advantage</h3>
-        <ul>
-          <li><strong>EU AI Act</strong> in force: penalises opaque models on personal data, rewards traceability and minimisation.</li>
-          <li><strong>Growing privacy awareness</strong>, particularly in households with minors.</li>
-          <li><strong>Accelerated maturity of open-source models</strong> (Llama, Mistral, Qwen, DeepSeek v4 with huge qualitative jumps in the last months): today they enable a usable Base tier via cheap cloud; in 2-4 years they will allow 100% local execution on home hardware.</li>
-          <li><strong>Gap in NAS and mini-PC manufacturers' offerings</strong>: none have a privacy-respecting AI layer for end customers. Simbi is exactly that layer, ready to license.</li>
-          <li><strong>Political and media attention</strong> on technological dependency on US and Chinese platforms.</li>
-        </ul>
+        <p>Below a Synology DS923+, in line with a DS224+ plus drives, but the user gets a working product on day one instead of an empty case with a configuration learning curve.</p>
       </div>
     </section>
 
-    <!-- ============ §4 ============ -->
-    <section id="plan">
+    <!-- ===== Plan económico por fases ===== -->
+    <section class="block" id="plan">
       <div class="es">
-        <h2>Plan de actividad y económico</h2>
+        <h2>Plan económico por fases</h2>
 
-        <div class="phase-block">
-          <h4>Fase 1: Consolidación de la primer grupo (meses 1-6)</h4>
-          <p><strong>Objetivos:</strong> provisión completa de las 14 plazas comprometidas, <strong>contratación parcial de una persona para ventas, marketing y comunicación</strong> (el cuello de botella real, dado que el expertise del autor es técnico), generación de contenido y eventos para abrir conversaciones con fabricantes, inicio de la línea docente en universidades.</p>
-          <p><strong>Inversión estimada:</strong> ≈ 9.000 € en contratación de un perfil de ventas/marketing/comunicación (6-8 meses parcial), ≈ 2.700 € en suscripciones de IA del autor para desarrollo (Claude Max, Codex Pro) y créditos de OpenRouter, ≈ 2.500 € en marketing, contenido y consultorías presenciales en universidades, ≈ 2.000 € en alta como autónomo, gestoría y seguros, ≈ 1.000 € en modelos cloud para la flota, ≈ 500 € en pasarela y dominios. <span class="phase-total">Total: ≈ 17.700 €.</span></p>
+        <div class="phase">
+          <h3>Fase 1: Consolidación del primer grupo (meses 1-6)</h3>
+          <p><strong>Objetivos:</strong> provisión completa de las 14 plazas comprometidas, contratación parcial de un perfil de ventas/marketing/comunicación, generación de contenido y consultorías presenciales en universidades, primeros contactos con fabricantes.</p>
+          <p><strong>Inversión estimada:</strong> ≈ 9.000 € en contratación de un perfil de ventas/marketing/comunicación (6-8 meses parcial), ≈ 2.700 € en suscripciones de IA del autor para desarrollo (Claude Max + Codex Pro) y créditos OpenRouter, ≈ 2.500 € en marketing, contenido y consultorías presenciales en universidades, ≈ 2.000 € en alta como autónomo, gestoría y seguros, ≈ 1.000 € en modelos cloud para la flota, ≈ 500 € en pasarela y dominios. <span class="total">Total: ≈ 17.700 €.</span></p>
         </div>
 
-        <div class="phase-block">
-          <h4>Fase 2: Apertura comercial y posicionamiento (meses 7-12)</h4>
-          <p><strong>Objetivos:</strong> 40-60 cajas Simbi vendidas y operativas, tier Base activo con modelos abiertos en cloud económico, contenido técnico (blog, ponencias, demos) como canal de captación, primeros contactos formales con fabricantes de hardware.</p>
-          <p><strong>Ingresos proyectados:</strong> venta de cajas 50 × 499 € = 24.950 €, suscripciones Premium ≈ 2.000 €, consultoría e impartición docente 12.000-18.000 €. <span class="phase-total">Total: 38.950-44.950 €.</span></p>
-          <p><strong>Costes operativos:</strong> coste hardware vendido 15.000 €, modelos cloud 3.000 €, pasarela y dominios 1.200 €, gestoría y seguros 2.500 €. <span class="phase-total">Total: ≈ 21.700 €.</span></p>
-          <p><strong>Margen bruto estimado fase 2:</strong> <span class="phase-total">17.250-23.250 €.</span></p>
+        <div class="phase">
+          <h3>Fase 2: Apertura comercial (meses 7-12)</h3>
+          <p><strong>Objetivos:</strong> 40-60 cajas Simbi vendidas y operativas, tier Base activo con modelos abiertos en cloud económico, contenido técnico como canal de captación, primeros contactos formales con fabricantes.</p>
+          <p><strong>Ingresos proyectados:</strong> venta de cajas 50 × 499 € = 24.950 €, suscripciones Premium ≈ 2.000 €, consultoría e impartición docente 12.000-18.000 €. <span class="total">Total: 38.950-44.950 €.</span></p>
+          <p><strong>Costes operativos:</strong> coste hardware vendido 15.000 €, modelos cloud 3.000 €, pasarela y dominios 1.200 €, gestoría y seguros 2.500 €. <span class="total">Total: ≈ 21.700 €.</span></p>
+          <p><strong>Margen bruto estimado:</strong> <span class="total">17.250-23.250 €.</span></p>
         </div>
 
-        <div class="phase-block">
-          <h4>Fase 3: Escalado y partnerships (meses 13-24)</h4>
-          <p><strong>Objetivos:</strong> 150-250 cajas acumuladas en operación real, <strong>firma del primer acuerdo formal de partnership con un fabricante de hardware</strong>, tier Base totalmente operado con modelos abiertos en cloud económico, apertura progresiva del código del producto.</p>
-          <p>Conversión esperada al tier Premium tras los 5 meses promo: 25-35% de los usuarios. Con 150 cajas activas y 30% de conversión: 45 suscripciones × 100 € × 12 meses ≈ <span class="phase-total">54.000 € recurrentes anuales</span> sólo por canal directo.</p>
+        <div class="phase">
+          <h3>Fase 3: Escalado y partnerships (meses 13-24)</h3>
+          <p><strong>Objetivos:</strong> 150-250 cajas en operación real, firma del primer acuerdo formal con un fabricante de hardware, tier Base totalmente operado con modelos abiertos en cloud económico, apertura progresiva del código.</p>
+          <p>Conversión esperada al tier Premium tras los 5 meses de promo: 25-35% de los usuarios. Con 150 cajas activas y 30% de conversión: 45 suscripciones × 100 € × 12 meses ≈ <span class="total">54.000 € recurrentes anuales</span> sólo por canal directo.</p>
         </div>
-
-        <h3>Estructura operativa</h3>
-        <ul>
-          <li><strong>Equipo inicial:</strong> un único trabajador (el autor) en régimen de autónomo durante al menos los primeros 18 meses.</li>
-          <li><strong>Lugar de trabajo:</strong> Madrid.</li>
-          <li><strong>Infraestructura propia ya operativa:</strong> una caja HP de gama alta (nodo central), 5 cajas HP compactas (grupo de adopción temprana), servidor doméstico actual en rol de respaldo.</li>
-          <li><strong>Forma jurídica:</strong> alta como trabajador autónomo, con tránsito a S.L. cuando los ingresos recurrentes lo justifiquen.</li>
-        </ul>
       </div>
       <div class="en">
-        <h2>Activity plan and economic projection</h2>
+        <h2>Phased economic plan</h2>
 
-        <div class="phase-block">
-          <h4>Phase 1: First group consolidation (months 1-6)</h4>
-          <p><strong>Goals:</strong> full provisioning of the 14 committed seats, <strong>part-time hiring of a sales, marketing and communications person</strong> (the real bottleneck, as the author's expertise is technical), content and event work to open conversations with manufacturers, kick-off of the university teaching line.</p>
-          <p><strong>Estimated investment:</strong> ≈ €9,000 hiring a sales/marketing/communications profile (6-8 months part-time), ≈ €2,700 in the author's AI subscriptions for product development (Claude Max, Codex Pro) and OpenRouter credits, ≈ €2,500 in marketing, content and on-site university consultancy, ≈ €2,000 in self-employed registration, accounting and insurance, ≈ €1,000 in cloud models for the fleet, ≈ €500 in gateway and domains. <span class="phase-total">Total: ≈ €17,700.</span></p>
+        <div class="phase">
+          <h3>Phase 1: First-group consolidation (months 1-6)</h3>
+          <p><strong>Goals:</strong> full provisioning of the 14 committed seats, part-time hiring of a sales/marketing/communications profile, content generation and on-site university consultancy, first contacts with manufacturers.</p>
+          <p><strong>Estimated investment:</strong> ≈ €9,000 hiring a sales/marketing/communications profile (6-8 months part-time), ≈ €2,700 in author's AI subscriptions for product development (Claude Max + Codex Pro) and OpenRouter credits, ≈ €2,500 in marketing, content and on-site university consultancy, ≈ €2,000 in self-employed registration, accounting and insurance, ≈ €1,000 in cloud models for the fleet, ≈ €500 in gateway and domains. <span class="total">Total: ≈ €17,700.</span></p>
         </div>
 
-        <div class="phase-block">
-          <h4>Phase 2: Commercial launch and positioning (months 7-12)</h4>
-          <p><strong>Goals:</strong> 40-60 Simbi boxes sold and operational, Base tier live on open-source models via cheap cloud, technical content (blog, talks, demos) as acquisition channel, first formal contacts with hardware manufacturers.</p>
-          <p><strong>Projected revenue:</strong> box sales 50 × €499 = €24,950, Premium subscriptions ≈ €2,000, consulting and university teaching €12,000-18,000. <span class="phase-total">Total: €38,950-44,950.</span></p>
-          <p><strong>Operating costs:</strong> hardware cost €15,000, cloud models €3,000, gateway and domains €1,200, accounting and insurance €2,500. <span class="phase-total">Total: ≈ €21,700.</span></p>
-          <p><strong>Estimated phase 2 gross margin:</strong> <span class="phase-total">€17,250-23,250.</span></p>
+        <div class="phase">
+          <h3>Phase 2: Commercial launch (months 7-12)</h3>
+          <p><strong>Goals:</strong> 40-60 boxes sold and operating, Base tier live on open-source models via cheap cloud, technical content as acquisition channel, first formal contacts with manufacturers.</p>
+          <p><strong>Projected revenue:</strong> box sales 50 × €499 = €24,950, Premium subscriptions ≈ €2,000, consulting and teaching €12,000-18,000. <span class="total">Total: €38,950-44,950.</span></p>
+          <p><strong>Operating costs:</strong> hardware cost €15,000, cloud models €3,000, gateway and domains €1,200, accounting and insurance €2,500. <span class="total">Total: ≈ €21,700.</span></p>
+          <p><strong>Estimated gross margin:</strong> <span class="total">€17,250-23,250.</span></p>
         </div>
 
-        <div class="phase-block">
-          <h4>Phase 3: Scaling and partnerships (months 13-24)</h4>
-          <p><strong>Goals:</strong> 150-250 cumulative boxes in real operation, <strong>first formal partnership agreement signed with a hardware manufacturer</strong>, Base tier fully operated on open-source models in cheap cloud, progressive opening of the product code.</p>
-          <p>Expected Premium conversion after the 5-month promo: 25-35% of users. With 150 active boxes and 30% conversion: 45 subscriptions × €100 × 12 months ≈ <span class="phase-total">€54,000 annual recurring revenue</span> from direct channel alone.</p>
+        <div class="phase">
+          <h3>Phase 3: Scaling and partnerships (months 13-24)</h3>
+          <p><strong>Goals:</strong> 150-250 boxes in operation, first formal partnership signed with a hardware manufacturer, Base tier fully on open-source via cheap cloud, progressive code opening.</p>
+          <p>Expected Premium conversion after the 5-month promo: 25-35% of users. With 150 active boxes and 30% conversion: 45 subscriptions × €100 × 12 months ≈ <span class="total">€54,000 annual recurring revenue</span> from direct channel alone.</p>
         </div>
-
-        <h3>Operational structure</h3>
-        <ul>
-          <li><strong>Initial team:</strong> a single worker (the author) registered as self-employed for at least the first 18 months.</li>
-          <li><strong>Place of work:</strong> Madrid.</li>
-          <li><strong>Already operational own infrastructure:</strong> one high-end HP box (central node), 5 compact HP boxes (early-adopter group), current home server in fallback role.</li>
-          <li><strong>Legal form:</strong> registered as self-employed, transitioning to a limited company (S.L.) when recurring income justifies it.</li>
-        </ul>
       </div>
     </section>
 
-    <!-- ============ §5 ============ -->
-    <section id="impacto">
-      <div class="es">
-        <h2>Impacto y política de beneficios</h2>
-
-        <h3>Política de beneficios</h3>
-        <p>Cualquier beneficio neto del proyecto, una vez cubiertos costes operativos y un salario digno para el autor (y eventualmente para quienes se incorporen), se reinvierte en:</p>
-        <ol>
-          <li>Bajar el precio o ampliar el tier gratuito para usuarios.</li>
-          <li>Acelerar la transición a ejecución 100% local de modelos.</li>
-          <li>Liberar más código, herramientas y documentación bajo licencias permisivas.</li>
-          <li>Pagar a más personas trabajando en el proyecto con condiciones justas.</li>
-        </ol>
-        <p>No hay accionistas externos. No hay cláusulas de salida. No hay opción de venta a un gigante tecnológico. Si el proyecto crece lo suficiente para que ese compromiso pase de promesa personal a riesgo real, se blindará como <strong>fundación sin ánimo de lucro</strong> o vehículo equivalente.</p>
-
-        <h3>Impacto social directo</h3>
-        <p>Simbi se sitúa como alternativa concreta a los asistentes de IA basados en publicidad y agregación de datos. Para familias preocupadas por la exposición de menores y mayores a productos diseñados para maximizar tiempo de pantalla y captura de información personal, ofrece una opción auditable y portable.</p>
-
-        <h3>Impacto ambiental</h3>
-        <ul>
-          <li>Hardware doméstico de bajo consumo (≈ 15 W en uso para la unidad familiar) frente al uso intensivo de centros de datos que implica una IA cloud por familia.</li>
-          <li><strong>Reutilización de hardware empresarial reacondicionado</strong> (cajas HP retiradas de oficinas con vida útil ampliable a 5+ años): economía circular real.</li>
-          <li>Reducción progresiva de llamadas a modelos cloud según avanza la hoja de ruta, hasta llevar el coste energético operativo a niveles domésticos (alrededor de 130 kWh/año por familia con uso medio).</li>
-        </ul>
-      </div>
-      <div class="en">
-        <h2>Impact and profit policy</h2>
-
-        <h3>Profit policy</h3>
-        <p>Any net profit the project generates, after operational costs and a fair salary for the author (and eventually for those who join), is reinvested into:</p>
-        <ol>
-          <li>Lowering the price or expanding the free tier for users.</li>
-          <li>Accelerating the transition to 100% local model execution.</li>
-          <li>Releasing more code, tools and documentation under permissive licenses.</li>
-          <li>Paying more people working on the project under fair conditions.</li>
-        </ol>
-        <p>No outside shareholders. No exit clauses. No option of sale to a tech giant. If the project reaches a scale where that commitment turns from personal promise into real risk, it will be locked in as a <strong>non-profit foundation</strong> or equivalent vehicle.</p>
-
-        <h3>Direct social impact</h3>
-        <p>Simbi positions itself as a concrete alternative to ad-driven, data-aggregating AI assistants. For families concerned about the exposure of children and elderly relatives to products designed to maximise screen time and capture personal information, it offers an auditable, portable option.</p>
-
-        <h3>Environmental impact</h3>
-        <ul>
-          <li>Low-power home hardware (≈ 15 W in use for the family unit) versus the heavy data-centre footprint that one cloud-AI-per-family implies.</li>
-          <li><strong>Reuse of refurbished enterprise hardware</strong> (HP boxes retired from offices with 5+ year usable life-span): real circular economy.</li>
-          <li>Progressive reduction of cloud model calls as the roadmap progresses, bringing operational energy cost to household levels (around 130 kWh/year per family with average use).</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ §6 ============ -->
-    <section id="riesgos">
+    <!-- ===== Riesgos ===== -->
+    <section class="block" id="riesgos">
       <div class="es">
         <h2>Riesgos y mitigación</h2>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Riesgo</th><th>Mitigación</th></tr></thead>
             <tbody>
-              <tr><td>Dependencia actual de un proveedor cloud (Anthropic)</td><td>Arquitectura modular: el proveedor de razonamiento es sustituible. La hoja de ruta contempla migración progresiva a modelos abiertos.</td></tr>
-              <tr><td>Coste variable del modelo cloud durante el período promo de 5 meses</td><td>El margen unitario de la venta de la caja absorbe holgadamente el coste cloud; la suscripción Premium tras la promo cubre el coste con margen suficiente.</td></tr>
-              <tr><td>Captación lenta de usuarios</td><td>Primer grupo ya comprometida. Ingresos de consultoría e impartición docente como puente. Hardware ya adquirido reduce la inversión inicial necesaria.</td></tr>
-              <tr><td>Sobrecarga de soporte con un solo operador</td><td>Documentación cuidada, alta semi-automatizada, soporte por niveles. Contratación cuando los ingresos recurrentes lo permitan.</td></tr>
-              <tr><td>Saturación competitiva por parte de grandes proveedores</td><td>El nicho elegido (instancia por familia, datos propios, salida garantizada) es estructuralmente incompatible con el modelo de los grandes. Los fabricantes de hardware doméstico son socios naturales.</td></tr>
-              <tr><td>Quiebra o desaparición del operador Simbi</td><td>Por diseño: la caja del usuario sigue funcionando sin el operador. Datos en hardware del usuario, modelos abiertos ejecutables por cualquier proveedor cloud configurable, pasarela reemplazable.</td></tr>
-              <tr><td>Maduración de modelos abiertos más lenta de lo previsto</td><td>Los modelos abiertos en cloud económico ya tienen calidad suficiente para el tier Base hoy; la ejecución totalmente local no es imprescindible para el modelo de negocio.</td></tr>
-              <tr><td>Cambio en la política de precios de proveedores cloud</td><td>El producto está diseñado como agnóstico al proveedor: cambiar de uno a otro es cuestión de configuración. Esto disciplina el precio del lado del proveedor.</td></tr>
+              <tr><td>Dependencia actual de un proveedor cloud (Anthropic)</td><td>Arquitectura modular: el proveedor de razonamiento es sustituible. Migración progresiva a modelos abiertos.</td></tr>
+              <tr><td>Coste cloud durante el período promo de 5 meses</td><td>Margen unitario de la venta absorbe el coste cloud; Premium tras la promo cubre el coste con margen.</td></tr>
+              <tr><td>Captación lenta de usuarios</td><td>Primer grupo ya comprometido (14 familias). Ingresos de consultoría como puente. Infraestructura ya operativa desde hace 8 años reduce inversión inicial necesaria.</td></tr>
+              <tr><td>Sobrecarga de soporte con un solo operador</td><td>Documentación cuidada, alta semi-automatizada, soporte por niveles. Contratación cuando los ingresos recurrentes lo permitan (ya prevista en fase 1).</td></tr>
+              <tr><td>Saturación competitiva por grandes proveedores</td><td>El nicho elegido (instancia por familia, datos propios, salida garantizada) es estructuralmente incompatible con su modelo. Los fabricantes de hardware doméstico son socios naturales.</td></tr>
+              <tr><td>Quiebra o desaparición del operador Simbi</td><td>Por diseño: la caja del usuario sigue funcionando. Datos en hardware del usuario, modelos abiertos ejecutables por cualquier proveedor cloud, pasarela reemplazable.</td></tr>
+              <tr><td>Maduración de modelos abiertos más lenta de lo previsto</td><td>Los modelos abiertos en cloud económico ya tienen calidad para el tier Base hoy; ejecución totalmente local no es imprescindible para el modelo de negocio.</td></tr>
+              <tr><td>Cambio de precios de proveedores cloud</td><td>El producto es agnóstico al proveedor: cambiar es cuestión de configuración, lo que disciplina precios del lado del proveedor.</td></tr>
             </tbody>
           </table>
         </div>
@@ -854,72 +1084,63 @@
           <table>
             <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
             <tbody>
-              <tr><td>Current dependency on a single cloud provider (Anthropic)</td><td>Modular architecture: the reasoning provider is replaceable. The roadmap covers progressive migration to open-source models.</td></tr>
-              <tr><td>Variable cost of the cloud model during the 5-month promo period</td><td>The unit margin of the box sale comfortably absorbs cloud cost; Premium subscription afterwards covers cloud cost with sufficient margin.</td></tr>
-              <tr><td>Slow user acquisition</td><td>First group already committed. Bridge income from applied-AI consulting and teaching. Hardware already acquired reduces required initial investment.</td></tr>
-              <tr><td>Support overload with a single operator</td><td>Polished documentation, semi-automated onboarding, tiered support. Hiring when recurring revenue allows it.</td></tr>
-              <tr><td>Competitive saturation by major providers</td><td>The chosen niche (one instance per family, owned data, guaranteed exit) is structurally incompatible with the giants' business model. Home-hardware manufacturers are natural partners.</td></tr>
-              <tr><td>Bankruptcy or disappearance of the Simbi operator</td><td>By design: the user's box keeps working without the operator. Data on user hardware, open-source models runnable by any configurable cloud provider, replaceable gateway.</td></tr>
-              <tr><td>Open-source model maturity slower than expected</td><td>Open-source models in cheap cloud already have sufficient quality for the Base tier today; full local execution is not essential to the business model.</td></tr>
-              <tr><td>Pricing changes at cloud providers</td><td>The product is designed as provider-agnostic: switching is a configuration change. This disciplines pricing on the provider side.</td></tr>
+              <tr><td>Current dependency on a cloud provider (Anthropic)</td><td>Modular architecture: the reasoning provider is replaceable. Progressive migration to open-source models.</td></tr>
+              <tr><td>Cloud cost during the 5-month promo</td><td>Unit margin of the sale absorbs cloud cost; Premium after the promo covers cost with margin.</td></tr>
+              <tr><td>Slow user acquisition</td><td>First group already committed (14 households). Consulting income as bridge. Infrastructure already operational for 8 years reduces required initial investment.</td></tr>
+              <tr><td>Support overload with a single operator</td><td>Polished documentation, semi-automated onboarding, tiered support. Hiring when recurring revenue allows it (already planned in phase 1).</td></tr>
+              <tr><td>Competitive saturation by major providers</td><td>The chosen niche (one instance per family, owned data, guaranteed exit) is structurally incompatible with their model. Home-hardware makers are natural partners.</td></tr>
+              <tr><td>Bankruptcy or disappearance of Simbi operator</td><td>By design: the user's box keeps working. Data on user hardware, open-source models runnable by any cloud provider, replaceable gateway.</td></tr>
+              <tr><td>Open-source model maturity slower than expected</td><td>Open-source models in cheap cloud already good enough for Base tier today; full local execution not essential to the business model.</td></tr>
+              <tr><td>Cloud provider pricing changes</td><td>Product is provider-agnostic: switching is a configuration change, which disciplines pricing on the provider side.</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ============ §7 ============ -->
-    <section id="conclusion">
+    <!-- ===== Drill-down al ensayo ===== -->
+    <section class="block" id="mas">
       <div class="es">
-        <h2>Conclusión</h2>
-        <p>Simbi no es un producto especulativo: existe, funciona y tiene usuarios reales utilizándolo a diario. El plan dedica los primeros 24 meses a tres cosas, en este orden: entregar las cajas a los 14 usuarios comprometidos, validar el modelo de venta directa, y abrir las primeras conversaciones de partnership con fabricantes de hardware, todo ello mientras la transición a ejecución 100% local de modelos abiertos avanza al ritmo que el hardware doméstico permita.</p>
-        <p>El proyecto es honesto sobre lo que hoy es (una memoria viva cuyos datos viven en hardware del usuario, pero cuyo razonamiento del lenguaje se delega en modelos cloud por una limitación real de hardware doméstico) y sobre lo que pretende ser (una memoria viva plenamente soberana cuando el hardware permita ejecución local de modelos competitivos). Esa transición no exige cambios de arquitectura por parte del usuario.</p>
-        <p>Lo que hace el modelo defendible frente a cualquier competidor:</p>
-        <ul>
-          <li><strong>Datos en casa del usuario</strong>, no en servidores del operador.</li>
-          <li><strong>Sin infraestructura central que pueda secuestrar al usuario</strong>, la única pieza cloud (la pasarela) no almacena ni descifra nada.</li>
-          <li><strong>Tier gratuito perpetuo</strong> apoyado en modelos abiertos, ejecutables por terceros sin permiso del operador.</li>
-          <li><strong>Salida garantizada por arquitectura</strong>: si el operador desaparece, la caja del usuario sigue funcionando.</li>
-        </ul>
-        <p>Esa combinación es estructuralmente inalcanzable para los proveedores que dependen de centralizar datos, y exactamente atractiva para fabricantes de hardware doméstico que buscan ofrecer "el ángulo IA" a sus clientes finales sin convertirse ellos mismos en proveedores de IA.</p>
+        <h2>¿Quieres el porqué?</h2>
+        <div class="drill">
+          <a href="about.html">
+            <span class="arr">Ensayo &rarr;</span>
+            <h3>Una memoria viva para tu vida digital</h3>
+            <p>La historia, la filosofía, por qué creo que las cosas íntimas no deberían vivir en servidores ajenos. Lectura larga, primera persona.</p>
+          </a>
+          <a href="index.html">
+            <span class="arr">Inicio &rarr;</span>
+            <h3>Vuelve al principio</h3>
+            <p>La portada con la demo y la idea en 30 segundos.</p>
+          </a>
+        </div>
       </div>
       <div class="en">
-        <h2>Conclusion</h2>
-        <p>Simbi is not a speculative product: it exists, it works, and it has real users using it daily. The plan dedicates the first 24 months to three things, in this order: deliver boxes to the 14 committed users, validate the direct-sales model, and open the first partnership conversations with hardware manufacturers, all while the transition to 100% local execution of open-source models advances at the pace home hardware allows.</p>
-        <p>The project is honest about what it is today (a living memory whose data lives on the user's hardware, but whose language reasoning is delegated to cloud models because of a real home-hardware limitation) and what it intends to be (a fully sovereign living memory once hardware allows local execution of competitive models). That transition does not require any architectural change on the user's side.</p>
-        <p>What makes the model defensible against any competitor:</p>
-        <ul>
-          <li><strong>Data in the user's home</strong>, not on the operator's servers.</li>
-          <li><strong>No central infrastructure that can hold the user hostage</strong>, the only cloud component (the gateway) neither stores nor decrypts anything.</li>
-          <li><strong>Perpetual free tier</strong> based on open-source models, runnable by third parties without operator permission.</li>
-          <li><strong>Architecturally guaranteed exit</strong>: if the operator disappears, the user's box keeps working.</li>
-        </ul>
-        <p>That combination is structurally unreachable for providers that depend on centralising data, and exactly attractive to home-hardware manufacturers seeking to offer "the AI angle" to their customers without becoming AI providers themselves.</p>
+        <h2>Want the why?</h2>
+        <div class="drill">
+          <a href="about.html">
+            <span class="arr">Essay &rarr;</span>
+            <h3>A living memory for your digital life</h3>
+            <p>The story, the philosophy, why I think intimate things shouldn't live on someone else's servers. Long read, first person.</p>
+          </a>
+          <a href="index.html">
+            <span class="arr">Home &rarr;</span>
+            <h3>Back to the start</h3>
+            <p>The landing with the demo and the idea in 30 seconds.</p>
+          </a>
+        </div>
       </div>
     </section>
 
-    <hr>
-
-    <footer class="essay-footer">
-      <p class="es">
-        Documento público y vivo. &middot;
-        <a href="mailto:monkeyandres@protonmail.com">Escribir al autor</a> &middot;
-        <a href="index.html">Inicio</a>
-      </p>
-      <p class="en">
-        Public, living document. &middot;
-        <a href="mailto:monkeyandres@protonmail.com">Write the author</a> &middot;
-        <a href="index.html">Home</a>
-      </p>
-      <p class="es">
-        Publicado bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">licencia AGPL-3.0</a>. Código del portal: <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">github.com/MonkeyAndres/simbi-portal</a>.
-      </p>
-      <p class="en">
-        Published under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL-3.0 license</a>. Portal source: <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">github.com/MonkeyAndres/simbi-portal</a>.
-      </p>
+    <!-- ===== Footer ===== -->
+    <footer class="foot">
+      <p class="es">Por <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · ¿Dudas? <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a></p>
+      <p class="en">By <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · Questions? <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a></p>
+      <p class="es">Documento público bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">licencia AGPL-3.0</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Código fuente</a> · <a href="index.html">Inicio</a> · <a href="faq.html">FAQ</a></p>
+      <p class="en">Public document under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL-3.0 license</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Source code</a> · <a href="index.html">Home</a> · <a href="faq.html">FAQ</a></p>
     </footer>
 
-  </article>
+  </main>
 
   <script>
     (function() {
@@ -940,41 +1161,13 @@
       }
 
       langBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          setLang(btn.getAttribute('data-lang'));
-        });
+        btn.addEventListener('click', function() { setLang(btn.getAttribute('data-lang')); });
       });
 
       var saved = localStorage.getItem('simbi-lang');
       var browser = navigator.language.slice(0, 2).toLowerCase();
       var initLang = saved || (browser === 'es' ? 'es' : 'en');
       setLang(initLang);
-
-      var tocMobile = document.getElementById('toc-mobile');
-      var tocToggle = document.getElementById('toc-mobile-toggle');
-      if (tocToggle) {
-        tocToggle.addEventListener('click', function() { tocMobile.classList.toggle('open'); });
-        tocMobile.querySelectorAll('a').forEach(function(a) {
-          a.addEventListener('click', function() { tocMobile.classList.remove('open'); });
-        });
-      }
-
-      var sections = document.querySelectorAll('.essay section[id]');
-      var tocLinks = document.querySelectorAll('.toc-list a');
-
-      function updateActiveToc() {
-        var scrollY = window.scrollY + 120;
-        var current = '';
-        sections.forEach(function(section) {
-          if (section.offsetTop <= scrollY) current = section.id;
-        });
-        tocLinks.forEach(function(link) {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-        });
-      }
-
-      window.addEventListener('scroll', updateActiveToc, { passive: true });
-      updateActiveToc();
     })();
   </script>
 
