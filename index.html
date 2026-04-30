@@ -15,18 +15,30 @@
 </head>
 <body class="bg-stone-100 dark:bg-neutral-900 text-stone-900 dark:text-neutral-50 font-sans antialiased">
 
-  <!-- Language toggle -->
-  <nav class="fixed top-4 right-4 z-50 flex items-center gap-1 bg-stone-200/80 dark:bg-neutral-800/80 border border-stone-300 dark:border-neutral-700 rounded-lg px-2 py-1">
-    <button id="lang-en" class="lang-btn text-xs font-medium px-2 py-0.5 rounded text-stone-900 dark:text-neutral-50 bg-stone-300 dark:bg-neutral-700" aria-pressed="true">EN</button>
-    <span class="text-stone-400 dark:text-neutral-600 text-xs">/</span>
-    <button id="lang-es" class="lang-btn text-xs font-medium px-2 py-0.5 rounded text-stone-400 dark:text-neutral-500" aria-pressed="false">ES</button>
+  <!-- Top bar with site nav -->
+  <nav class="topbar" aria-label="Site">
+    <a href="index.html" class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Simbi</span>
+    </a>
+    <ul class="page-nav">
+      <li><a href="index.html" data-page="index"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+      <li><a href="about.html" data-page="about"><span class="es">Historia</span><span class="en">Story</span></a></li>
+      <li><a href="business.html" data-page="business"><span class="es">Plan</span><span class="en">Plan</span></a></li>
+      <li><a href="faq.html" data-page="faq"><span class="es">Preguntas?</span><span class="en">Questions?</span></a></li>
+    </ul>
+    <div class="lang-toggle" aria-label="Language selector">
+      <button id="lang-en" class="lang-btn" aria-pressed="true">EN</button>
+      <span class="lang-sep">/</span>
+      <button id="lang-es" class="lang-btn" aria-pressed="false">ES</button>
+    </div>
   </nav>
 
-  <main class="min-h-dvh px-6 py-12 max-w-xl mx-auto">
+  <main class="min-h-dvh px-6 py-8 max-w-xl mx-auto">
 
     <!-- ===== SECTION 1: THE STOPPER ===== -->
     <section class="pt-10 pb-14">
-      <div class="brand-dot" aria-hidden="true"></div>
+      <div class="hero-brand-dot" aria-hidden="true"></div>
 
       <h1 class="ogilvy-headline" data-i18n="headline">
         You have 12,000 files on your laptop.<br>

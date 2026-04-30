@@ -37,8 +37,8 @@ const translations: Record<Lang, Record<string, string>> = {
     's5.biz.title': 'How it sustains itself, what I promise',
     's5.biz.desc': 'A public business plan. What it costs, where the money goes, the four promises, where we are right now. Living document.',
     's5.biz.cta': 'Read the plan →',
-    's5.faq.lead': 'No-tech questions?',
-    's5.faq.link': 'Plain-language FAQ',
+    's5.faq.lead': 'Got questions?',
+    's5.faq.link': 'Plain-language answers',
     's5.faq.sep': ' · ',
     's5.email.lead': 'or email me directly:',
 
@@ -81,8 +81,8 @@ const translations: Record<Lang, Record<string, string>> = {
     's5.biz.title': 'Cómo se sostiene, qué prometo',
     's5.biz.desc': 'Plan de empresa público. Qué cuesta, adónde va el dinero, las cuatro promesas, dónde estamos ahora mismo. Documento vivo.',
     's5.biz.cta': 'Leer el plan →',
-    's5.faq.lead': '¿Dudas básicas, sin tecnicismos?',
-    's5.faq.link': 'FAQ en cristiano',
+    's5.faq.lead': '¿Tienes dudas?',
+    's5.faq.link': 'Preguntas en cristiano',
     's5.faq.sep': ' · ',
     's5.email.lead': 'o escríbeme directamente:',
 
@@ -112,8 +112,16 @@ function setLang(lang: Lang) {
 
   const enBtn = document.getElementById('lang-en')!
   const esBtn = document.getElementById('lang-es')!
-  enBtn.className = `lang-btn text-xs font-medium px-2 py-0.5 rounded ${lang === 'en' ? 'text-stone-900 dark:text-neutral-50 bg-stone-300 dark:bg-neutral-700' : 'text-stone-400 dark:text-neutral-500'}`
-  esBtn.className = `lang-btn text-xs font-medium px-2 py-0.5 rounded ${lang === 'es' ? 'text-stone-900 dark:text-neutral-50 bg-stone-300 dark:bg-neutral-700' : 'text-stone-400 dark:text-neutral-500'}`
+  enBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false')
+  esBtn.setAttribute('aria-pressed', lang === 'es' ? 'true' : 'false')
+
+  // Toggle visibility of inline language slots in the topbar nav.
+  document.querySelectorAll<HTMLElement>('.page-nav .es').forEach(el => {
+    el.style.display = lang === 'es' ? '' : 'none'
+  })
+  document.querySelectorAll<HTMLElement>('.page-nav .en').forEach(el => {
+    el.style.display = lang === 'en' ? '' : 'none'
+  })
 }
 
 const saved = localStorage.getItem('simbi-lang') as Lang | null
@@ -123,5 +131,16 @@ setLang(currentLang)
 
 document.getElementById('lang-en')!.addEventListener('click', () => setLang('en'))
 document.getElementById('lang-es')!.addEventListener('click', () => setLang('es'))
+
+// Mark active page in top nav
+;(function markActive() {
+  let path = (location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '')
+  if (!path) path = 'index.html'
+  let page = path.replace('.html', '')
+  if (page === '' || page === '/') page = 'index'
+  document.querySelectorAll<HTMLElement>('.page-nav a[data-page]').forEach(a => {
+    if (a.getAttribute('data-page') === page) a.classList.add('active')
+  })
+})()
 
 ;(window as unknown as { simbiLang: Lang }).simbiLang = currentLang

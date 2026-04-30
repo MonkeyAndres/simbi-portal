@@ -10,6 +10,7 @@
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <link rel="stylesheet" href="./style.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -50,38 +51,7 @@
       text-rendering: optimizeLegibility;
     }
 
-    .topbar {
-      position: sticky; top: 0; z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.7rem 1.5rem;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .back-link {
-      color: var(--text-dim); text-decoration: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-    }
-    .back-link:hover { color: var(--accent-strong); }
-    .lang-toggle {
-      display: flex; align-items: center; gap: 0.25rem;
-      border: 1px solid var(--border-strong);
-      border-radius: 6px;
-      padding: 0.2rem 0.45rem;
-    }
-    .lang-btn {
-      background: none; border: none; color: var(--text-faint);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
-      cursor: pointer; padding: 0.1rem 0.3rem; border-radius: 3px;
-    }
-    .lang-btn.active { color: var(--accent-strong); }
-    .lang-btn:hover:not(.active) { color: var(--text); }
-    .lang-sep { color: var(--border-strong); font-size: 0.7rem; user-select: none; }
+    /* Topbar styles centralised in style.css */
 
     .wrap {
       max-width: 680px;
@@ -112,32 +82,64 @@
       max-width: 56ch;
     }
 
-    /* FAQ items */
+    /* FAQ items: collapsible <details> */
     .qa {
       border-top: 1px solid var(--border);
-      padding: 1.25rem 0 1.5rem;
     }
     .qa:last-of-type { border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
-    .qa h2 {
+
+    .qa > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.25rem 2.25rem 1.25rem 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      letter-spacing: -0.005em;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
       color: var(--text);
-      margin-bottom: 0.6rem;
-      line-height: 1.35;
+      position: relative;
+      transition: color 0.15s;
+      user-select: none;
     }
-    .qa p {
+    .qa > summary:hover { color: var(--accent-strong); }
+    .qa > summary::-webkit-details-marker { display: none; }
+    .qa > summary::marker { content: ""; }
+    .qa > summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.5rem; height: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-strong);
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .qa[open] > summary::after {
+      content: "−";
+    }
+
+    .qa-body {
+      padding: 0 0 1.5rem;
+    }
+    .qa-body p {
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text);
-      margin-bottom: 0.7rem;
+      margin-bottom: 1rem;
     }
-    .qa p:last-child { margin-bottom: 0; }
-    .qa p strong { color: var(--text); }
-    .qa em {
+    .qa-body p:last-child { margin-bottom: 0; }
+    .qa-body p strong { color: var(--text); }
+    .qa-body em {
       color: var(--text-dim);
       font-style: italic;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .qa > summary::after { transition: none; }
     }
 
     /* group dividers */
@@ -197,8 +199,17 @@
 </head>
 <body>
 
-  <nav class="topbar">
-    <a href="index.html" class="back-link">&larr; Simbi</a>
+  <nav class="topbar" aria-label="Site">
+    <a href="index.html" class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Simbi</span>
+    </a>
+    <ul class="page-nav">
+      <li><a href="index.html" data-page="index"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+      <li><a href="about.html" data-page="about"><span class="es">Historia</span><span class="en">Story</span></a></li>
+      <li><a href="business.html" data-page="business"><span class="es">Plan</span><span class="en">Plan</span></a></li>
+      <li><a href="faq.html" data-page="faq"><span class="es">Preguntas?</span><span class="en">Questions?</span></a></li>
+    </ul>
     <div class="lang-toggle" aria-label="Language selector">
       <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       <span class="lang-sep">/</span>
@@ -226,217 +237,277 @@
     <div class="es"><h3 class="group">Lo básico</h3></div>
     <div class="en"><h3 class="group">The basics</h3></div>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Qué es Simbi en una frase?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Qué es Simbi en una frase?</span>
+        <span class="en">What is Simbi, in one sentence?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Es un programa que se acuerda por ti de las cosas que pones en una carpeta de tu ordenador. Le hablas y te las encuentra.</p>
         <p>Sueltas un PDF, una foto, una nota, un correo. No tienes que ponerle nombre, ni guardarlo en ningún sitio especial. Cuando luego le preguntas <em>"¿qué decía aquel documento que me mandó Marta?"</em>, te lo encuentra y te lo abre.</p>
       </div>
-      <div class="en">
-        <h2>What is Simbi, in one sentence?</h2>
+        <div class="en">
         <p>A program that remembers, on your behalf, the things you drop into a folder on your computer. You talk to it, it finds them.</p>
         <p>You drop a PDF, a photo, a note, an email. No need to name it or save it anywhere special. Later you ask <em>"what did that document Marta sent me say?"</em>, and it finds it and opens it.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Qué es eso de "un PC pequeño Simbi"?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Qué es eso de "un PC pequeño Simbi"?</span>
+        <span class="en">What's that "small Simbi PC"?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Es un ordenador pequeñito, parecido a un router de internet, que se enchufa una vez en casa. Hace su trabajo en silencio. <strong>Tú no lo tocas más</strong>: hablas con él desde tu móvil o tu portátil, como cuando usas WhatsApp.</p>
         <p>Está pensado para que vaya en una estantería del salón o un mueble. Consume poca luz (parecido a una bombilla LED) y no hace ruido.</p>
       </div>
-      <div class="en">
-        <h2>What's that "small Simbi PC"?</h2>
+        <div class="en">
         <p>A small computer, about the size of an internet router, that you plug in at home once. It works in silence. <strong>You don't touch it again</strong>: you talk to it from your phone or laptop, just like using WhatsApp.</p>
         <p>It's designed to sit on a shelf or in a piece of furniture. It uses little electricity (about the same as an LED bulb) and makes no noise.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Necesito saber de ordenadores?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Necesito saber de ordenadores?</span>
+        <span class="en">Do I need to know about computers?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>No. La idea es que <strong>si tienes un móvil, ya sabes lo necesario</strong>. Abres una aplicación, escribes lo que quieres, y Simbi te contesta. Como cuando le mandas un mensaje a alguien.</p>
         <p>El PC pequeño lo configuro yo (o un técnico cercano) la primera vez. Después funciona solo.</p>
       </div>
-      <div class="en">
-        <h2>Do I need to know about computers?</h2>
+        <div class="en">
         <p>No. The idea is that <strong>if you have a phone, you already know enough</strong>. You open an app, type what you want, Simbi answers. Like sending someone a message.</p>
         <p>The small PC is set up by me (or a nearby technician) the first time. After that it just works.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ============ Privacidad y datos ============ -->
     <div class="es"><h3 class="group">Privacidad y tus datos</h3></div>
     <div class="en"><h3 class="group">Privacy and your data</h3></div>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Mis cosas están seguras? ¿Quién las ve?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Mis cosas están seguras? ¿Quién las ve?</span>
+        <span class="en">Are my things safe? Who can see them?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Tus archivos, tus fotos, tus notas, tus conversaciones con Simbi <strong>viven en el PC pequeño que está en tu casa</strong>. No están en mis servidores. No están en una nube de una empresa. Están en tu sala.</p>
         <p>Yo no las puedo ver. Mi familia no las puede ver. Nadie de fuera las puede ver. Como un cuaderno tuyo en tu cajón.</p>
       </div>
-      <div class="en">
-        <h2>Are my things safe? Who can see them?</h2>
+        <div class="en">
         <p>Your files, photos, notes, your conversations with Simbi <strong>live on the small PC in your home</strong>. Not on my servers. Not on some company's cloud. In your living room.</p>
         <p>I can't see them. My family can't see them. No outsider can see them. Like a notebook of yours in your drawer.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Y si te quedas con mis cosas?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Y si te quedas con mis cosas?</span>
+        <span class="en">What if you keep my stuff?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>No puedo. No las tengo nunca. Yo no toco tu PC pequeño una vez está en tu casa.</p>
         <p>Lo único que pasa por algo mío es un canalillo cifrado para que tu móvil hable con tu PC cuando estás fuera de casa, como una tubería tapada: ve que pasa algo, no ve qué pasa. Y ese canalillo es reemplazable, otra persona podría montar uno igual.</p>
       </div>
-      <div class="en">
-        <h2>What if you keep my stuff?</h2>
+        <div class="en">
         <p>I can't. I never have it. I don't touch your small PC once it's at your home.</p>
         <p>The only thing of mine in the loop is an encrypted little pipe so your phone can talk to your PC when you're away from home — like a sealed pipe: it sees that something is going through, not what. And that little pipe is replaceable: someone else could set up an identical one.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Y si me arrepiento? ¿Puedo borrarlo todo?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Y si me arrepiento? ¿Puedo borrarlo todo?</span>
+        <span class="en">What if I change my mind? Can I delete everything?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Sí, en cualquier momento. La carpeta es tuya. Borras la carpeta y se acabó. Apagas el PC y se acabó. No hay nada en mi lado que tengas que pedirme que borre.</p>
       </div>
-      <div class="en">
-        <h2>What if I change my mind? Can I delete everything?</h2>
+        <div class="en">
         <p>Yes, anytime. The folder is yours. You delete the folder, done. You unplug the PC, done. There's nothing on my side you need to ask me to remove.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Lee mis emails sin yo querer?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Lee mis emails sin yo querer?</span>
+        <span class="en">Does it read my emails without me wanting it to?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>No. Lo único que Simbi sabe es lo que <strong>tú decides ponerle delante</strong>. Si le sueltas un correo en su carpeta, lo lee. Si no, no.</p>
         <p>No mira tu correo automáticamente, no entra en tus chats, no espía nada.</p>
       </div>
-      <div class="en">
-        <h2>Does it read my emails without me wanting it to?</h2>
+        <div class="en">
         <p>No. The only thing Simbi knows is what <strong>you choose to put in front of it</strong>. If you drop an email in its folder, it reads it. If you don't, it doesn't.</p>
         <p>It doesn't peek at your inbox automatically, it doesn't go into your chats, it doesn't spy on anything.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ============ Si pasa algo ============ -->
     <div class="es"><h3 class="group">¿Y si pasa algo?</h3></div>
     <div class="en"><h3 class="group">What if something happens?</h3></div>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Qué pasa si Andrés desaparece o esto se cierra?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Qué pasa si Andrés desaparece o esto se cierra?</span>
+        <span class="en">What if Andrés disappears or this shuts down?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Tu PC sigue funcionando. Como cuando se cierra la marca del coche que tienes: el coche sigue siendo tuyo y sigue andando.</p>
         <p>Las "actualizaciones nuevas" dejarían de llegar, pero lo que ya hay en tu casa seguiría haciendo lo que ya sabe hacer. Y siempre podrías llamar a otra persona técnica para que te lo siga manteniendo, porque el código es público.</p>
       </div>
-      <div class="en">
-        <h2>What if Andrés disappears or this shuts down?</h2>
+        <div class="en">
         <p>Your PC keeps working. Like when the brand of your car closes down: the car is still yours and still drives.</p>
         <p>"New updates" would stop coming, but what's already in your home would keep doing what it knows how to do. And you could always call another technical person to keep maintaining it, because the code is public.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Qué pasa si se rompe el PC pequeño?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Qué pasa si se rompe el PC pequeño?</span>
+        <span class="en">What if the small PC breaks?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Te haré llegar otro o te lo arreglo, dentro de lo razonable. Y los datos importantes los puedes haber guardado también en otro disco como copia de seguridad (yo te ayudo a configurar eso si quieres).</p>
         <p>Es un PC pequeño normal, así que también lo puede arreglar cualquier técnico de tu pueblo o ciudad.</p>
       </div>
-      <div class="en">
-        <h2>What if the small PC breaks?</h2>
+        <div class="en">
         <p>I send you another or I fix it, within reason. And important data can also be backed up on another disk (I help you set that up if you want).</p>
         <p>It's a regular small PC, so any technician in your town or city can also fix it.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Funciona si se va la luz o el internet?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Funciona si se va la luz o el internet?</span>
+        <span class="en">What if the power or internet goes out?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Si se va la luz, el PC se apaga, como cualquier electrodoméstico. Cuando vuelve, vuelve solo.</p>
         <p>Si se va el internet, lo que ya tiene Simbi recordado <strong>sigue siendo tuyo y consultable</strong>. Algunas cosas avanzadas (las que necesitan "pensar mucho") sí dependen de internet por ahora; estamos trabajando para que cada vez dependan menos.</p>
       </div>
-      <div class="en">
-        <h2>What if the power or internet goes out?</h2>
+        <div class="en">
         <p>If the power goes out, the PC turns off, like any appliance. When it comes back, it comes back on its own.</p>
         <p>If the internet goes out, what Simbi has already remembered <strong>is still yours and still searchable</strong>. Some advanced things (the ones that need "heavy thinking") do depend on the internet for now; we're working to make them depend less and less.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ============ Dinero ============ -->
     <div class="es"><h3 class="group">Dinero</h3></div>
     <div class="en"><h3 class="group">Money</h3></div>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Cuánto cuesta de verdad?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Cuánto cuesta de verdad?</span>
+        <span class="en">How much does it really cost?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>El PC pequeño se paga una vez (alrededor de 499 €) y trae 5 meses incluidos del servicio bueno. Después de esos 5 meses, tú decides:</p>
         <p>— Sigues sin pagar nada, con modelos de inteligencia artificial gratuitos. Tu PC sigue siendo útil para casi todo.</p>
         <p>— O pagas una cuota mensual (100 € al mes) si quieres usar los modelos más potentes, soporte humano y mantenimiento remoto.</p>
         <p>Y se acabó. No hay sorpresas, no hay cobros automáticos sin avisar.</p>
       </div>
-      <div class="en">
-        <h2>How much does it really cost?</h2>
+        <div class="en">
         <p>The small PC is paid once (around €499) and comes with 5 months of the good service included. After those 5 months, you decide:</p>
         <p>— You keep paying nothing, with free AI models. Your PC keeps being useful for almost everything.</p>
         <p>— Or you pay a monthly fee (€100/month) if you want the most powerful models, human support, and remote maintenance.</p>
         <p>That's it. No surprises, no auto-charges without warning.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Por qué si es tuyo te tengo que pagar a ti?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Por qué si es tuyo te tengo que pagar a ti?</span>
+        <span class="en">Why do I have to pay you if it's mine?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>El PC pequeño y el programa que va dentro: por ese trabajo cobro una vez al venderlo. Como cuando compras una lavadora.</p>
         <p>La cuota mensual del servicio bueno es <strong>opcional</strong> y solo si quieres acceder a "los cerebros" de inteligencia artificial más potentes (que son caros porque los corre una empresa muy grande). Si no la pagas, sigues teniendo lo gratuito, que ya es bastante.</p>
       </div>
-      <div class="en">
-        <h2>Why do I have to pay you if it's mine?</h2>
+        <div class="en">
         <p>The small PC and the program inside: I charge once for that, when I sell it. Like buying a washing machine.</p>
         <p>The monthly service fee is <strong>optional</strong> and only if you want access to the most powerful AI "brains" (which are expensive because they run on a very big company's machines). If you don't pay it, you keep the free tier, which is already plenty.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ============ Familia ============ -->
     <div class="es"><h3 class="group">Familia y convivencia</h3></div>
     <div class="en"><h3 class="group">Family and household</h3></div>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Mis hijos pueden ver lo mío y al revés?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Mis hijos pueden ver lo mío y al revés?</span>
+        <span class="en">Can my kids see my stuff and the other way around?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Cada persona tiene su <strong>cuenta separada</strong> dentro de Simbi. Lo tuyo es tuyo, lo de tu hijo o tu hija es suyo. No se mezclan.</p>
         <p>En el futuro habrá una "carpeta compartida" para cosas familiares (recetas de la abuela, fotos del verano, calendarios), pero solo lo que tú metas a propósito ahí. Lo demás, privado.</p>
       </div>
-      <div class="en">
-        <h2>Can my kids see my stuff and the other way around?</h2>
+        <div class="en">
         <p>Each person has their <strong>own separate account</strong> inside Simbi. Yours is yours, your son's or daughter's is theirs. They don't mix.</p>
         <p>In the future there will be a "shared folder" for family things (grandma's recipes, summer photos, calendars), but only what you put there on purpose. Everything else, private.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="qa">
-      <div class="es">
-        <h2>¿Cuántas Simbis necesito en casa?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Cuántas Simbis necesito en casa?</span>
+        <span class="en">How many Simbis do I need at home?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Una por persona, idealmente. Pero solo necesitas <strong>un PC pequeño</strong>: dentro caben varias Simbis, una por miembro de la familia, sin que se vean entre ellas.</p>
         <p>Para una familia normal con un solo PC suele bastar.</p>
       </div>
-      <div class="en">
-        <h2>How many Simbis do I need at home?</h2>
+        <div class="en">
         <p>One per person, ideally. But you only need <strong>one small PC</strong>: it can hold several Simbis inside, one per family member, without them seeing each other.</p>
         <p>For a regular family one PC is usually enough.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ============ Cierre ============ -->
-    <article class="qa">
-      <div class="es">
-        <h2>¿Y si tengo otra duda que no está aquí?</h2>
+    <details class="qa">
+      <summary>
+        <span class="es">¿Y si tengo otra duda que no está aquí?</span>
+        <span class="en">What if I have a question that's not here?</span>
+      </summary>
+      <div class="qa-body">
+        <div class="es">
         <p>Escríbeme un correo a <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a> y la añado a esta página. Esto se hace mejor entre varios.</p>
       </div>
-      <div class="en">
-        <h2>What if I have a question that's not here?</h2>
+        <div class="en">
         <p>Email me at <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a> and I'll add it to this page. This works better with several heads.</p>
       </div>
-    </article>
+      </div>
+    </details>
 
     <!-- ===== Close box ===== -->
     <div class="close">
@@ -484,6 +555,15 @@
       var browser = navigator.language.slice(0, 2).toLowerCase();
       var initLang = saved || (browser === 'es' ? 'es' : 'en');
       setLang(initLang);
+
+      // Mark active page in top nav
+      var path = (location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '');
+      if (!path) path = 'index.html';
+      var page = path.replace('.html', '');
+      if (page === '' || page === '/') page = 'index';
+      document.querySelectorAll('.page-nav a[data-page]').forEach(function(a) {
+        if (a.getAttribute('data-page') === page) a.classList.add('active');
+      });
     })();
   </script>
 

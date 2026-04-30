@@ -11,6 +11,7 @@
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <link rel="stylesheet" href="./style.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -48,45 +49,12 @@
       font-family: Georgia, 'Times New Roman', serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    /* ============ Topbar ============ */
-    .topbar {
-      position: sticky;
-      top: 0; z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.7rem 1.5rem;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .back-link {
-      color: var(--text-dim); text-decoration: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-    }
-    .back-link:hover { color: var(--accent-strong); }
-    .lang-toggle {
-      display: flex; align-items: center; gap: 0.25rem;
-      border: 1px solid var(--border-strong);
-      border-radius: 6px;
-      padding: 0.2rem 0.45rem;
-    }
-    .lang-btn {
-      background: none; border: none; color: var(--text-faint);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
-      cursor: pointer; padding: 0.1rem 0.3rem; border-radius: 3px;
-    }
-    .lang-btn.active { color: var(--accent-strong); }
-    .lang-btn:hover:not(.active) { color: var(--text); }
-    .lang-sep { color: var(--border-strong); font-size: 0.7rem; user-select: none; }
+    /* Topbar styles centralised in style.css */
 
     .wrap {
       max-width: 760px;
@@ -126,33 +94,49 @@
     }
     section.block > h2 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 1rem;
-      padding-bottom: 0.55rem;
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border);
+      line-height: 1.2;
     }
     section.block > h3 {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      margin: 1.5rem 0 0.6rem;
-      letter-spacing: -0.005em;
+      margin: 2rem 0 0.8rem;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      color: var(--text);
     }
-    section.block > p { margin-bottom: 1rem; }
+    section.block > p {
+      margin-bottom: 1.25rem;
+      line-height: 1.75;
+    }
     section.block > p.intro {
-      font-size: 1.05rem;
-      line-height: 1.55;
-      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      color: var(--text-dim);
     }
-    section.block ul { margin-bottom: 1rem; padding-left: 0; list-style: none; }
+    section.block ul { margin-bottom: 1.5rem; padding-left: 0; list-style: none; }
     section.block ul > li {
       position: relative;
-      padding-left: 1.25rem;
-      margin-bottom: 0.45rem;
+      padding-left: 1.4rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.7;
+    }
+    /* Extra breathing room when a list follows a paragraph or sub-heading */
+    section.block > p + ul,
+    section.block > p + ol,
+    section.block > h3 + ul,
+    section.block > h3 + ol,
+    section.block > p.intro + ul,
+    section.block > p.intro + ol {
+      margin-top: 1.25rem;
     }
     section.block ul > li::before {
       content: "—"; position: absolute; left: 0;
@@ -377,6 +361,152 @@
       color: var(--text-faint);
     }
     .timeline > li:not(:last-child)::before { /* keep dot from list base */ }
+    /* When a timeline item has a single paragraph (used for the roadmap) */
+    .timeline > li > p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* ============ Business lines (model A-E as cards) ============ */
+    .biz-lines {
+      display: grid;
+      gap: 0.7rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    .biz-line {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1.15rem 1.3rem 1.25rem;
+      position: relative;
+    }
+    .biz-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6rem; height: 1.6rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 4px;
+      margin-bottom: 0.65rem;
+    }
+    .biz-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin: 0 0 0.2rem;
+      line-height: 1.3;
+    }
+    .biz-tag {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin: 0 0 0.7rem !important;
+    }
+    .biz-line > p:last-child {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* ============ Risks (risk → mitigation cards) ============ */
+    .risks {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .risks { grid-template-columns: 1fr; }
+    }
+    .risk {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1rem 1.15rem 1.05rem;
+    }
+    .risk-tag {
+      display: inline-block;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      margin-bottom: 0.4rem;
+    }
+    .risk-tag.warn {
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      .risk-tag.warn { color: #fbbf24; background: rgba(245, 158, 11, 0.15); }
+    }
+    .risk-tag.mit {
+      color: var(--accent-strong);
+      background: var(--accent-dim);
+      margin-top: 0.7rem;
+    }
+    .risk h4 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--text);
+      margin: 0 0 0.4rem;
+      line-height: 1.4;
+    }
+    .risk p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    /* ============ Feature grid (technical components) ============ */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .features { grid-template-columns: 1fr; }
+    }
+    .feature {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 1rem 1.15rem 1.05rem;
+    }
+    .feature h4 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--text);
+      margin: 0 0 0.4rem;
+      line-height: 1.35;
+    }
+    .feature p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
 
     /* ============ Pull quote ============ */
     blockquote.pull {
@@ -394,7 +524,7 @@
 
     /* ============ Section divider (visible separator between Part A and B) ============ */
     .divider {
-      margin: 4rem 0 3rem;
+      margin: 5.5rem 0 4rem;
       text-align: center;
       position: relative;
     }
@@ -565,8 +695,17 @@
 </head>
 <body>
 
-  <nav class="topbar">
-    <a href="index.html" class="back-link">&larr; Simbi</a>
+  <nav class="topbar" aria-label="Site">
+    <a href="index.html" class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Simbi</span>
+    </a>
+    <ul class="page-nav">
+      <li><a href="index.html" data-page="index"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+      <li><a href="about.html" data-page="about"><span class="es">Historia</span><span class="en">Story</span></a></li>
+      <li><a href="business.html" data-page="business"><span class="es">Plan</span><span class="en">Plan</span></a></li>
+      <li><a href="faq.html" data-page="faq"><span class="es">Preguntas?</span><span class="en">Questions?</span></a></li>
+    </ul>
     <div class="lang-toggle" aria-label="Language selector">
       <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       <span class="lang-sep">/</span>
@@ -846,13 +985,28 @@
     <section class="block" id="estado">
       <div class="es">
         <h2>Estado real del producto</h2>
-        <ul>
-          <li><strong>3 instancias en uso diario real</strong> (el autor, su padre, una usuaria externa). Configuradas y disponibles en infraestructura: 5.</li>
-          <li><strong>14 plazas comprometidas</strong> en lista de espera (3 familiares + 11 externos), con plan de provisión escalonada.</li>
-          <li><strong>Grupo de adopción temprana ya identificada</strong>: un entorno de empresa que actúa como banco de pruebas de carga (hasta 8 instancias simultáneas), un caso de uso de pareja real, un socio de negocio, el círculo cercano del autor como red de soporte y validación, y una unidad portátil para presentaciones.</li>
-          <li><strong>Infraestructura doméstica del autor.</strong> Desde hace más de 8 años el autor mantiene un servidor doméstico (MonkeyServer) con servicios self-hosted para él, su familia y su círculo cercano. Simbi corre sobre esa infraestructura desde principios de marzo de 2026, con uso diario continuado desde entonces. Pasarela cloud mínima para acceso fuera de la red local.</li>
-          <li><strong>Despliegue automatizado</strong> con dos pistas (canario + estable), rollback en un comando, smoke tests de aislamiento antes de cada despliegue.</li>
-        </ul>
+        <div class="features">
+          <div class="feature">
+            <h4>3 instancias en uso diario real</h4>
+            <p>El autor, su padre y una usuaria externa. Configuradas y disponibles en infraestructura: 5.</p>
+          </div>
+          <div class="feature">
+            <h4>14 plazas comprometidas</h4>
+            <p>Lista de espera con 3 familiares + 11 externos, plan de provisión escalonada.</p>
+          </div>
+          <div class="feature">
+            <h4>Grupo de adopción temprana ya identificado</h4>
+            <p>Entorno de empresa como banco de pruebas (hasta 8 instancias simultáneas), pareja real, socio de negocio, círculo cercano del autor, unidad portátil para presentaciones.</p>
+          </div>
+          <div class="feature">
+            <h4>Infraestructura doméstica del autor</h4>
+            <p>Más de 8 años manteniendo MonkeyServer con servicios self-hosted. Simbi corre allí desde marzo de 2026, con uso diario continuo. Pasarela cloud mínima para acceso fuera de la red local.</p>
+          </div>
+          <div class="feature">
+            <h4>Despliegue automatizado</h4>
+            <p>Dos pistas (canario + estable), rollback en un comando, smoke tests de aislamiento antes de cada despliegue.</p>
+          </div>
+        </div>
 
         <h3>Hardware adicional adquirido por el autor (gasto personal, no del proyecto)</h3>
         <p>El autor ha invertido recientemente <strong>2.850 €</strong> de capital propio en hardware reacondicionado adicional <strong>por su cuenta y riesgo</strong>. Esto <strong>no se contabiliza como inversión del proyecto</strong> ni se espera recuperar con fondos de Simbi: es uso personal del autor más regalos a los primeros usuarios para validar el producto en hogares reales. El compromiso económico personal con el proyecto es real y demostrable:</p>
@@ -862,25 +1016,61 @@
         </ul>
 
         <h3>Componentes técnicos implementados</h3>
-        <ul>
-          <li><strong>Aplicación web progresiva (PWA)</strong> instalable en móvil, tablet u ordenador como interfaz única. Conexión directa a la caja por LAN cuando ambos están en la misma red, o a través de pasarela cifrada (TLS pinning + autenticación por dispositivo) cuando estás fuera de casa.</li>
-          <li>Memoria contextual de larga duración por familia (SQLite + búsqueda vectorial).</li>
-          <li>Ingesta y comprensión de documentos: PDFs, imágenes, hojas de cálculo, correo, calendario.</li>
-          <li>Procedencia trazable de cada hecho recordado (cita la fuente original).</li>
-          <li><strong>Búsqueda web vía SearXNG auto-alojado</strong>, una alternativa más privada que Google. Las consultas no se envían a buscadores comerciales y el usuario puede correr su propia instancia para no depender ni siquiera de la del proyecto.</li>
-          <li><strong>Soporte multilingüe</strong>, validado en castellano e inglés. La arquitectura es agnóstica al idioma: los documentos se conservan, indexan y consultan en la lengua materna del usuario, sin traducción intermediaria que altere matices. Esta propiedad permite cobertura honesta de las <strong>lenguas cooficiales del Estado</strong> (catalán, gallego, euskera), con compromiso de validación con hablantes nativos antes de habilitarlas oficialmente.</li>
-          <li>Aislamiento por contenedor: cada usuario tiene su propio volumen de datos cifrado.</li>
-        </ul>
+        <div class="features">
+          <div class="feature">
+            <h4>PWA en cualquier dispositivo</h4>
+            <p>Móvil, tablet u ordenador. Conexión directa a tu PC Simbi por LAN, o pasarela cifrada cuando estás fuera de casa.</p>
+          </div>
+          <div class="feature">
+            <h4>Memoria de larga duración</h4>
+            <p>Por familia, con búsqueda vectorial. SQLite local, sin nube central.</p>
+          </div>
+          <div class="feature">
+            <h4>Ingesta multimodal</h4>
+            <p>PDFs, imágenes, hojas de cálculo, correo, calendario. Sueltas y olvidas.</p>
+          </div>
+          <div class="feature">
+            <h4>Procedencia trazable</h4>
+            <p>Cada hecho recordado cita la fuente original. Sin recibos, no es memoria.</p>
+          </div>
+          <div class="feature">
+            <h4>Búsqueda web privada</h4>
+            <p>Vía SearXNG auto-alojado. Tus consultas no llegan a Google. Reemplazable por la del propio usuario.</p>
+          </div>
+          <div class="feature">
+            <h4>Multilingüe sin traducción intermediaria</h4>
+            <p>Validado en castellano e inglés. Compromiso con catalán, gallego y euskera tras validación con hablantes nativos.</p>
+          </div>
+          <div class="feature">
+            <h4>Aislamiento por contenedor</h4>
+            <p>Cada usuario, su propio volumen de datos cifrado. Familia ≠ datos compartidos.</p>
+          </div>
+        </div>
       </div>
       <div class="en">
         <h2>Real product status</h2>
-        <ul>
-          <li><strong>3 instances in real daily use</strong> (the author, his father, an external user). Configured and available in infrastructure: 5.</li>
-          <li><strong>14 committed seats</strong> on the wait-list (3 family + 11 external), with a staged provisioning plan.</li>
-          <li><strong>Identified early-adopter group</strong>: a corporate environment used as a load-test bench (up to 8 simultaneous instances), a real couple dynamics use case, a business partner, the author's close circle as a support and validation network, and a portable demo unit.</li>
-          <li><strong>Author's home infrastructure.</strong> For over 8 years the author has maintained a home server (MonkeyServer) hosting self-hosted services for himself, his family and his close circle. Simbi has been running on that same infrastructure since early March 2026, in continuous daily use since then. Minimal cloud gateway for off-LAN access.</li>
-          <li><strong>Automated deploy pipeline</strong> with two tracks (canary + stable), one-command rollback, isolation smoke tests before every deploy.</li>
-        </ul>
+        <div class="features">
+          <div class="feature">
+            <h4>3 instances in real daily use</h4>
+            <p>The author, his father, and an external user. Configured and available in infrastructure: 5.</p>
+          </div>
+          <div class="feature">
+            <h4>14 committed seats</h4>
+            <p>Wait-list with 3 family + 11 external, staged provisioning plan.</p>
+          </div>
+          <div class="feature">
+            <h4>Early-adopter group identified</h4>
+            <p>Corporate environment as load-test bench (up to 8 simultaneous instances), real couple, business partner, author's close circle, portable demo unit.</p>
+          </div>
+          <div class="feature">
+            <h4>Author's home infrastructure</h4>
+            <p>Over 8 years maintaining MonkeyServer with self-hosted services. Simbi runs there since March 2026, in continuous daily use. Minimal cloud gateway for off-LAN access.</p>
+          </div>
+          <div class="feature">
+            <h4>Automated deploy pipeline</h4>
+            <p>Two tracks (canary + stable), one-command rollback, isolation smoke tests before every deploy.</p>
+          </div>
+        </div>
 
         <h3>Additional hardware acquired by the author (personal expense, not project investment)</h3>
         <p>The author has recently invested <strong>€2,850</strong> of personal capital in additional refurbished hardware <strong>at his own risk</strong>. This <strong>is not counted as project investment</strong>, and is not expected to be recovered with Simbi funds: it is the author's personal use plus gifts to the first users to validate the product in real households. The personal economic commitment to the project is real and demonstrable:</p>
@@ -890,15 +1080,36 @@
         </ul>
 
         <h3>Implemented technical components</h3>
-        <ul>
-          <li><strong>Progressive Web App (PWA)</strong> installable on phone, tablet or computer as the single user interface. Direct LAN connection when on the same network, or through the encrypted gateway (TLS pinning + per-device auth) when away from home.</li>
-          <li>Long-term contextual memory per family (SQLite + vector search).</li>
-          <li>Document ingestion and understanding: PDFs, images, spreadsheets, mail, calendar.</li>
-          <li>Traceable provenance for every remembered fact (cites the original source).</li>
-          <li><strong>Web search through self-hosted SearXNG</strong>, a more private alternative to Google. Queries are not sent to commercial search engines, and the user can run their own instance, not even depending on the project's.</li>
-          <li><strong>Multilingual support</strong>, validated in Spanish and English. The architecture is language-agnostic: documents are stored, indexed and queried in the user's native language with no English intermediary that flattens nuance. This allows honest coverage of <strong>Spain's co-official languages</strong> (Catalan, Galician, Basque), with native-speaker validation before official enablement.</li>
-          <li>Per-container isolation: each user has their own encrypted data volume.</li>
-        </ul>
+        <div class="features">
+          <div class="feature">
+            <h4>PWA on any device</h4>
+            <p>Phone, tablet or computer. Direct LAN connection to your Simbi PC, or encrypted gateway when you're away.</p>
+          </div>
+          <div class="feature">
+            <h4>Long-term memory</h4>
+            <p>Per family, with vector search. Local SQLite, no central cloud.</p>
+          </div>
+          <div class="feature">
+            <h4>Multimodal ingestion</h4>
+            <p>PDFs, images, spreadsheets, mail, calendar. Drop and forget.</p>
+          </div>
+          <div class="feature">
+            <h4>Traceable provenance</h4>
+            <p>Every remembered fact cites its source. Without receipts, it isn't memory.</p>
+          </div>
+          <div class="feature">
+            <h4>Private web search</h4>
+            <p>Self-hosted SearXNG. Queries don't reach Google. Replaceable by the user's own instance.</p>
+          </div>
+          <div class="feature">
+            <h4>Multilingual, no English middleman</h4>
+            <p>Validated in Spanish and English. Commitment to Catalan, Galician and Basque after native-speaker validation.</p>
+          </div>
+          <div class="feature">
+            <h4>Per-container isolation</h4>
+            <p>Each user, their own encrypted data volume. Family ≠ shared data.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -906,22 +1117,52 @@
     <section class="block" id="ruta">
       <div class="es">
         <h2>Hoja de ruta 2026-2027</h2>
-        <ul>
-          <li><strong>Q3 2026:</strong> Despliegue de las 5 cajas HP compactas en hogares del primer grupo. Migración de datos del servidor central a la caja del usuario.</li>
-          <li><strong>Q4 2026:</strong> Tier Base operativo con modelos abiertos en cloud económico (Groq, Together, Fireworks). Cambio fluido entre Premium y Base.</li>
-          <li><strong>Q1 2027:</strong> Validación con hablantes nativos en catalán, gallego y euskera. Habilitación oficial.</li>
-          <li><strong>Q2 2027:</strong> Hoy ya hay caché offline de archivos recientes y datos esenciales. La meta del Q2 es modo full-offline para todas las tareas que no requieran razonamiento de gama alta: memoria, búsqueda local, lectura, resumen. El uso cotidiano resiste cortes de conectividad.</li>
-          <li><strong>Segunda mitad 2027:</strong> Apertura progresiva del código del producto. Evaluación de hardware más capaz para ejecución 100% local de modelos premium.</li>
+        <ul class="timeline">
+          <li class="next">
+            <span class="when">Q3 2026</span>
+            <p>Despliegue de los 5 PCs Simbi en hogares del primer grupo. Migración de datos del servidor central al PC del usuario.</p>
+          </li>
+          <li>
+            <span class="when">Q4 2026</span>
+            <p>Tier Base operativo con modelos abiertos en cloud económico (Groq, Together, Fireworks). Cambio fluido entre Premium y Base.</p>
+          </li>
+          <li>
+            <span class="when">Q1 2027</span>
+            <p>Validación con hablantes nativos en catalán, gallego y euskera. Habilitación oficial.</p>
+          </li>
+          <li>
+            <span class="when">Q2 2027</span>
+            <p>Hoy ya hay caché offline de archivos recientes y datos esenciales. La meta del Q2 es modo full-offline para todas las tareas que no requieran razonamiento de gama alta: memoria, búsqueda local, lectura, resumen. El uso cotidiano resiste cortes de conectividad.</p>
+          </li>
+          <li>
+            <span class="when">Segunda mitad 2027</span>
+            <p>Apertura progresiva del código del producto. Evaluación de hardware más capaz para ejecución 100% local de modelos premium.</p>
+          </li>
         </ul>
       </div>
       <div class="en">
         <h2>Roadmap 2026-2027</h2>
-        <ul>
-          <li><strong>Q3 2026:</strong> Deploy the 5 compact HP boxes to first-group households. Migrate data from central server to the user's box.</li>
-          <li><strong>Q4 2026:</strong> Base tier live on open-source models via cheap cloud (Groq, Together, Fireworks). Smooth switch between Premium and Base.</li>
-          <li><strong>Q1 2027:</strong> Native-speaker validation of Catalan, Galician and Basque. Official enablement.</li>
-          <li><strong>Q2 2027:</strong> offline cache of recent files and core data is already in place. The Q2 goal is full-offline mode for everything that doesn't require high-end reasoning: memory, local search, reading, summarisation. Reasoning-heavy tasks still need cloud, but everyday use survives connectivity outages.</li>
-          <li><strong>H2 2027:</strong> Progressive opening of the product code. Evaluation of more capable hardware for 100% local execution of premium-class models.</li>
+        <ul class="timeline">
+          <li class="next">
+            <span class="when">Q3 2026</span>
+            <p>Deploy the 5 Simbi PCs to first-group households. Migrate data from central server to the user's PC.</p>
+          </li>
+          <li>
+            <span class="when">Q4 2026</span>
+            <p>Base tier live on open-source models via cheap cloud (Groq, Together, Fireworks). Smooth switch between Premium and Base.</p>
+          </li>
+          <li>
+            <span class="when">Q1 2027</span>
+            <p>Native-speaker validation of Catalan, Galician and Basque. Official enablement.</p>
+          </li>
+          <li>
+            <span class="when">Q2 2027</span>
+            <p>Offline cache of recent files and core data is already in place. The Q2 goal is full-offline mode for everything that doesn't require high-end reasoning: memory, local search, reading, summarisation. Reasoning-heavy tasks still need cloud, but everyday use survives connectivity outages.</p>
+          </li>
+          <li>
+            <span class="when">H2 2027</span>
+            <p>Progressive opening of the product code. Evaluation of more capable hardware for 100% local execution of premium-class models.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -932,39 +1173,75 @@
         <h2>Modelo de negocio detallado</h2>
         <p class="intro">El modelo se estructura en cinco líneas, ordenadas por su peso esperado a medio-largo plazo.</p>
 
-        <h3>A. Partnerships con fabricantes (vector estratégico)</h3>
-        <p>Synology, QNAP, UGREEN, TerraMaster y similares buscan "el ángulo IA" para sus dispositivos. Hoy ofrecen NAS vacíos sin capa de IA respetuosa con la privacidad. Simbi encaja como esa capa: software preinstalable en cajas de partners, con un fee de licencia por unidad vendida (rango objetivo 50-150 € por caja) y revenue share opcional sobre Premium. Patrón B2B2C ya recorrido por Plex, Jellyfin, Sonos software o el propio HomeAssistant.</p>
-
-        <h3>B. Venta directa de la caja (vector inicial)</h3>
-        <p>Hasta firmar las primeras alianzas, venta directa de cajas con hardware empresarial reacondicionado a <strong>499 €</strong>, incluyendo 5 meses de Premium. Benchmark abajo.</p>
-
-        <h3>C. Simbi Premium (cuota opcional, 100 €/mes)</h3>
-        <p>Tras la promo, el usuario decide si contratar Premium: modelos de razonamiento de gama alta gestionados por el operador, actualizaciones, soporte humano, mantenimiento remoto, respaldo cifrado adicional.</p>
-
-        <h3>D. Simbi Base, gratuito perpetuo</h3>
-        <p>Pieza diferencial. Quien no continúe Premium conserva una Simbi totalmente funcional con modelos abiertos (Llama, Mistral, Qwen, DeepSeek v4 con saltos enormes los últimos meses) servidos a través de proveedores cloud económicos. Coste de inferencia 10-30× inferior al premium, lo que hace sostenible el tier gratuito financiado con el margen de la caja o el fee del partner.</p>
-
-        <h3>E. Consultoría y docencia universitaria (primer año)</h3>
-        <p>Ingresos puente mediante consultoría técnica y impartición docente en universidades en IA aplicada. Línea ya en marcha, aprovechando red profesional y experiencia previa como Lead AI Engineer.</p>
+        <div class="biz-lines">
+          <div class="biz-line">
+            <span class="biz-pill">A</span>
+            <h3 class="biz-title">Partnerships con fabricantes</h3>
+            <p class="biz-tag">Vector estratégico</p>
+            <p>Synology, QNAP, UGREEN, TerraMaster y similares buscan "el ángulo IA" para sus dispositivos. Hoy ofrecen NAS vacíos sin capa de IA respetuosa con la privacidad. Simbi encaja como esa capa: software preinstalable en PCs de partners, con un fee de licencia por unidad vendida (rango objetivo 50-150 € por caja) y revenue share opcional sobre Premium. Patrón B2B2C ya recorrido por Plex, Jellyfin, Sonos software o el propio HomeAssistant.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">B</span>
+            <h3 class="biz-title">Venta directa del PC Simbi</h3>
+            <p class="biz-tag">Vector inicial</p>
+            <p>Hasta firmar las primeras alianzas, venta directa de PCs con hardware empresarial reacondicionado a <strong>499 €</strong>, incluyendo 5 meses de Premium. Benchmark abajo.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">C</span>
+            <h3 class="biz-title">Simbi Premium</h3>
+            <p class="biz-tag">Cuota opcional · 100 €/mes</p>
+            <p>Tras la promo, el usuario decide si contratar Premium: modelos de razonamiento de gama alta gestionados por el operador, actualizaciones, soporte humano, mantenimiento remoto, respaldo cifrado adicional.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">D</span>
+            <h3 class="biz-title">Simbi Base</h3>
+            <p class="biz-tag">Gratuito · perpetuo</p>
+            <p>Pieza diferencial. Quien no continúe Premium conserva una Simbi totalmente funcional con modelos abiertos (Llama, Mistral, Qwen, DeepSeek v4 con saltos enormes los últimos meses) servidos a través de proveedores cloud económicos. Coste de inferencia 10-30× inferior al premium, lo que hace sostenible el tier gratuito financiado con el margen de la caja o el fee del partner.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">E</span>
+            <h3 class="biz-title">Consultoría y docencia universitaria</h3>
+            <p class="biz-tag">Ingresos puente · primer año</p>
+            <p>Ingresos puente mediante consultoría técnica y impartición docente en universidades en IA aplicada. Línea ya en marcha, aprovechando red profesional y experiencia previa como Lead AI Engineer.</p>
+          </div>
+        </div>
       </div>
       <div class="en">
         <h2>Detailed business model</h2>
         <p class="intro">Five lines, ordered by expected long-term weight.</p>
 
-        <h3>A. Partnerships with manufacturers (strategic vector)</h3>
-        <p>Synology, QNAP, UGREEN, TerraMaster and similar are hunting for "the AI angle" for their devices. They sell empty NAS boxes with no privacy-respecting AI layer. Simbi fits as that layer: pre-installable software on partner boxes, with a per-unit license fee (target €50-150 per box) and optional revenue share on Premium. B2B2C pattern already followed by Plex, Jellyfin, Sonos software, HomeAssistant itself.</p>
-
-        <h3>B. Direct sale of the box (initial vector)</h3>
-        <p>Until partnerships are signed, direct sale of boxes built on refurbished enterprise hardware at <strong>€499</strong>, including 5 months of Premium. Benchmark below.</p>
-
-        <h3>C. Simbi Premium (optional, €100/month)</h3>
-        <p>After the promo, user decides whether to subscribe: top-tier reasoning models operated by us, updates, human support, remote maintenance, additional encrypted backup.</p>
-
-        <h3>D. Simbi Base, free, perpetual</h3>
-        <p>The differentiator. If you don't continue Premium you keep a fully functional Simbi powered by open-source models (Llama, Mistral, Qwen, DeepSeek v4 with huge jumps in the last months) served through cheap cloud providers. Inference cost 10-30× cheaper than premium, which makes the free tier sustainable, financed by the box-sale margin or the partner's fee.</p>
-
-        <h3>E. Consulting and university teaching (first year)</h3>
-        <p>Bridge income through technical consulting and university teaching in applied AI. Line already in motion, drawing on professional network and prior experience as Lead AI Engineer.</p>
+        <div class="biz-lines">
+          <div class="biz-line">
+            <span class="biz-pill">A</span>
+            <h3 class="biz-title">Partnerships with manufacturers</h3>
+            <p class="biz-tag">Strategic vector</p>
+            <p>Synology, QNAP, UGREEN, TerraMaster and similar are hunting for "the AI angle" for their devices. They sell empty NAS boxes with no privacy-respecting AI layer. Simbi fits as that layer: pre-installable software on partner PCs, with a per-unit license fee (target €50-150 per box) and optional revenue share on Premium. B2B2C pattern already followed by Plex, Jellyfin, Sonos software, HomeAssistant itself.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">B</span>
+            <h3 class="biz-title">Direct sale of the Simbi PC</h3>
+            <p class="biz-tag">Initial vector</p>
+            <p>Until partnerships are signed, direct sale of PCs built on refurbished enterprise hardware at <strong>€499</strong>, including 5 months of Premium. Benchmark below.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">C</span>
+            <h3 class="biz-title">Simbi Premium</h3>
+            <p class="biz-tag">Optional · €100/month</p>
+            <p>After the promo, user decides whether to subscribe: top-tier reasoning models operated by us, updates, human support, remote maintenance, additional encrypted backup.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">D</span>
+            <h3 class="biz-title">Simbi Base</h3>
+            <p class="biz-tag">Free · perpetual</p>
+            <p>The differentiator. If you don't continue Premium you keep a fully functional Simbi powered by open-source models (Llama, Mistral, Qwen, DeepSeek v4 with huge jumps in the last months) served through cheap cloud providers. Inference cost 10-30× cheaper than premium, which makes the free tier sustainable, financed by the box-sale margin or the partner's fee.</p>
+          </div>
+          <div class="biz-line">
+            <span class="biz-pill">E</span>
+            <h3 class="biz-title">Consulting and university teaching</h3>
+            <p class="biz-tag">Bridge income · first year</p>
+            <p>Bridge income through technical consulting and university teaching in applied AI. Line already in motion, drawing on professional network and prior experience as Lead AI Engineer.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1062,38 +1339,108 @@
     <section class="block" id="riesgos">
       <div class="es">
         <h2>Riesgos y mitigación</h2>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Riesgo</th><th>Mitigación</th></tr></thead>
-            <tbody>
-              <tr><td>Dependencia actual de un proveedor cloud (Anthropic)</td><td>Arquitectura modular: el proveedor de razonamiento es sustituible. Migración progresiva a modelos abiertos.</td></tr>
-              <tr><td>Coste cloud durante el período promo de 5 meses</td><td>Margen unitario de la venta absorbe el coste cloud; Premium tras la promo cubre el coste con margen.</td></tr>
-              <tr><td>Captación lenta de usuarios</td><td>Primer grupo ya comprometido (14 familias). Ingresos de consultoría como puente. Infraestructura ya operativa desde hace 8 años reduce inversión inicial necesaria.</td></tr>
-              <tr><td>Sobrecarga de soporte con un solo operador</td><td>Documentación cuidada, alta semi-automatizada, soporte por niveles. Contratación cuando los ingresos recurrentes lo permitan (ya prevista en fase 1).</td></tr>
-              <tr><td>Saturación competitiva por grandes proveedores</td><td>El nicho elegido (instancia por familia, datos propios, salida garantizada) es estructuralmente incompatible con su modelo. Los fabricantes de hardware doméstico son socios naturales.</td></tr>
-              <tr><td>Quiebra o desaparición del operador Simbi</td><td>Por diseño: la caja del usuario sigue funcionando. Datos en hardware del usuario, modelos abiertos ejecutables por cualquier proveedor cloud, pasarela reemplazable.</td></tr>
-              <tr><td>Maduración de modelos abiertos más lenta de lo previsto</td><td>Los modelos abiertos en cloud económico ya tienen calidad para el tier Base hoy; ejecución totalmente local no es imprescindible para el modelo de negocio.</td></tr>
-              <tr><td>Cambio de precios de proveedores cloud</td><td>El producto es agnóstico al proveedor: cambiar es cuestión de configuración, lo que disciplina precios del lado del proveedor.</td></tr>
-            </tbody>
-          </table>
+        <div class="risks">
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Dependencia actual de un proveedor cloud (Anthropic)</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>Arquitectura modular: el proveedor de razonamiento es sustituible. Migración progresiva a modelos abiertos.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Coste cloud durante el período promo de 5 meses</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>El margen unitario de la venta absorbe el coste cloud; Premium tras la promo cubre el coste con margen.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Captación lenta de usuarios</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>Primer grupo ya comprometido (14 familias). Consultoría como puente. Infraestructura ya operativa desde hace 8 años reduce la inversión inicial necesaria.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Sobrecarga de soporte con un solo operador</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>Documentación cuidada, alta semi-automatizada, soporte por niveles. Contratación cuando los ingresos recurrentes lo permitan (ya prevista en fase 1).</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Saturación competitiva por grandes proveedores</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>El nicho elegido (instancia por familia, datos propios, salida garantizada) es estructuralmente incompatible con su modelo. Los fabricantes de hardware doméstico son socios naturales.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Quiebra o desaparición del operador Simbi</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>Por diseño: el PC del usuario sigue funcionando. Datos en hardware del usuario, modelos abiertos ejecutables por cualquier proveedor cloud, pasarela reemplazable.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Maduración de modelos abiertos más lenta de lo previsto</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>Los modelos abiertos en cloud económico ya tienen calidad para el tier Base hoy; ejecución totalmente local no es imprescindible para el modelo de negocio.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Riesgo</span>
+            <h4>Cambio de precios de proveedores cloud</h4>
+            <span class="risk-tag mit">Mitigación</span>
+            <p>El producto es agnóstico al proveedor: cambiar es cuestión de configuración, lo que disciplina precios del lado del proveedor.</p>
+          </div>
         </div>
       </div>
       <div class="en">
         <h2>Risks and mitigation</h2>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
-            <tbody>
-              <tr><td>Current dependency on a cloud provider (Anthropic)</td><td>Modular architecture: the reasoning provider is replaceable. Progressive migration to open-source models.</td></tr>
-              <tr><td>Cloud cost during the 5-month promo</td><td>Unit margin of the sale absorbs cloud cost; Premium after the promo covers cost with margin.</td></tr>
-              <tr><td>Slow user acquisition</td><td>First group already committed (14 households). Consulting income as bridge. Infrastructure already operational for 8 years reduces required initial investment.</td></tr>
-              <tr><td>Support overload with a single operator</td><td>Polished documentation, semi-automated onboarding, tiered support. Hiring when recurring revenue allows it (already planned in phase 1).</td></tr>
-              <tr><td>Competitive saturation by major providers</td><td>The chosen niche (one instance per family, owned data, guaranteed exit) is structurally incompatible with their model. Home-hardware makers are natural partners.</td></tr>
-              <tr><td>Bankruptcy or disappearance of Simbi operator</td><td>By design: the user's box keeps working. Data on user hardware, open-source models runnable by any cloud provider, replaceable gateway.</td></tr>
-              <tr><td>Open-source model maturity slower than expected</td><td>Open-source models in cheap cloud already good enough for Base tier today; full local execution not essential to the business model.</td></tr>
-              <tr><td>Cloud provider pricing changes</td><td>Product is provider-agnostic: switching is a configuration change, which disciplines pricing on the provider side.</td></tr>
-            </tbody>
-          </table>
+        <div class="risks">
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Current dependency on a cloud provider (Anthropic)</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>Modular architecture: the reasoning provider is replaceable. Progressive migration to open-source models.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Cloud cost during the 5-month promo</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>The unit margin of the sale absorbs cloud cost; Premium after the promo covers cost with margin.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Slow user acquisition</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>First group already committed (14 households). Consulting income as bridge. Infrastructure already operational for 8 years reduces required initial investment.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Support overload with a single operator</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>Polished documentation, semi-automated onboarding, tiered support. Hiring when recurring revenue allows it (already planned in phase 1).</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Competitive saturation by major providers</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>The chosen niche (one instance per family, owned data, guaranteed exit) is structurally incompatible with their model. Home-hardware makers are natural partners.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Bankruptcy or disappearance of the Simbi operator</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>By design: the user's PC keeps working. Data on user hardware, open-source models runnable by any cloud provider, replaceable gateway.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Open-source model maturity slower than expected</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>Open-source models in cheap cloud already good enough for the Base tier today; full local execution not essential to the business model.</p>
+          </div>
+          <div class="risk">
+            <span class="risk-tag warn">Risk</span>
+            <h4>Cloud provider pricing changes</h4>
+            <span class="risk-tag mit">Mitigation</span>
+            <p>The product is provider-agnostic: switching is a configuration change, which disciplines pricing on the provider side.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1136,8 +1483,8 @@
     <footer class="foot">
       <p class="es">Por <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · ¿Dudas? <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a></p>
       <p class="en">By <a href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a> · Questions? <a href="mailto:monkeyandres@protonmail.com">monkeyandres@protonmail.com</a></p>
-      <p class="es">Documento público bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">licencia AGPL-3.0</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Código fuente</a> · <a href="index.html">Inicio</a> · <a href="faq.html">FAQ</a></p>
-      <p class="en">Public document under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL-3.0 license</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Source code</a> · <a href="index.html">Home</a> · <a href="faq.html">FAQ</a></p>
+      <p class="es">Documento público bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">licencia AGPL-3.0</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Código fuente</a> · <a href="index.html">Inicio</a> · <a href="faq.html">Preguntas?</a></p>
+      <p class="en">Public document under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL-3.0 license</a> · <a href="https://github.com/MonkeyAndres/simbi-portal" target="_blank" rel="noopener">Source code</a> · <a href="index.html">Home</a> · <a href="faq.html">Questions?</a></p>
     </footer>
 
   </main>
@@ -1168,6 +1515,15 @@
       var browser = navigator.language.slice(0, 2).toLowerCase();
       var initLang = saved || (browser === 'es' ? 'es' : 'en');
       setLang(initLang);
+
+      // Mark active page in top nav
+      var path = (location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '');
+      if (!path) path = 'index.html';
+      var page = path.replace('.html', '');
+      if (page === '' || page === '/') page = 'index';
+      document.querySelectorAll('.page-nav a[data-page]').forEach(function(a) {
+        if (a.getAttribute('data-page') === page) a.classList.add('active');
+      });
     })();
   </script>
 

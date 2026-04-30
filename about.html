@@ -11,6 +11,7 @@
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g' cx='30%25' cy='30%25'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%23059669'/></radialGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>">
+  <link rel="stylesheet" href="./style.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -57,65 +58,7 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* -- Top bar -- */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1.5rem;
-      background: var(--topbar-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .back-link {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--accent); }
-
-    .lang-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: var(--accent-dim);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.25rem 0.5rem;
-    }
-    .lang-btn {
-      background: none;
-      border: none;
-      color: var(--text-faint);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      padding: 0.15rem 0.35rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-    }
-    .lang-btn.active {
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
-    .lang-btn:hover:not(.active) { color: var(--text); }
-    .lang-sep {
-      color: var(--border);
-      font-size: 0.7rem;
-      user-select: none;
-    }
+    /* Topbar styles centralised in style.css */
 
     /* -- Layout -- */
     .essay {
@@ -460,8 +403,17 @@
 <body>
 
   <!-- Top bar -->
-  <nav class="topbar">
-    <a href="index.html" class="back-link">&larr; Simbi</a>
+  <nav class="topbar" aria-label="Site">
+    <a href="index.html" class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Simbi</span>
+    </a>
+    <ul class="page-nav">
+      <li><a href="index.html" data-page="index"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+      <li><a href="about.html" data-page="about"><span class="es">Historia</span><span class="en">Story</span></a></li>
+      <li><a href="business.html" data-page="business"><span class="es">Plan</span><span class="en">Plan</span></a></li>
+      <li><a href="faq.html" data-page="faq"><span class="es">Preguntas?</span><span class="en">Questions?</span></a></li>
+    </ul>
     <div class="lang-toggle" aria-label="Language selector">
       <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       <span class="lang-sep">/</span>
@@ -776,8 +728,8 @@
 
     <!-- Footer -->
     <footer class="essay-footer">
-      <p class="es">Simbi &middot; Tu mundo sigue siendo tuyo. &middot; <a href="index.html">Inicio</a> &middot; <a href="business.html">Plan de empresa</a> &middot; <a href="faq.html">FAQ</a></p>
-      <p class="en">Simbi &middot; Your world stays yours. &middot; <a href="index.html">Home</a> &middot; <a href="business.html">Business plan</a> &middot; <a href="faq.html">FAQ</a></p>
+      <p class="es">Simbi &middot; Tu mundo sigue siendo tuyo. &middot; <a href="index.html">Inicio</a> &middot; <a href="business.html">Plan de empresa</a> &middot; <a href="faq.html">Preguntas?</a></p>
+      <p class="en">Simbi &middot; Your world stays yours. &middot; <a href="index.html">Home</a> &middot; <a href="business.html">Business plan</a> &middot; <a href="faq.html">Questions?</a></p>
     </footer>
 
   </article>
@@ -812,6 +764,17 @@
       var browser = navigator.language.slice(0, 2).toLowerCase();
       var initLang = saved || (browser === 'es' ? 'es' : 'en');
       setLang(initLang);
+
+      // Mark active page in top nav
+      (function markActive() {
+        var path = (location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '');
+        if (!path || path === '') path = 'index.html';
+        var page = path.replace('.html', '');
+        if (page === '' || page === '/') page = 'index';
+        document.querySelectorAll('.page-nav a[data-page]').forEach(function(a) {
+          if (a.getAttribute('data-page') === page) a.classList.add('active');
+        });
+      })();
 
       // Mobile TOC toggle
       var tocMobile = document.getElementById('toc-mobile');
