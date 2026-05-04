@@ -1,6 +1,6 @@
 # Simbi Portal
 
-The public website for **[Simbi](https://simbi.monkeyandres.com)** — a privacy-first AI memory that lives on the user's own hardware, not on someone else's cloud.
+The public website for **[Simbi](https://simbi.monkeyandres.com)** — a self-hosted, privacy-first AI memory that runs on a machine you already have, not on someone else's cloud.
 
 This repo is the website itself: bilingual ES/EN, plain HTML/CSS/Vite, no tracking, no analytics.
 
@@ -18,18 +18,8 @@ This repo is the website itself: bilingual ES/EN, plain HTML/CSS/Vite, no tracki
 
 GitHub Sponsors is live: **[github.com/sponsors/MonkeyAndres](https://github.com/sponsors/MonkeyAndres)**
 
-The full breakdown of tiers and what each one includes is on the public page:
+The current tiers (Seed, Sprout, Tree, Pillar, Patron) and what each one includes are on the public page — no fixed amounts, set whatever feels right:
 **[simbi.monkeyandres.com/colabora.html#apoyo](https://simbi.monkeyandres.com/colabora.html#apoyo)**
-
-Quick reference:
-
-| Tier | Monthly | What you get |
-|---|---|---|
-| 🌱 Seed   | 5 €   | Name in `SUPPORTERS.md` (optional) |
-| 🌿 Sprout | 25 €  | + private monthly newsletter, voice in priority polls |
-| 🌳 Tree   | 100 € | + quarterly 1-on-1 (1h) |
-| 🏛️ Pillar | 500 € | + monthly 1-on-1, logo on Patrons page, early access |
-| 🦦 Patron | 1,500 € | + 2h monthly strategic channel. No vote on decisions: Simbi stays independent. |
 
 100% of the money goes back into the project. No outside shareholders, no exit. If the project grows enough, non-profit foundation. Full reasoning in the [public business plan](https://simbi.monkeyandres.com/business.html).
 

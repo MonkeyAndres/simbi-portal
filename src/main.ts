@@ -19,13 +19,13 @@ const translations: Record<Lang, Record<string, string>> = {
     's2.p4': "It doesn't read your email yet. It doesn't watch your calendar. It doesn't speak. Today it does one thing: it remembers what you put in front of it, and finds it when you ask.",
 
     's3.head': 'On your machine. Nowhere else.',
-    's3.p1': "Simbi runs on your laptop, your home server, or a five-euro VPS — whatever hardware you've got. Your files never leave that machine. There is no cloud account to sign into, no telemetry, no analytics, no third party that gets a copy of anything.",
+    's3.p1': "Simbi runs on your laptop, your home server, or a small VPS — whatever hardware you've got. Your files never leave that machine. There is no cloud account to sign into, no telemetry, no analytics, no third party that gets a copy of anything.",
     's3.p2': "The portal you're reading is open source. The product itself is opening progressively under a permissive license. If I disappear tomorrow, your Simbi keeps running. If you don't like where the project is heading, you take your copy and go. No closed door, ever.",
-    's3.p3': "Today you can run it yourself for free with your own key (Anthropic, OpenAI, or a model running on your own hardware). Soon: a pre-installed box with a perpetual free tier and an optional Premium service. Either way the promise is the same: your data on your machine, no rent for the right to remember.",
+    's3.p3': "Today you run it yourself for free with your own key (Anthropic, OpenAI, or a model on your own hardware). That's the offering: self-hosting, on a machine you already have. If real demand for a turnkey box ever appears, I'll consider one — but I'm not selling hardware today and I'm not asking you to wait for one. The promise is just this: your data on your machine, no rent for the right to remember.",
     's3.p4': "This is not ideology. It is an architecture decision. A memory holds everything you have. That much trust can only go to something that is actually yours.",
 
     's4.head': 'Built by one person, on purpose.',
-    's4.p1': "Simbi is built by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building it because he wants it to exist — for himself, for his father, for the three families already using it daily, for the eleven more waiting their turn, for anyone who feels the same daily friction. If that's you, this belongs to you too.",
+    's4.p1': "Simbi is built by <a class=\"ogilvy-link\" href=\"https://monkeyandres.com\" target=\"_blank\" rel=\"noopener\">Andrés Martín Angulo</a>, a programmer in Spain. One person, working in the open. No company, no board, no exit strategy. He's building it because he wants it to exist — for himself, for his father, for the small group of families already using it daily, for the others waiting their turn, for anyone who feels the same daily friction. If that's you, this belongs to you too.",
 
     's5.head': 'Two ways to keep going.',
     's5.p1': 'Pick whichever you want first. Both are public, both are honest.',
@@ -64,13 +64,13 @@ const translations: Record<Lang, Record<string, string>> = {
     's2.p4': 'Todavía no lee tu correo. No mira tu calendario. No habla. Hoy hace una sola cosa: recuerda lo que pones delante, y lo encuentra cuando preguntas.',
 
     's3.head': 'En tu máquina. En ningún otro sitio.',
-    's3.p1': 'Simbi funciona en tu portátil, en un servidor casero, o en un VPS de cinco euros — el hardware que tengas a mano. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni nadie ahí fuera recibiendo copia de tus cosas.',
+    's3.p1': 'Simbi funciona en tu portátil, en un servidor casero, o en un VPS modesto — el hardware que tengas a mano. Tus archivos nunca salen de esa máquina. No hay cuenta en la nube en la que entrar, ni telemetría, ni analytics, ni nadie ahí fuera recibiendo copia de tus cosas.',
     's3.p2': 'El portal que estás leyendo es código abierto. El producto en sí se va abriendo progresivamente bajo licencia permisiva. Si yo desaparezco mañana, tu Simbi sigue funcionando. Si no te gusta hacia dónde va el proyecto, te llevas tu copia. Ninguna puerta cerrada, nunca.',
-    's3.p3': 'Hoy puedes correrlo tú mismo gratis con tu propia clave (Anthropic, OpenAI, o un modelo en tu propio hardware). Pronto: una caja preinstalada con un nivel gratuito perpetuo y un servicio Premium opcional. La promesa no cambia en ningún caso: tus datos en tu máquina, sin alquiler por el derecho a recordar.',
+    's3.p3': 'Hoy lo corres tú mismo gratis con tu propia clave (Anthropic, OpenAI, o un modelo en tu propio hardware). Esa es la oferta: auto-alojado, en una máquina que ya tengas. Si en algún momento aparece demanda real de una caja lista para enchufar, me lo plantearé — pero hoy no vendo hardware y no te pido que esperes a ninguno. La promesa es ésta: tus datos en tu máquina, sin alquiler por el derecho a recordar.',
     's3.p4': 'Esto no es ideología. Es una decisión de arquitectura. Una memoria contiene todo lo tuyo. Esa cantidad de confianza solo se le puede dar a algo que de verdad es tuyo.',
 
     's4.head': 'Hecho por una persona, a propósito.',
-    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para las tres familias que ya lo usan a diario, para las once que esperan turno, para quien sienta la misma fricción diaria. Si te ves ahí dentro, esto también es para ti.',
+    's4.p1': 'Simbi lo hace <a class="ogilvy-link" href="https://monkeyandres.com" target="_blank" rel="noopener">Andrés Martín Angulo</a>, un programador en España. Una persona, trabajando en abierto. Sin empresa, sin consejo, sin estrategia de salida. Construye Simbi porque quiere que exista — para él, para su padre, para el grupo pequeño de familias que ya lo usan a diario, para las que esperan turno, para quien sienta la misma fricción diaria. Si te ves ahí dentro, esto también es para ti.',
 
     's5.head': 'Dos formas de seguir.',
     's5.p1': 'Empieza por la que quieras. Las dos son públicas y honestas.',
